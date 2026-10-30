@@ -363,8 +363,12 @@
       font-weight: 700;
       margin-bottom: 6px;
     }
-    .trap-answers { display: flex; gap: 8px; margin: 10px 0; }
+    .trap-answers { display: flex; gap: 8px; margin: 10px 0; flex-wrap: wrap; }
+    .trap-answers.mc { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    @media (max-width: 520px) { .trap-answers.mc { grid-template-columns: 1fr; } }
     .trap-answers .btn { flex: 1; }
+    .trap-answers.mc .btn { flex: unset; text-align: left; min-height: 52px; font-size: 14px; line-height: 1.35; }
+    .trap-answers .btn .letter { font-weight: 800; color: #ffd6db; margin-right: 6px; }
     .trap-answers .btn:disabled { opacity: .45; cursor: default; }
     .trap-result { font-weight: 750; font-size: 16px; margin: 4px 0 6px; }
     .trap-result.ok { color: #1f6b3a; }
@@ -737,13 +741,10 @@
           <p class="fact-credit">Sources: Wikipedia (CC BY-SA) · curated for teaching</p>
         </div>
         <div class="fact-card trap-card" id="trapCard">
-          <div class="fact-kicker">Quick check · DSE trap</div>
+          <div class="fact-kicker">Quick check · DSE traps</div>
           <p class="trap-topic" id="trapTopic"></p>
           <p class="fact-text" id="trapQuestion">Loading a trap…</p>
-          <div class="trap-answers" id="trapAnswers">
-            <button type="button" class="btn btn-primary" id="trapTrue">True</button>
-            <button type="button" class="btn btn-ghost" id="trapFalse">False</button>
-          </div>
+          <div class="trap-answers" id="trapAnswers"></div>
           <p class="trap-result" id="trapResult" hidden></p>
           <p class="trap-explain" id="trapExplain" hidden></p>
           <p class="trap-next-label">Another question</p>
@@ -2353,7 +2354,7 @@ CE,2009,44,A`;
       url: 'https://sites.google.com/carmelss.edu.hk/mcqans/mcqs-finder',
       label: 'Open'
     },
-    { title: 'DSE traps checker', blurb: 'True or false. Spot the common exam traps.', status: 'ready', icon: '⚠', url: 'tools/dse-traps.html', label: 'Open' },
+    { title: 'DSE traps checker', blurb: 'Mixed true/false and MC fact traps. Spot common exam misconceptions.', status: 'ready', icon: '⚠', url: 'tools/dse-traps.html', label: 'Open' },
     { title: 'Publisher mock exam portal', blurb: 'Mock papers portal', status: 'soon', icon: '📝', url: null },
     { title: 'Publisher quick check', blurb: 'Quick check page', status: 'soon', icon: '⚡', url: null },
     { title: 'Exam mark checking', blurb: 'Mark checking tools', status: 'later', icon: '📊', url: null }
@@ -2919,6 +2920,62 @@ CE,2009,44,A`;
     return trapBank ? Object.keys(trapBank) : [];
   }
 
+  function trapItemType(item) {
+    if (!item) return 'tf';
+    if (item.type === 'mc') return 'mc';
+    if (item.type === 'tf') return 'tf';
+    // legacy boolean-only banks
+    return (item.options && typeof item.answer === 'string') ? 'mc' : 'tf';
+  }
+
+  function escapeTrapHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function renderTrapAnswers(item) {
+    var box = document.getElementById('trapAnswers');
+    box.hidden = false;
+    box.textContent = '';
+    var kind = trapItemType(item);
+    if (kind === 'mc') {
+      box.className = 'trap-answers mc';
+      ['A', 'B', 'C', 'D'].forEach(function (letter) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'btn btn-primary';
+        btn.setAttribute('data-trap-choice', letter);
+        var opt = (item.options && item.options[letter]) || '';
+        btn.innerHTML = '<span class="letter">' + letter + '</span>' + escapeTrapHtml(opt);
+        box.appendChild(btn);
+      });
+    } else {
+      box.className = 'trap-answers';
+      var t = document.createElement('button');
+      t.type = 'button';
+      t.className = 'btn btn-primary';
+      t.setAttribute('data-trap-choice', 'true');
+      t.textContent = 'True';
+      var f = document.createElement('button');
+      f.type = 'button';
+      f.className = 'btn btn-ghost';
+      f.setAttribute('data-trap-choice', 'false');
+      f.textContent = 'False';
+      box.appendChild(t);
+      box.appendChild(f);
+    }
+  }
+
+  function setTrapAnswersDisabled(disabled) {
+    var box = document.getElementById('trapAnswers');
+    Array.prototype.forEach.call(box.querySelectorAll('button'), function (btn) {
+      btn.disabled = !!disabled;
+    });
+  }
+
   function showTrap(topic) {
     var names = trapTopics();
     var pool = [];
@@ -2937,55 +2994,67 @@ CE,2009,44,A`;
       guard++;
     }
     trapCurrent = pick;
-    document.getElementById("trapTopic").textContent = pick.topic;
-    document.getElementById("trapQuestion").textContent = pick.item.question;
-    document.getElementById("trapResult").hidden = true;
-    document.getElementById("trapExplain").hidden = true;
-    document.getElementById("trapTrue").disabled = false;
-    document.getElementById("trapFalse").disabled = false;
+    var kind = trapItemType(pick.item);
+    document.getElementById('trapTopic').textContent = pick.topic + (kind === 'mc' ? ' · MC' : ' · T/F');
+    document.getElementById('trapQuestion').textContent = pick.item.question;
+    document.getElementById('trapResult').hidden = true;
+    document.getElementById('trapExplain').hidden = true;
+    renderTrapAnswers(pick.item);
   }
 
   function answerTrap(choice) {
     if (!trapCurrent) return;
-    var right = trapCurrent.item.answer === true;
-    var ok = choice === right;
-    var result = document.getElementById("trapResult");
-    var explain = document.getElementById("trapExplain");
+    var item = trapCurrent.item;
+    var ok;
+    if (trapItemType(item) === 'mc') {
+      ok = String(choice).toUpperCase() === String(item.answer).toUpperCase();
+    } else {
+      var asBool = (choice === true || choice === 'true');
+      ok = asBool === !!item.answer;
+    }
+    var result = document.getElementById('trapResult');
+    var explain = document.getElementById('trapExplain');
     result.hidden = false;
-    result.className = "trap-result " + (ok ? "ok" : "no");
-    result.textContent = ok ? "Correct" : "Not this time";
+    result.className = 'trap-result ' + (ok ? 'ok' : 'no');
+    result.textContent = ok ? 'Correct' : 'Not this time';
     explain.hidden = false;
-    explain.textContent = trapCurrent.item.explanation;
-    document.getElementById("trapTrue").disabled = true;
-    document.getElementById("trapFalse").disabled = true;
+    explain.textContent = item.explanation;
+    setTrapAnswersDisabled(true);
   }
 
   function initTrapCheck() {
-    var box = document.getElementById("trapTopics");
-    fetch("tools/traps.json")
-      .then(function (res) { if (!res.ok) throw new Error("missing"); return res.json(); })
+    var box = document.getElementById('trapTopics');
+    var answers = document.getElementById('trapAnswers');
+    fetch('tools/traps-combined.json')
+      .then(function (res) { if (!res.ok) throw new Error('missing'); return res.json(); })
       .then(function (data) {
         trapBank = data;
-        box.textContent = "";
+        box.textContent = '';
         trapTopics().forEach(function (name) {
-          var button = document.createElement("button");
-          button.type = "button";
+          var button = document.createElement('button');
+          button.type = 'button';
           button.textContent = name;
-          button.setAttribute("data-trap-topic", name);
+          button.setAttribute('data-trap-topic', name);
           box.appendChild(button);
         });
         showTrap();
       })
       .catch(function () {
-        document.getElementById("trapQuestion").textContent = "The trap list did not load. Open DSE traps from Tools.";
-        document.getElementById("trapAnswers").hidden = true;
+        document.getElementById('trapQuestion').textContent = 'The trap list did not load. Open DSE traps from Tools.';
+        answers.hidden = true;
       });
-    document.getElementById("trapTrue").addEventListener("click", function () { answerTrap(true); });
-    document.getElementById("trapFalse").addEventListener("click", function () { answerTrap(false); });
-    box.addEventListener("click", function (e) {
-      var btn = e.target.closest("[data-trap-topic]");
+    answers.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-trap-choice]');
+      if (!btn || !trapCurrent || btn.disabled) return;
+      var raw = btn.getAttribute('data-trap-choice');
+      if (raw === 'true') answerTrap(true);
+      else if (raw === 'false') answerTrap(false);
+      else answerTrap(raw);
+    });
+    box.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-trap-topic]');
       if (!btn || !trapBank) return;
-      showTrap(btn.getAttribute("data-trap-topic"));
+      showTrap(btn.getAttribute('data-trap-topic'));
     });
   }
   initTrapCheck();
