@@ -118,16 +118,16 @@
     .btn-quiet:hover { background: #e4e7eb; }
     .btn:disabled, .btn.opacity-50 { opacity: .45; cursor: default; }
 
-    #mode-list, #topic-list {
+    #topic-list {
       display: grid;
       grid-template-columns: 1fr;
       gap: 12px;
       margin-top: 18px;
     }
     @media (min-width: 700px) {
-      #mode-list, #topic-list { grid-template-columns: 1fr 1fr; }
+      #topic-list { grid-template-columns: 1fr 1fr; }
     }
-    #mode-list button, #topic-list button {
+    #topic-list button {
       text-align: left;
       background: #fff;
       border: 1px solid var(--border);
@@ -136,9 +136,9 @@
       box-shadow: var(--shadow);
       min-height: 88px;
     }
-    #mode-list button:hover, #topic-list button:hover { border-color: var(--carmel); }
-    #mode-list h3, #topic-list h3 { font-size: 18px; font-weight: 700; }
-    #mode-list p, #topic-list p { color: var(--muted); font-size: 14px; margin-top: 4px; }
+    #topic-list button:hover { border-color: var(--carmel); }
+    #topic-list h3 { font-size: 18px; font-weight: 700; }
+    #topic-list p { color: var(--muted); font-size: 14px; margin-top: 4px; }
 
     .quiz-bar {
       display: flex;
@@ -261,7 +261,7 @@
     <a class="back" href="../index.html#tools">← Hub</a>
     <div class="brand">
       <h1>DSE traps</h1>
-      <p id="header-subtitle">C-Physics · true or false · MC</p>
+      <p id="header-subtitle">C-Physics · traps</p>
     </div>
   </header>
 
@@ -270,7 +270,7 @@
       <div class="panel">
         <p class="kicker">C-Physics</p>
         <h2>DSE traps</h2>
-        <p class="lead">True/False and MC fact traps. Read the wording carefully, then check the explanation.</p>
+        <p class="lead">Mixed true/false and MC fact traps. Read the wording carefully, then check the explanation.</p>
         <div class="name-box">
           <input type="text" id="name-input" placeholder="Your name" autocomplete="name" />
           <button id="start-btn" class="btn btn-primary" type="button">Start</button>
@@ -279,30 +279,11 @@
       </div>
     </div>
 
-    <div id="mode-selection-screen" class="hidden">
-      <p class="kicker">Choose a mode</p>
-      <h2>DSE traps</h2>
-      <p class="lead">Pick True/False or multiple-choice fact traps.</p>
-      <div id="mode-list">
-        <button type="button" id="mode-tf-btn">
-          <h3>True / False</h3>
-          <p id="mode-tf-count">Loading…</p>
-        </button>
-        <button type="button" id="mode-mc-btn">
-          <h3>MC fact traps</h3>
-          <p id="mode-mc-count">Loading…</p>
-        </button>
-      </div>
-    </div>
-
     <div id="topic-selection-screen" class="hidden">
       <p class="kicker">Choose a topic</p>
       <h2>DSE traps</h2>
-      <p class="lead" id="topic-lead">Each card is one statement. Decide true or false.</p>
+      <p class="lead" id="topic-lead">Each topic mixes true/false and multiple-choice cards.</p>
       <div id="topic-list"></div>
-      <div style="margin-top:16px">
-        <button id="back-to-mode-btn" class="btn btn-quiet" type="button">← Modes</button>
-      </div>
     </div>
 
     <div id="quiz-screen" class="hidden">
@@ -346,19 +327,12 @@
       const nameScreen = document.getElementById('name-screen');
       const nameInput = document.getElementById('name-input');
       const startBtn = document.getElementById('start-btn');
-      const modeSelectionScreen = document.getElementById('mode-selection-screen');
       const topicSelectionScreen = document.getElementById('topic-selection-screen');
       const quizScreen = document.getElementById('quiz-screen');
       const endScreen = document.getElementById('end-screen');
       const topicList = document.getElementById('topic-list');
-      const topicLead = document.getElementById('topic-lead');
       const loadError = document.getElementById('load-error');
       const headerSubtitle = document.getElementById('header-subtitle');
-      const modeTfBtn = document.getElementById('mode-tf-btn');
-      const modeMcBtn = document.getElementById('mode-mc-btn');
-      const modeTfCount = document.getElementById('mode-tf-count');
-      const modeMcCount = document.getElementById('mode-mc-count');
-      const backToModeBtn = document.getElementById('back-to-mode-btn');
 
       const card = document.getElementById('card');
       const topicTitle = document.getElementById('topic-title');
@@ -376,11 +350,9 @@
       const retryWrongBtn = document.getElementById('retry-wrong-btn');
       const restartBtn = document.getElementById('restart-btn');
 
-      let tfData = null;
-      let mcData = null;
+      let bank = null;
       let dataReady = false;
       let userName = '';
-      let quizMode = 'tf'; // 'tf' | 'mc'
       let currentTopic = '';
       let fullTopicQuestions = [];
       let questions = [];
@@ -388,73 +360,66 @@
       let userAnswers = [];
       let isRetryMode = false;
 
-      function countItems(bank) {
-        return Object.values(bank).reduce((n, arr) => n + (arr ? arr.length : 0), 0);
-      }
-
       function showLoadError(msg) {
         loadError.textContent = msg;
         loadError.classList.remove('hidden');
         startBtn.disabled = true;
       }
 
-      async function loadBanks() {
+      async function loadBank() {
         try {
-          const [tfRes, mcRes] = await Promise.all([
-            fetch('./traps.json'),
-            fetch('./mc-traps.json')
-          ]);
-          if (!tfRes.ok || !mcRes.ok) {
-            throw new Error('HTTP ' + (!tfRes.ok ? tfRes.status : mcRes.status));
-          }
-          tfData = await tfRes.json();
-          mcData = await mcRes.json();
+          const res = await fetch('./traps-combined.json');
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          bank = await res.json();
           dataReady = true;
-          modeTfCount.textContent = countItems(tfData) + ' questions · ' + Object.keys(tfData).length + ' topics';
-          modeMcCount.textContent = countItems(mcData) + ' questions · ' + Object.keys(mcData).length + ' topics';
         } catch (err) {
           showLoadError(
-            'Could not load question banks (./traps.json / ./mc-traps.json). ' +
+            'Could not load ./traps-combined.json. ' +
             'Open this page via a local server (e.g. python3 -m http.server), not as a raw file:// URL. ' +
             'Details: ' + (err && err.message ? err.message : String(err))
           );
         }
       }
 
-      function updateHeaderSubtitle() {
-        if (quizMode === 'mc') {
-          headerSubtitle.textContent = 'C-Physics · MC';
-        } else if (quizMode === 'tf') {
-          headerSubtitle.textContent = 'C-Physics · true or false';
-        } else {
-          headerSubtitle.textContent = 'C-Physics · true or false · MC';
+      function shuffleInPlace(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const tmp = arr[i];
+          arr[i] = arr[j];
+          arr[j] = tmp;
         }
-      }
-
-      function activeBank() {
-        return quizMode === 'mc' ? mcData : tfData;
+        return arr;
       }
 
       function populateTopics() {
-        const bank = activeBank();
         topicList.innerHTML = '';
         Object.keys(bank).forEach(topic => {
           const button = document.createElement('button');
           button.type = 'button';
+          const n = bank[topic].length;
           button.innerHTML =
             '<h3>' + topic + '</h3>' +
-            '<p>' + bank[topic].length + ' questions</p>';
+            '<p>' + n + ' questions</p>';
           button.onclick = () => startQuiz(topic, false);
           topicList.appendChild(button);
         });
-        topicLead.textContent = quizMode === 'mc'
-          ? 'Each card is one multiple-choice fact trap. Pick A–D.'
-          : 'Each card is one statement. Decide true or false.';
+      }
+
+      function escapeHtml(s) {
+        return String(s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function itemType(question) {
+        return question && question.type === 'mc' ? 'mc' : 'tf';
       }
 
       function renderAnswerButtons(question) {
         answerButtons.innerHTML = '';
-        if (quizMode === 'mc') {
+        if (itemType(question) === 'mc') {
           answerButtons.className = 'mc-grid';
           ['A', 'B', 'C', 'D'].forEach(letter => {
             const btn = document.createElement('button');
@@ -483,18 +448,9 @@
         answerButtons.style.display = 'grid';
       }
 
-      function escapeHtml(s) {
-        return String(s)
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;');
-      }
-
       function startQuiz(topic, retry) {
         currentTopic = topic;
         isRetryMode = !!retry;
-        const bank = activeBank();
         fullTopicQuestions = bank[topic].slice();
 
         if (isRetryMode) {
@@ -509,7 +465,9 @@
             originalIndex: wrongOriginals[newIndex]
           }));
         } else {
-          questions = fullTopicQuestions.slice();
+          questions = shuffleInPlace(fullTopicQuestions.slice());
+          // Session list is the shuffled deck; originalIndex indexes this list for retry.
+          fullTopicQuestions = questions.slice();
           userAnswers = questions.map((_, index) => ({
             answered: false,
             correct: null,
@@ -535,7 +493,8 @@
         card.classList.remove('flipped');
 
         setTimeout(() => {
-          topicTitle.textContent = currentTopic + (quizMode === 'mc' ? ' · MC' : ' · T/F');
+          const kind = itemType(question) === 'mc' ? 'MC' : 'T/F';
+          topicTitle.textContent = currentTopic + ' · ' + kind;
           questionText.textContent = question.question;
           explanationText.textContent = question.explanation;
           renderAnswerButtons(question);
@@ -552,13 +511,6 @@
         prevBtn.classList.toggle('opacity-50', prevBtn.disabled);
       }
 
-      function normalizeChoice(raw) {
-        if (quizMode === 'mc') return String(raw).toUpperCase();
-        if (raw === true || raw === 'true') return true;
-        if (raw === false || raw === 'false') return false;
-        return raw;
-      }
-
       function handleAnswer(e) {
         const btn = e.target.closest('.answer-btn');
         if (!btn || !answerButtons.contains(btn)) return;
@@ -567,8 +519,8 @@
         const question = questions[currentQuestionIndex];
         let selected;
         let isCorrect;
-        if (quizMode === 'mc') {
-          selected = normalizeChoice(btn.dataset.answer);
+        if (itemType(question) === 'mc') {
+          selected = String(btn.dataset.answer).toUpperCase();
           isCorrect = selected === String(question.answer).toUpperCase();
         } else {
           selected = btn.dataset.answer === 'true';
@@ -633,14 +585,11 @@
 
       function showScreen(screenId) {
         nameScreen.classList.add('hidden');
-        modeSelectionScreen.classList.add('hidden');
         topicSelectionScreen.classList.add('hidden');
         quizScreen.classList.add('hidden');
         endScreen.classList.add('hidden');
         const map = {
           name: nameScreen,
-          mode: modeSelectionScreen,
-          'mode-selection': modeSelectionScreen,
           topic: topicSelectionScreen,
           'topic-selection': topicSelectionScreen,
           quiz: quizScreen,
@@ -649,23 +598,17 @@
         (map[screenId] || document.getElementById(screenId + '-screen')).classList.remove('hidden');
       }
 
-      function selectMode(mode) {
-        quizMode = mode;
-        updateHeaderSubtitle();
-        populateTopics();
-        showScreen('topic-selection');
-      }
-
       startBtn.addEventListener('click', () => {
         if (!dataReady) {
-          showLoadError('Question banks are still loading or failed to load. Use a local HTTP server.');
+          showLoadError('Question bank is still loading or failed to load. Use a local HTTP server.');
           return;
         }
         const name = nameInput.value.trim();
         if (name) {
           userName = name;
-          headerSubtitle.textContent = 'C-Physics · true or false · MC';
-          showScreen('mode-selection');
+          headerSubtitle.textContent = 'C-Physics · traps';
+          populateTopics();
+          showScreen('topic-selection');
         } else {
           nameInput.classList.add('ring-2');
           setTimeout(() => nameInput.classList.remove('ring-2'), 1500);
@@ -674,14 +617,6 @@
 
       nameInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') startBtn.click();
-      });
-
-      modeTfBtn.addEventListener('click', () => selectMode('tf'));
-      modeMcBtn.addEventListener('click', () => selectMode('mc'));
-      backToModeBtn.addEventListener('click', () => {
-        isRetryMode = false;
-        headerSubtitle.textContent = 'C-Physics · true or false · MC';
-        showScreen('mode-selection');
       });
 
       answerButtons.addEventListener('click', handleAnswer);
@@ -695,15 +630,14 @@
 
       restartBtn.addEventListener('click', () => {
         isRetryMode = false;
-        quizMode = 'tf';
-        headerSubtitle.textContent = 'C-Physics · true or false · MC';
+        headerSubtitle.textContent = 'C-Physics · traps';
         showScreen('name');
         nameInput.value = '';
       });
 
       retryWrongBtn.addEventListener('click', () => startQuiz(currentTopic, true));
 
-      loadBanks();
+      loadBank();
     });
   </script>
 </body>
