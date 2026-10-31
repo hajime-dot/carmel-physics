@@ -1,0 +1,4114 @@
+{
+ "days": 30,
+ "total": 344,
+ "perDay": [
+  12,
+  12,
+  12,
+  12,
+  12,
+  12,
+  12,
+  12,
+  12,
+  12,
+  12,
+  12,
+  12,
+  12,
+  11,
+  11,
+  11,
+  11,
+  11,
+  11,
+  11,
+  11,
+  11,
+  11,
+  11,
+  11,
+  11,
+  11,
+  11,
+  11
+ ],
+ "items": [
+  {
+   "type": "tf",
+   "question": "If the net force on an object is zero, the object must be at rest.",
+   "answer": false,
+   "explanation": "Incorrect. According to Newton's First Law, if the net force is zero, the object's velocity is constant. This means it can be at rest OR moving at a constant velocity.",
+   "topic": "Mechanics",
+   "id": "Mechanics-1"
+  },
+  {
+   "type": "tf",
+   "question": "Momentum is a scalar quantity.",
+   "answer": false,
+   "explanation": "Incorrect. Momentum (p = mv) is a vector quantity. It has both magnitude and direction, which is the same as the direction of the velocity.",
+   "topic": "Mechanics",
+   "id": "Mechanics-2"
+  },
+  {
+   "type": "tf",
+   "question": "The work done by a centripetal force on an object moving in a circle is always zero.",
+   "answer": true,
+   "explanation": "Correct. The centripetal force is always perpendicular to the direction of the object's instantaneous velocity (displacement). Since Work = Fd cos(θ) and θ = 90°, the work done is zero.",
+   "topic": "Mechanics",
+   "id": "Mechanics-3"
+  },
+  {
+   "type": "tf",
+   "question": "When a non-elastic collision occurs, both momentum and kinetic energy are conserved.",
+   "answer": false,
+   "explanation": "Incorrect. In a non-elastic (or inelastic) collision, total momentum is conserved, but some kinetic energy is converted into other forms, such as heat or sound. Therefore, kinetic energy is not conserved.",
+   "topic": "Mechanics",
+   "id": "Mechanics-4"
+  },
+  {
+   "type": "tf",
+   "question": "An object thrown upwards reaches its maximum height when its acceleration is zero.",
+   "answer": false,
+   "explanation": "Incorrect. At the maximum height, the object's instantaneous velocity is zero, but its acceleration is still the acceleration due to gravity (g ≈ 9.8 m/s² downwards), assuming air resistance is negligible.",
+   "topic": "Mechanics",
+   "id": "Mechanics-5"
+  },
+  {
+   "type": "tf",
+   "question": "The period of a satellite in a stable circular orbit around the Earth depends on the mass of the satellite.",
+   "answer": false,
+   "explanation": "Incorrect. The period of a satellite in a circular orbit depends on the radius of the orbit and the mass of the central body (Earth), but not on the satellite's own mass.",
+   "topic": "Mechanics",
+   "id": "Mechanics-6"
+  },
+  {
+   "type": "tf",
+   "question": "Weight is a measure of an object's inertia.",
+   "answer": false,
+   "explanation": "Incorrect. Mass is the measure of an object's inertia (resistance to change in motion). Weight is the gravitational force acting on that mass (W = mg).",
+   "topic": "Mechanics",
+   "id": "Mechanics-7"
+  },
+  {
+   "type": "tf",
+   "question": "For every action, there is an equal and opposite reaction. These two forces act on the same object.",
+   "answer": false,
+   "explanation": "Incorrect. The action and reaction forces (Newton's Third Law) are equal and opposite, but they act on two different objects. For example, the Earth pulls on the Moon, and the Moon pulls on the Earth.",
+   "topic": "Mechanics",
+   "id": "Mechanics-8"
+  },
+  {
+   "type": "tf",
+   "question": "If the speed of an object is doubled, its kinetic energy is also doubled.",
+   "answer": false,
+   "explanation": "Incorrect. Kinetic energy is given by KE = ½mv². If the speed (v) is doubled, the kinetic energy becomes KE' = ½m(2v)² = 4(½mv²) = 4KE. The kinetic energy is quadrupled.",
+   "topic": "Mechanics",
+   "id": "Mechanics-9"
+  },
+  {
+   "type": "tf",
+   "question": "An object is in equilibrium only if it is at rest.",
+   "answer": false,
+   "explanation": "Incorrect. An object is in equilibrium if the net force and net torque acting on it are zero. This can occur when the object is at rest (static equilibrium) or when it is moving with a constant velocity and constant angular velocity (dynamic equilibrium).",
+   "topic": "Mechanics",
+   "id": "Mechanics-10"
+  },
+  {
+   "type": "tf",
+   "question": "The principle of conservation of momentum applies only to collisions in the absence of external forces.",
+   "answer": true,
+   "explanation": "Correct. The total momentum of a system is conserved only if the net external force acting on the system is zero.",
+   "topic": "Mechanics",
+   "id": "Mechanics-11"
+  },
+  {
+   "type": "tf",
+   "question": "Work is a vector quantity.",
+   "answer": false,
+   "explanation": "Incorrect. Work is a scalar quantity, calculated as the dot product of force and displacement vectors (W = F · d). It has magnitude but no direction.",
+   "topic": "Mechanics",
+   "id": "Mechanics-12"
+  },
+  {
+   "type": "tf",
+   "question": "The centripetal acceleration of an object in uniform circular motion is directed tangentially.",
+   "answer": false,
+   "explanation": "Incorrect. The centripetal acceleration is always directed towards the center of the circle, perpendicular to the tangential velocity.",
+   "topic": "Mechanics",
+   "id": "Mechanics-13"
+  },
+  {
+   "type": "tf",
+   "question": "Power is the rate at which energy is consumed.",
+   "answer": true,
+   "explanation": "Correct. Power is defined as the rate of doing work or the rate of energy transfer (P = W/t or P = dE/dt).",
+   "topic": "Mechanics",
+   "id": "Mechanics-14"
+  },
+  {
+   "type": "tf",
+   "question": "An object with constant speed can have a non-zero acceleration.",
+   "answer": true,
+   "explanation": "Correct. An object in uniform circular motion has a constant speed but is continuously accelerating because its direction of velocity is changing. This is the centripetal acceleration.",
+   "topic": "Mechanics",
+   "id": "Mechanics-15"
+  },
+  {
+   "type": "tf",
+   "question": "Friction always opposes the motion of an object.",
+   "answer": false,
+   "explanation": "Incorrect. Static friction can act in the direction of motion or intended motion. For example, when you walk, the static friction from the ground on your foot pushes you forward.",
+   "topic": "Mechanics",
+   "id": "Mechanics-16"
+  },
+  {
+   "type": "tf",
+   "question": "The impulse on an object is equal to the change in its kinetic energy.",
+   "answer": false,
+   "explanation": "Incorrect. The impulse on an object is equal to the change in its momentum (Impulse = Δp). The work-energy theorem states that the net work done is equal to the change in kinetic energy.",
+   "topic": "Mechanics",
+   "id": "Mechanics-17"
+  },
+  {
+   "type": "tf",
+   "question": "In a projectile motion, the horizontal component of velocity remains constant.",
+   "answer": true,
+   "explanation": "Correct. Assuming negligible air resistance, there is no horizontal force acting on the projectile, so its horizontal acceleration is zero and its horizontal velocity is constant.",
+   "topic": "Mechanics",
+   "id": "Mechanics-18"
+  },
+  {
+   "type": "tf",
+   "question": "The escape velocity from Earth is the same for a rocket and a feather.",
+   "answer": true,
+   "explanation": "Correct. The escape velocity depends on the mass and radius of the planet (Earth), not on the mass of the object escaping it.",
+   "topic": "Mechanics",
+   "id": "Mechanics-19"
+  },
+  {
+   "type": "tf",
+   "question": "A block is moving at a constant speed under a 12 N pushing force and a 2 N pulling force, against friction. The kinetic friction force is 10 N.",
+   "answer": true,
+   "explanation": "True. 'Constant speed' means the net force is zero. The total forward force is 12 N - 2 N = 10 N. To balance this, the kinetic friction force must be 10 N in the opposite direction.",
+   "topic": "Mechanics",
+   "id": "Mechanics-20"
+  },
+  {
+   "type": "tf",
+   "question": "A block of mass m is held at rest on a smooth incline (angle θ) by a horizontal force F. The magnitude of F is mg sinθ.",
+   "answer": false,
+   "explanation": "False. The component of weight down the incline is mg sinθ. The component of the horizontal force F up the incline is F cosθ. For equilibrium, F cosθ = mg sinθ, which means F = mg tanθ.",
+   "topic": "Mechanics",
+   "id": "Mechanics-21"
+  },
+  {
+   "type": "tf",
+   "question": "On a v-t graph for two cars starting from the same position, the point where their graphs intersect means they are at the same position.",
+   "answer": false,
+   "explanation": "False. The intersection point means they have the same instantaneous velocity. The areas under their graphs must be equal for them to be at the same position.",
+   "topic": "Mechanics",
+   "id": "Mechanics-22"
+  },
+  {
+   "type": "tf",
+   "question": "A car traveling east at 80 km/h changes direction to travel north at 60 km/h. The magnitude of its change in velocity is 100 km/h.",
+   "answer": true,
+   "explanation": "True. Change in velocity is Δv = v_final - v_initial = (60 N) - (80 E) = (60 N) + (80 W). Using Pythagoras on the vectors, the magnitude is √(60² + 80²) = 100 km/h.",
+   "topic": "Mechanics",
+   "id": "Mechanics-23"
+  },
+  {
+   "type": "tf",
+   "question": "Two identical blocks slide from rest down two smooth inclined planes of the same height H but different angles. The block on the steeper incline will reach the bottom with a greater final speed.",
+   "answer": false,
+   "explanation": "False. By conservation of energy (mgh = ½mv²), the loss in P.E. is the same for both, so their final K.E. and final speed (v) must be identical, regardless of the path.",
+   "topic": "Mechanics",
+   "id": "Mechanics-24"
+  },
+  {
+   "type": "tf",
+   "question": "In the scenario above, the time taken to reach the bottom will be the same for both blocks.",
+   "answer": false,
+   "explanation": "False. The block on the steeper incline experiences a greater acceleration (a = g sinθ) and travels a shorter distance. It will reach the bottom in less time.",
+   "topic": "Mechanics",
+   "id": "Mechanics-25"
+  },
+  {
+   "type": "tf",
+   "question": "A 1 kg mass (Y) hanging over a pulley pulls a 0.5 kg mass (X) on a smooth horizontal table. When Y falls 1 m from rest, its final speed can be found using m_Ygh = ½m_Yv².",
+   "answer": false,
+   "explanation": "False. The potential energy lost by Y (m_Ygh) is converted into the kinetic energy of both masses (X and Y), which move together. The correct equation is m_Ygh = ½m_Yv² + ½m_Xv².",
+   "topic": "Mechanics",
+   "id": "Mechanics-26"
+  },
+  {
+   "type": "tf",
+   "question": "A machine lifts a block vertically up at speed v. If it instead pulls it up a smooth incline at the same speed v, the power output required is the same.",
+   "answer": false,
+   "explanation": "False. Power = Force × velocity. To lift vertically, Force = mg. To pull up a smooth incline, Force = mg sinθ. Since sinθ < 1, the force and thus the power required (P = (mg sinθ)v) are less for the incline.",
+   "topic": "Mechanics",
+   "id": "Mechanics-27"
+  },
+  {
+   "type": "tf",
+   "question": "A car's headrest is primarily designed to minimize injury when the car brakes suddenly.",
+   "answer": false,
+   "explanation": "False. Its main safety function is to prevent whiplash (neck injury) when the car is struck from behind. The headrest supports the head, which by inertia lags behind the rest of the body.",
+   "topic": "Mechanics",
+   "id": "Mechanics-28"
+  },
+  {
+   "type": "tf",
+   "question": "When cutting an object with scissors, the cutting force is largest at the tips of the blades and smallest near the pivot.",
+   "answer": false,
+   "explanation": "False. By the principle of moments (levers), the output force is inversely proportional to the distance from the pivot. The force is largest near the pivot (smallest distance) and smallest at the tips.",
+   "topic": "Mechanics",
+   "id": "Mechanics-29"
+  },
+  {
+   "type": "tf",
+   "question": "To find the center of gravity (C.G.) of a non-uniform plate, you suspend it from one vertex (P) and draw a vertical line. The C.G. lies on this line.",
+   "answer": false,
+   "explanation": "False. This is only the first step. You must then suspend the plate from a second, different point (e.g., Q) and draw a second vertical line. The C.G. is the point where the two lines intersect.",
+   "topic": "Mechanics",
+   "id": "Mechanics-30"
+  },
+  {
+   "type": "tf",
+   "question": "When an object falls from rest, the distance it falls in time t is s. The distance it falls in time 2t is 4s.",
+   "answer": true,
+   "explanation": "True. For an object in free fall from rest, s = ½gt². The distance s is proportional to t². If you double the time t to 2t, the distance becomes proportional to (2t)² = 4t², which is 4s.",
+   "topic": "Mechanics",
+   "id": "Mechanics-31"
+  },
+  {
+   "type": "tf",
+   "question": "An object falling from rest travels 9m in time t₁. It then travels another 16m in time t₂. The ratio t₁:t₂ must be 3:4.",
+   "answer": false,
+   "explanation": "False. Since s ∝ t², the time to travel 9m is t₁ ∝ √9 = 3. The total time to travel (9+16)=25m is (t₁+t₂) ∝ √25 = 5. If t₁ = 3k and (t₁+t₂) = 5k, then t₂ = 2k. The ratio t₁:t₂ is 3:2.",
+   "topic": "Mechanics",
+   "id": "Mechanics-32"
+  },
+  {
+   "type": "tf",
+   "question": "For an object starting from rest, the area under its Force-time (F-t) graph represents the work done on it.",
+   "answer": false,
+   "explanation": "False. The area under an F-t graph is the impulse (which equals the change in momentum, mΔv). The area under a Force-distance (F-s) graph represents the work done.",
+   "topic": "Mechanics",
+   "id": "Mechanics-33"
+  },
+  {
+   "type": "tf",
+   "question": "In free fall under gravity, the displacement–time graph is a straight line.",
+   "answer": false,
+   "explanation": "False. Constant acceleration gives a parabolic displacement–time graph.",
+   "topic": "Mechanics",
+   "id": "Mechanics-34"
+  },
+  {
+   "type": "tf",
+   "question": "In free fall under gravity, the velocity–time graph is a straight line with slope −g (taking downward negative).",
+   "answer": true,
+   "explanation": "True. This represents constant acceleration.",
+   "topic": "Mechanics",
+   "id": "Mechanics-35"
+  },
+  {
+   "type": "tf",
+   "question": "Two satellites in circular orbits of the same radius around Earth have the same speed and period, regardless of orbital plane orientation.",
+   "answer": true,
+   "explanation": "True. Speed and period formulas v = √(GM/R) and T = 2π√(R³/GM) are independent of the plane's orientation.",
+   "topic": "Mechanics",
+   "id": "Mechanics-36"
+  },
+  {
+   "type": "tf",
+   "question": "The centripetal force on a satellite is directed along the plane of its orbit, toward the center.",
+   "answer": true,
+   "explanation": "True. It points toward Earth’s center and lies in the orbital plane.",
+   "topic": "Mechanics",
+   "id": "Mechanics-37"
+  },
+  {
+   "type": "tf",
+   "question": "For two cars on a v–t graph starting at the same position, their separation is maximum at the time when the area between their v–t curves (from t = 0) is maximum.",
+   "answer": true,
+   "explanation": "True. Relative displacement is the time integral of relative velocity.",
+   "topic": "Mechanics",
+   "id": "Mechanics-38"
+  },
+  {
+   "type": "tf",
+   "question": "If two cars’ velocities have the same sign over an interval, they travel in the same direction during that interval.",
+   "answer": true,
+   "explanation": "True. The sign of velocity indicates direction.",
+   "topic": "Mechanics",
+   "id": "Mechanics-39"
+  },
+  {
+   "type": "tf",
+   "question": "If one car’s v–t curve lies below the other’s for a long enough time, that car will lag behind in position.",
+   "answer": true,
+   "explanation": "True. Less positive (or more negative) velocity accumulates less forward displacement.",
+   "topic": "Mechanics",
+   "id": "Mechanics-40"
+  },
+  {
+   "type": "tf",
+   "question": "On a banked curve with no friction, the centripetal force equals mg tan θ.",
+   "answer": true,
+   "explanation": "True. The horizontal component of the normal force provides the centripetal force: N sinθ = (mg/cosθ) sinθ = mg tanθ.",
+   "topic": "Mechanics",
+   "id": "Mechanics-41"
+  },
+  {
+   "type": "tf",
+   "question": "In a frictionless banked turn, the normal reaction’s horizontal component provides the centripetal force.",
+   "answer": true,
+   "explanation": "True. With no friction, only the normal force N can have a horizontal component.",
+   "topic": "Mechanics",
+   "id": "Mechanics-42"
+  },
+  {
+   "type": "tf",
+   "question": "A free-body diagram should include a “resultant force” arrow in addition to all actual forces.",
+   "answer": false,
+   "explanation": "False. Only actual forces are drawn; the resultant is inferred by their vector sum.",
+   "topic": "Mechanics",
+   "id": "Mechanics-43"
+  },
+  {
+   "type": "tf",
+   "question": "The change in velocity is the vector difference v_final − v_initial, not the magnitude of the resultant velocity.",
+   "answer": true,
+   "explanation": "True. Δv is a vector subtraction.",
+   "topic": "Mechanics",
+   "id": "Mechanics-44"
+  },
+  {
+   "type": "tf",
+   "question": "An object falling from very far toward an airless planet speeds up with increasing acceleration; its v–t curve is concave upward, not a straight line.",
+   "answer": true,
+   "explanation": "True. The acceleration a ∝ 1/r² increases as the distance r decreases.",
+   "topic": "Mechanics",
+   "id": "Mechanics-45"
+  },
+  {
+   "type": "tf",
+   "question": "Weight and air resistance on a projectile form an action–reaction pair.",
+   "answer": false,
+   "explanation": "False. Action–reaction pairs act on different bodies; the weight's pair is with the Earth’s pull.",
+   "topic": "Mechanics",
+   "id": "Mechanics-46"
+  },
+  {
+   "type": "tf",
+   "question": "Rocket acceleration should be found from a = (F_thrust − mg)/m (ignoring drag).",
+   "answer": true,
+   "explanation": "True. This is an application of Newton’s second law.",
+   "topic": "Mechanics",
+   "id": "Mechanics-47"
+  },
+  {
+   "type": "tf",
+   "question": "For a block at rest on a horizontal surface, the normal reaction R and its weight W are not an action–reaction pair, even though they can be equal and opposite.",
+   "answer": true,
+   "explanation": "True. Action–reaction pairs must act on different bodies.",
+   "topic": "Mechanics",
+   "id": "Mechanics-48"
+  },
+  {
+   "type": "tf",
+   "question": "When the block is in equilibrium on a horizontal surface, R equals W in magnitude.",
+   "answer": true,
+   "explanation": "True. This is due to the force balance in the vertical direction.",
+   "topic": "Mechanics",
+   "id": "Mechanics-49"
+  },
+  {
+   "type": "tf",
+   "question": "A block sliding down a rough incline at constant velocity has zero net force; the resultant force from the incline (normal + friction) balances the component of weight.",
+   "answer": true,
+   "explanation": "True. This is a condition of zero acceleration.",
+   "topic": "Mechanics",
+   "id": "Mechanics-50"
+  },
+  {
+   "type": "tf",
+   "question": "At the highest point of a projectile’s trajectory (neglecting air), its vertical velocity is zero and its speed equals the horizontal component.",
+   "answer": true,
+   "explanation": "True. At the peak, v_y = 0, so the total speed v = v_x.",
+   "topic": "Mechanics",
+   "id": "Mechanics-51"
+  },
+  {
+   "type": "tf",
+   "question": "If forces on a mass are balanced, then it accelerates.",
+   "answer": false,
+   "explanation": "False. Balanced forces imply zero acceleration.",
+   "topic": "Mechanics",
+   "id": "Mechanics-52"
+  },
+  {
+   "type": "tf",
+   "question": "For a perfectly elastic bounce, a ball’s speed just after impact equals its speed just before impact (ignoring air resistance).",
+   "answer": true,
+   "explanation": "True. An elastic collision with the ground reverses the velocity component normal to the surface without loss of speed.",
+   "topic": "Mechanics",
+   "id": "Mechanics-53"
+  },
+  {
+   "type": "tf",
+   "question": "The area under a force–time graph equals the impulse and hence the change in momentum.",
+   "answer": true,
+   "explanation": "True. This is the impulse–momentum theorem.",
+   "topic": "Mechanics",
+   "id": "Mechanics-54"
+  },
+  {
+   "type": "tf",
+   "question": "The slope of a force–time graph gives the acceleration directly.",
+   "answer": false,
+   "explanation": "False. The slope is dF/dt; acceleration is F/m.",
+   "topic": "Mechanics",
+   "id": "Mechanics-55"
+  },
+  {
+   "type": "tf",
+   "question": "For lifting a load steadily from height difference Δh, the work done by the crane equals WΔh regardless of the horizontal path taken.",
+   "answer": true,
+   "explanation": "True. The work done against gravity depends only on the vertical displacement.",
+   "topic": "Mechanics",
+   "id": "Mechanics-56"
+  },
+  {
+   "type": "tf",
+   "question": "The crane’s work on a steady lift depends on the horizontal displacement.",
+   "answer": false,
+   "explanation": "False. There is no change in gravitational potential from horizontal motion.",
+   "topic": "Mechanics",
+   "id": "Mechanics-57"
+  },
+  {
+   "type": "tf",
+   "question": "In a two-mass system connected over a pulley, the loss of gravitational potential energy equals the total kinetic energy gained by both masses (neglecting losses).",
+   "answer": true,
+   "explanation": "True. This is a statement of energy conservation.",
+   "topic": "Mechanics",
+   "id": "Mechanics-58"
+  },
+  {
+   "type": "mc",
+   "id": "Force-01",
+   "question": "A book rests on a table. The book’s weight and the table’s normal reaction",
+   "options": {
+    "A": "form a Newton’s third-law pair",
+    "B": "are equal and opposite forces on the same body (equilibrium pair, not N3)",
+    "C": "are unrelated",
+    "D": "only balance if the table is accelerating"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Classic N3 trap (2021). N3 pair: Earth–book gravity and book–Earth.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-02",
+   "question": "Newton’s third-law action and reaction forces always",
+   "options": {
+    "A": "act on the same object and cancel",
+    "B": "act on different objects",
+    "C": "have different magnitudes if masses differ",
+    "D": "exist only for contact forces"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Action and reaction act on two different bodies, so they never cancel on the same free-body diagram.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-03",
+   "question": "A block slides down a rough incline at constant velocity. The net force along the slope is",
+   "options": {
+    "A": "mg sinθ down",
+    "B": "zero",
+    "C": "friction only",
+    "D": "mg down the vertical"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Constant velocity means zero acceleration, so the net force along the slope is zero (N1).",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-04",
+   "question": "On a v–t graph, two cars’ traces cross. At that instant they necessarily have the same",
+   "options": {
+    "A": "position",
+    "B": "velocity",
+    "C": "acceleration",
+    "D": "displacement from start"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Intersection = same v; same position needs equal areas.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-05",
+   "question": "In uniform circular motion, ‘the centripetal force’ is best described as",
+   "options": {
+    "A": "a new type of force in addition to weight and tension/friction",
+    "B": "the name for the net force toward the centre provided by real forces",
+    "C": "always equal to the weight",
+    "D": "always equal to friction alone, by definition"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. ‘Centripetal force’ names the net force toward the centre; it is provided by real forces (tension, friction, weight components), not an extra force type.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-06",
+   "question": "A spring balance measures",
+   "options": {
+    "A": "length in metres",
+    "B": "force (often calibrated as weight reading)",
+    "C": "mass in all situations including free fall without caveat",
+    "D": "pressure"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. A spring balance measures force (often shown as a weight reading), not length in metres.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-07",
+   "question": "In a freely falling lift (ideal free fall), a beam balance comparing two masses",
+   "options": {
+    "A": "reads slightly less than true mass ratio",
+    "B": "reads slightly more",
+    "C": "cannot give the usual ‘weight comparison’ reading because both sides are weightless effectively",
+    "D": "is unaffected"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. In free fall both pans are effectively weightless, so a beam balance cannot give the usual weight comparison — it is not merely a smaller reading.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-08",
+   "question": "If forces on a body are balanced (net force zero), the body",
+   "options": {
+    "A": "must be at rest",
+    "B": "must have zero acceleration (rest or uniform velocity)",
+    "C": "must be accelerating",
+    "D": "must have zero momentum"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Zero net force means zero acceleration: the body may be at rest or move at constant velocity.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-09",
+   "question": "For a rocket going straight up, net force is best written as",
+   "options": {
+    "A": "thrust alone",
+    "B": "thrust + weight",
+    "C": "thrust − weight (directions accounted for)",
+    "D": "weight alone"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. Taking up as positive, net force = thrust − weight (directions accounted for), not thrust alone.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-10",
+   "question": "A projectile in flight (ignore air). At the highest point",
+   "options": {
+    "A": "speed is zero",
+    "B": "velocity is zero",
+    "C": "vertical velocity component is zero; horizontal may be non-zero so KE ≠ 0",
+    "D": "acceleration is zero"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. At the top, vertical velocity is zero but horizontal velocity can remain, so speed and KE need not be zero; g still acts.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-11",
+   "question": "Weight and air resistance on a falling projectile",
+   "options": {
+    "A": "are a Newton III pair",
+    "B": "both act on the projectile so cannot be a Newton III pair",
+    "C": "always cancel",
+    "D": "are equal by definition"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. A Newton III pair acts on two different objects; weight and drag both act on the projectile, so they are not a III pair.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-12",
+   "question": "Kinetic friction on a sliding block",
+   "options": {
+    "A": "becomes zero the instant an applied push is removed, even if still sliding",
+    "B": "acts while there is sliding, opposing relative motion",
+    "C": "always equals μN with N = mg on every incline with extra forces",
+    "D": "acts in the direction of velocity"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Kinetic friction acts whenever there is sliding and opposes relative motion; it does not vanish the instant the push is removed if sliding continues.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-13",
+   "question": "On a free-body diagram for a block on an incline, you should",
+   "options": {
+    "A": "draw weight, normal, friction (as needed) — not also ‘mg sinθ’ and ‘resultant’ as extra force arrows on top of mg",
+    "B": "always draw mg sinθ as a separate force in addition to full weight",
+    "C": "omit the normal reaction",
+    "D": "draw centripetal force even for straight incline motion"
+   },
+   "answer": "A",
+   "explanation": "Correct answer: A. Draw weight, normal and friction as needed — do not also add mg sinθ or ‘resultant’ as extra force arrows on top of full weight (double-counting).",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-14",
+   "question": "Change in velocity is a",
+   "options": {
+    "A": "scalar equal to speed difference",
+    "B": "vector; magnitude by vector subtraction, not |v₂|−|v₁| alone when direction changes",
+    "C": "always zero if speeds equal",
+    "D": "the same as acceleration"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Δv is a vector; when direction changes you must subtract vectors, not just |v₂| − |v₁|.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-15",
+   "question": "When a bungee cord first becomes taut",
+   "options": {
+    "A": "the jumper must start decelerating immediately",
+    "B": "net force may still be downward if weight > cord force, so downward speed can still increase for a while",
+    "C": "acceleration becomes zero",
+    "D": "motion becomes SHM instantly"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. When the cord first tautens, tension may still be less than weight, so net force can stay downward and speed can keep rising briefly.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-16",
+   "question": "Area under a force–time graph equals",
+   "options": {
+    "A": "work done",
+    "B": "impulse (Δp)",
+    "C": "power",
+    "D": "kinetic energy"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Area under a force–time graph is impulse, equal to change in momentum Δp.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-17",
+   "question": "Area under a force–displacement graph equals",
+   "options": {
+    "A": "impulse",
+    "B": "work done",
+    "C": "momentum",
+    "D": "mass"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Area under a force–displacement graph is work done (energy transferred by the force).",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-18",
+   "question": "A car headrest’s main safety role in a rear-end collision is to",
+   "options": {
+    "A": "reduce injury mainly when braking hard from the front",
+    "B": "support the head to reduce whiplash as the seat pushes the torso forward",
+    "C": "increase crumple-zone length",
+    "D": "decrease the car’s mass"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. In a rear-end crash the seat pushes the torso forward; the headrest supports the head to reduce whiplash.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-19",
+   "question": "On a smooth incline, two paths same height: final speeds from rest (energy)",
+   "options": {
+    "A": "larger on steeper path",
+    "B": "same (same loss of PE → same KE if smooth)",
+    "C": "larger on gentler path",
+    "D": "zero on both"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. On a smooth incline only height matters: same PE loss → same KE and final speed; the steeper path just takes less time.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "mc",
+   "id": "Force-20",
+   "question": "For circular motion of a whirling bob on a string, tension",
+   "options": {
+    "A": "equals weight + ‘centripetal force’ treated as an extra force object",
+    "B": "is one of the real forces; net of tension (and weight components) toward centre is mv²/r",
+    "C": "is always equal to mv²/r with weight ignored in all geometries",
+    "D": "is zero at the bottom"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Tension is a real force; the net of tension and weight components toward the centre equals mv²/r — do not treat ‘centripetal force’ as an extra object.",
+   "topic": "Mechanics"
+  },
+  {
+   "type": "tf",
+   "question": "Internal energy of an ideal gas depends only on its temperature.",
+   "answer": true,
+   "explanation": "Correct. For an ideal gas, there are no intermolecular forces, so its internal energy is purely the sum of the kinetic energies of its molecules, which is directly proportional to its absolute temperature (U ∝ T).",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-79"
+  },
+  {
+   "type": "tf",
+   "question": "During an isothermal expansion of an ideal gas, the gas does no work because its temperature remains constant.",
+   "answer": false,
+   "explanation": "Incorrect. During an isothermal expansion, the gas does positive work on its surroundings. To keep the temperature constant, heat must be supplied to the gas, according to the first law of thermodynamics (ΔU = Q - W; since ΔU = 0, Q = W).",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-80"
+  },
+  {
+   "type": "tf",
+   "question": "When two objects of equal mass but different specific heat capacities and different initial temperatures reach thermal equilibrium, the final temperature will be the simple average of the two initial temperatures.",
+   "answer": false,
+   "explanation": "False. The object with the higher specific heat capacity (c) will undergo a smaller temperature change (since Q = mcΔT). The final temperature will be closer to the initial temperature of the object with the higher heat capacity (C=mc).",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-81"
+  },
+  {
+   "type": "tf",
+   "question": "In a vacuum flask, the silvered surfaces are designed to reduce heat transfer by conduction.",
+   "answer": false,
+   "explanation": "False. The vacuum prevents heat transfer by conduction and convection. The silvered surfaces (facing the vacuum) reduce heat transfer by radiation.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-82"
+  },
+  {
+   "type": "tf",
+   "question": "For an ideal gas at constant temperature, a graph of pressure (p) plotted against 1/Volume (1/V) will be a curve.",
+   "answer": false,
+   "explanation": "False. Boyle's Law is p ∝ 1/V, or p = k(1/V). This is a direct proportionality (y = mx). A graph of p against 1/V will be a straight line through the origin. A graph of p against V would be the curve.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-83"
+  },
+  {
+   "type": "tf",
+   "question": "Absolute zero (0 Kelvin) is the temperature at which all molecular motion ceases completely.",
+   "answer": true,
+   "explanation": "Correct. Absolute zero is the lowest possible temperature where particles have minimum vibrational motion, representing the minimum possible internal energy. It is the zero point of the Kelvin scale.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-84"
+  },
+  {
+   "type": "tf",
+   "question": "A pressure cooker cooks food faster because it increases the specific heat capacity of water.",
+   "answer": false,
+   "explanation": "Incorrect. A pressure cooker increases the pressure inside, which raises the boiling point of water. Cooking at a higher temperature (above 100°C) significantly speeds up the chemical reactions in cooking.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-85"
+  },
+  {
+   "type": "tf",
+   "question": "Heat is a measure of how hot an object is.",
+   "answer": false,
+   "explanation": "Incorrect. Temperature is a measure of how hot an object is (related to the average kinetic energy of its particles). Heat is the energy transferred between objects due to a temperature difference.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-86"
+  },
+  {
+   "type": "tf",
+   "question": "In an adiabatic process, the temperature of the system must remain constant.",
+   "answer": false,
+   "explanation": "Incorrect. An adiabatic process is one in which no heat is exchanged with the surroundings (Q=0). The temperature can change, for example, during adiabatic compression, the temperature of a gas increases.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-87"
+  },
+  {
+   "type": "tf",
+   "question": "Evaporation is a cooling process.",
+   "answer": true,
+   "explanation": "Correct. During evaporation, the most energetic molecules escape from the liquid surface, which lowers the average kinetic energy of the remaining molecules, thus decreasing the temperature of the liquid.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-88"
+  },
+  {
+   "type": "tf",
+   "question": "Conduction is the primary mode of heat transfer in gases.",
+   "answer": false,
+   "explanation": "Incorrect. Convection is the primary mode of heat transfer in fluids (liquids and gases). Conduction is the main mode of heat transfer in solids.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-89"
+  },
+  {
+   "type": "tf",
+   "question": "Two objects are in thermal equilibrium if they have the same internal energy.",
+   "answer": false,
+   "explanation": "Incorrect. Two objects are in thermal equilibrium if they are at the same temperature, meaning there is no net flow of heat between them.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-90"
+  },
+  {
+   "type": "tf",
+   "question": "The specific latent heat of vaporization of a substance is generally smaller than its specific latent heat of fusion.",
+   "answer": false,
+   "explanation": "Incorrect. The latent heat of vaporization is typically much larger than the latent heat of fusion because a greater amount of energy is required to completely separate the molecules (liquid to gas) than to just loosen their bonds (solid to liquid).",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-91"
+  },
+  {
+   "type": "tf",
+   "question": "According to the ideal gas law (PV=nRT), if you double the absolute temperature of a gas while keeping the volume constant, the pressure will be halved.",
+   "answer": false,
+   "explanation": "Incorrect. According to PV=nRT, if T is doubled and V is constant, the pressure P must also be doubled to maintain the equality.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-92"
+  },
+  {
+   "type": "tf",
+   "question": "A black surface is a good absorber of radiation, but a poor emitter of radiation.",
+   "answer": false,
+   "explanation": "Incorrect. A good absorber of thermal radiation is also a good emitter of thermal radiation. A perfect black body is a perfect absorber and a perfect emitter.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-93"
+  },
+  {
+   "type": "tf",
+   "question": "When a bimetallic strip is heated, it bends towards the metal with the higher thermal expansion coefficient.",
+   "answer": false,
+   "explanation": "Incorrect. The metal with the higher coefficient of thermal expansion expands more. To accommodate this greater length, the strip must bend away from it, so it bends towards the metal with the lower coefficient.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-94"
+  },
+  {
+   "type": "tf",
+   "question": "The first law of thermodynamics is a statement of the conservation of energy.",
+   "answer": true,
+   "explanation": "Correct. The first law (ΔU = Q - W) states that the change in a system's internal energy (ΔU) is equal to the heat added to the system (Q) minus the work done by the system (W), which is a direct application of energy conservation.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-95"
+  },
+  {
+   "type": "tf",
+   "question": "Boiling can occur at any temperature, while evaporation only occurs at a specific boiling point.",
+   "answer": false,
+   "explanation": "Incorrect. It's the other way around. Evaporation can occur at any temperature from the surface of a liquid, whereas boiling is the bulk vaporization that occurs at a specific temperature (the boiling point) for a given pressure.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-96"
+  },
+  {
+   "type": "tf",
+   "question": "Water has a very low specific heat capacity.",
+   "answer": false,
+   "explanation": "Incorrect. Water has a very high specific heat capacity compared to most other common substances. This is why it is used as a coolant and why large bodies of water moderate climates.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-97"
+  },
+  {
+   "type": "tf",
+   "question": "Increasing the pressure on ice can cause it to melt, even below 0°C.",
+   "answer": true,
+   "explanation": "Correct. For water, the solid phase (ice) is less dense than the liquid phase. Increasing the pressure lowers the melting point, a phenomenon called regelation. This is why an ice skate's blade melts the ice beneath it.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-98"
+  },
+  {
+   "type": "tf",
+   "question": "The average kinetic energy of molecules in a gas is proportional to the temperature in degrees Celsius.",
+   "answer": false,
+   "explanation": "Incorrect. The average kinetic energy of gas molecules is directly proportional to the absolute temperature, which must be measured in Kelvin (K).",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-99"
+  },
+  {
+   "type": "tf",
+   "question": "When two equal-mass blocks at 40°C and 30°C are in good thermal contact with no heat loss, and the hotter one has a larger specific heat capacity, the final common temperature is higher than 35°C.",
+   "answer": true,
+   "explanation": "True. Energy balance with equal masses gives Tf closer to the initial temperature of the block with larger c.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-100"
+  },
+  {
+   "type": "tf",
+   "question": "For the situation above, the final temperature is exactly 35°C.",
+   "answer": false,
+   "explanation": "False. Only equal specific heat capacities would yield 35°C; here cX > cY, so Tf > 35°C.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-101"
+  },
+  {
+   "type": "tf",
+   "question": "When mixing water at 50°C with ice at 0°C in an insulated container, the final temperature cannot be below 0°C.",
+   "answer": true,
+   "explanation": "True. The ice–water mixture's temperature is pinned at 0°C until all the ice melts.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-102"
+  },
+  {
+   "type": "tf",
+   "question": "In such a mixture, if insufficient hot water is available to melt all the ice, the final temperature is 0°C.",
+   "answer": true,
+   "explanation": "True. This is due to the phase change plateau.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-103"
+  },
+  {
+   "type": "tf",
+   "question": "The root-mean-square speed of gas molecules scales directly with temperature (v_rms ∝ T).",
+   "answer": false,
+   "explanation": "False. The correct relationship is v_rms ∝ √T.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-104"
+  },
+  {
+   "type": "tf",
+   "question": "In the ideal gas equation, temperature must be in kelvin.",
+   "answer": true,
+   "explanation": "True. The equation requires an absolute temperature scale.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-105"
+  },
+  {
+   "type": "tf",
+   "question": "Gas pressure is due to molecular impacts on the container walls; collisions among molecules themselves do not directly exert pressure on the walls.",
+   "answer": true,
+   "explanation": "True. The momentum transfer at the walls is what defines pressure.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-106"
+  },
+  {
+   "type": "tf",
+   "question": "A good thermal conductor (e.g., copper) necessarily “absorbs more heat” than a poor conductor at the same mass and temperature change.",
+   "answer": false,
+   "explanation": "False. The heat absorbed depends on mcΔT (heat capacity), not on thermal conductivity.",
+   "topic": "Heat & Gases",
+   "id": "Heat & Gases-107"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-01",
+   "question": "In a vacuum flask, what is the main purpose of the silvered walls facing the vacuum?",
+   "options": {
+    "A": "Reduce heat transfer by conduction",
+    "B": "Reduce heat transfer by convection",
+    "C": "Reduce heat transfer by radiation",
+    "D": "Increase the heat capacity of the flask"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. A/B confuse vacuum’s role (stops conduction/convection) with silvering (reflects IR). D invents a capacity change.",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-02",
+   "question": "For an ideal gas kept at constant temperature, a graph of pressure p against 1/V is",
+   "options": {
+    "A": "a curve through the origin",
+    "B": "a straight line through the origin",
+    "C": "a straight line with negative gradient",
+    "D": "a horizontal line"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Boyle: p ∝ 1/V. A is what students draw for p–V. C mixes Charles/Gay-Lussac shapes.",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-03",
+   "question": "The pressure of an ideal gas on the walls of a container is mainly due to",
+   "options": {
+    "A": "collisions between gas molecules",
+    "B": "collisions of molecules with the walls",
+    "C": "attraction between molecules and walls",
+    "D": "gravitational weight of the gas"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. A is the classic misconception flagged in reports. C/D not kinetic-theory pressure.",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-04",
+   "question": "When using pV = nRT, temperature must be in",
+   "options": {
+    "A": "°C",
+    "B": "kelvin",
+    "C": "either °C or K if consistent",
+    "D": "°F"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. In pV = nRT, T must be absolute thermodynamic temperature in kelvin, not °C.",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-05",
+   "question": "Two objects of equal mass but different specific heat capacities start at different temperatures and reach thermal equilibrium. The final temperature is",
+   "options": {
+    "A": "always the arithmetic mean of the two initial temperatures",
+    "B": "closer to the initial T of the object with larger heat capacity mc",
+    "C": "closer to the initial T of the object with smaller c",
+    "D": "independent of specific heat capacities"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Equal mass ≠ equal share of ΔT. Q = mcΔT → larger C means smaller |ΔT|.",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-06",
+   "question": "A good thermal conductor (e.g. copper) compared with a poor conductor of the same mass and same ΔT",
+   "options": {
+    "A": "always absorbs more thermal energy",
+    "B": "always absorbs less thermal energy",
+    "C": "may absorb the same energy if heat capacities are equal; conduction describes rate/path, not stored Q",
+    "D": "has zero heat capacity"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. 2021 misconception: conductor ≠ larger heat capacity. Conduction ≠ capacity.",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-07",
+   "question": "In the equation pV = nRT, n stands for",
+   "options": {
+    "A": "number of molecules",
+    "B": "number of moles",
+    "C": "Avogadro’s number",
+    "D": "mass in kg"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. n is the number of moles. Number of molecules is N = nNA — do not swap them.",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-08",
+   "question": "Which statement about latent heat is correct?",
+   "options": {
+    "A": "During melting at the melting point, temperature rises steadily as latent heat is absorbed",
+    "B": "Latent heat of vaporization is energy per unit mass to change liquid↔vapour at constant T",
+    "C": "Latent heat only applies to water",
+    "D": "Latent heat equals mcΔT for any process"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Latent heat of vaporization is energy per unit mass for liquid↔vapour at constant T. During melting/boiling, temperature does not rise (that would be sensible heat mcΔT).",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-09",
+   "question": "Internal energy of an ideal gas depends only on",
+   "options": {
+    "A": "pressure alone",
+    "B": "volume alone",
+    "C": "temperature (and amount of gas)",
+    "D": "how the gas was compressed historically"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. State function for ideal gas U(T). Path myths common.",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-10",
+   "question": "In a vacuum flask, the vacuum between walls mainly reduces heat transfer by",
+   "options": {
+    "A": "radiation only",
+    "B": "conduction and convection",
+    "C": "evaporation",
+    "D": "nuclear processes"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Vacuum removes the medium for conduction and convection; silvered walls mainly cut radiation.",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-11",
+   "question": "Absolute zero on the kelvin scale is the temperature at which",
+   "options": {
+    "A": "water freezes",
+    "B": "an ideal gas would have zero volume/pressure extrapolating from Charles’s law behaviour",
+    "C": "all real molecular motion in every material has been proven to stop completely for all substances",
+    "D": "Celsius and kelvin readings are equal"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Absolute zero is defined via ideal-gas / thermodynamic extrapolation (zero volume or pressure on Charles’s law). Real molecular motion does not literally stop in every material.",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-13",
+   "question": "Heat capacity C of an object is",
+   "options": {
+    "A": "energy to raise temperature by 1 K (for that object)",
+    "B": "energy per kg per K",
+    "C": "the same as thermal conductivity",
+    "D": "always equal to mc with c of water"
+   },
+   "answer": "A",
+   "explanation": "Correct answer: A. Heat capacity C is energy to raise that object’s temperature by 1 K; specific heat capacity c is per unit mass. Neither equals thermal conductivity.",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-14",
+   "question": "On a sunny day a dark car roof feels hotter than a light roof mainly because the dark surface",
+   "options": {
+    "A": "has larger heat capacity",
+    "B": "absorbs more thermal radiation",
+    "C": "conducts heat better into air",
+    "D": "emits no radiation"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Kirchhoff/radiation fact; D false (good absorbers are good emitters).",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-15",
+   "question": "When compressed gas is pumped into a structure at the seabed, its pressure must be",
+   "options": {
+    "A": "equal to atmospheric pressure only",
+    "B": "greater than the surrounding water pressure at that depth",
+    "C": "less than water pressure so water can push it in",
+    "D": "unrelated to depth"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. To inflate against the surroundings, gas pressure must exceed the water pressure at that depth.",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-16",
+   "question": "Relation between pressure, force and area is",
+   "options": {
+    "A": "F = p / A",
+    "B": "p = F / A",
+    "C": "p = F × A",
+    "D": "F = p × A²"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. By definition pressure p = F/A (force per unit area).",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-17",
+   "question": "During boiling of pure water at constant pressure, adding heat mainly",
+   "options": {
+    "A": "raises temperature above 100 °C immediately",
+    "B": "increases average KE of liquid molecules without phase change",
+    "C": "provides latent heat to convert liquid to vapour at constant T",
+    "D": "increases specific heat capacity"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. At constant pressure boiling, heat supplies latent heat for liquid→vapour at constant temperature, not a rise in temperature.",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "mc",
+   "id": "Heat-18",
+   "question": "Charles’s law (constant p) relates volume and temperature. Temperature must be measured from",
+   "options": {
+    "A": "any zero you choose",
+    "B": "an absolute (kelvin) scale for the linear V ∝ T form through origin",
+    "C": "Celsius only",
+    "D": "the ice point as zero with V ∝ t(°C) through origin"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. V ∝ T through the origin only if T is on an absolute (kelvin) scale; Celsius does not give that form.",
+   "topic": "Heat & Gases"
+  },
+  {
+   "type": "tf",
+   "question": "Sound waves are transverse waves.",
+   "answer": false,
+   "explanation": "Incorrect. Sound waves are longitudinal waves. The particles of the medium oscillate parallel to the direction of energy propagation.",
+   "topic": "Waves",
+   "id": "Waves-125"
+  },
+  {
+   "type": "tf",
+   "question": "When you look at an object at the bottom of a pool, it appears to be deeper than it really is.",
+   "answer": false,
+   "explanation": "False. Due to refraction (light bending away from the normal as it leaves the water), the apparent depth is less than the real depth. The object appears shallower.",
+   "topic": "Waves",
+   "id": "Waves-126"
+  },
+  {
+   "type": "tf",
+   "question": "A short-sighted (myopic) person cannot see nearby objects clearly, and their condition is corrected using a convex lens.",
+   "answer": false,
+   "explanation": "False. A short-sighted person cannot see distant objects clearly (their far point is too close). The condition is corrected using a concave (diverging) lens.",
+   "topic": "Waves",
+   "id": "Waves-127"
+  },
+  {
+   "type": "tf",
+   "question": "The speed of a wave (v) is determined by the properties of the medium, so changing the source's frequency (f) will not change the wave's speed.",
+   "answer": true,
+   "explanation": "Correct. While v = fλ is true, the speed (v) is constant for a given medium. If you change the frequency (f) of the source, the wavelength (λ) will adjust accordingly (λ = v/f), but v remains the same.",
+   "topic": "Waves",
+   "id": "Waves-128"
+  },
+  {
+   "type": "tf",
+   "question": "In a diffraction grating, red light is diffracted at a larger angle than violet light for the same order of maximum.",
+   "answer": true,
+   "explanation": "Correct. According to the grating equation d sin(θ) = nλ, the angle of diffraction (θ) is directly proportional to the wavelength (λ). Since red light has a longer wavelength than violet light, it diffracts more.",
+   "topic": "Waves",
+   "id": "Waves-129"
+  },
+  {
+   "type": "tf",
+   "question": "The amplitude of a wave is related to its energy.",
+   "answer": true,
+   "explanation": "Correct. The energy carried by a wave is proportional to the square of its amplitude. A wave with a larger amplitude carries more energy.",
+   "topic": "Waves",
+   "id": "Waves-130"
+  },
+  {
+   "type": "tf",
+   "question": "When light passes from air into water, its frequency changes.",
+   "answer": false,
+   "explanation": "Incorrect. When a wave passes from one medium to another, its frequency remains constant because it is determined by the source. Its speed and wavelength change, but the frequency does not.",
+   "topic": "Waves",
+   "id": "Waves-131"
+  },
+  {
+   "type": "tf",
+   "question": "Constructive interference occurs when a crest meets a trough.",
+   "answer": false,
+   "explanation": "Incorrect. Constructive interference occurs when two crests or two troughs meet, resulting in a wave of larger amplitude. When a crest meets a trough, destructive interference occurs.",
+   "topic": "Waves",
+   "id": "Waves-132"
+  },
+  {
+   "type": "tf",
+   "question": "A stationary wave transmits energy from one point to another.",
+   "answer": false,
+   "explanation": "Incorrect. A stationary (or standing) wave does not transfer energy. Energy is localized in segments between the nodes. Progressive (traveling) waves transfer energy.",
+   "topic": "Waves",
+   "id": "Waves-133"
+  },
+  {
+   "type": "tf",
+   "question": "The refractive index of a medium can be less than 1.",
+   "answer": false,
+   "explanation": "Incorrect. The refractive index (n) is defined as the ratio of the speed of light in a vacuum (c) to the speed of light in the medium (v), so n = c/v. Since light travels fastest in a vacuum, v is always less than or equal to c, meaning n is always greater than or equal to 1.",
+   "topic": "Waves",
+   "id": "Waves-134"
+  },
+  {
+   "type": "tf",
+   "question": "Sound travels faster in air than in steel.",
+   "answer": false,
+   "explanation": "Incorrect. Sound travels much faster in solids like steel than in gases like air. This is because the particles in a solid are much closer together and more rigidly connected, allowing vibrations to be transmitted more efficiently.",
+   "topic": "Waves",
+   "id": "Waves-135"
+  },
+  {
+   "type": "tf",
+   "question": "The pitch of a sound is determined by its amplitude.",
+   "answer": false,
+   "explanation": "Incorrect. The pitch of a sound is determined by its frequency. The amplitude of a sound wave determines its loudness or intensity.",
+   "topic": "Waves",
+   "id": "Waves-136"
+  },
+  {
+   "type": "tf",
+   "question": "When a wave is reflected from a fixed end, it is inverted.",
+   "answer": true,
+   "explanation": "Correct. When a wave on a string reflects from a fixed end, it undergoes a 180° phase change, meaning it is inverted. If it reflects from a free end, there is no phase change.",
+   "topic": "Waves",
+   "id": "Waves-137"
+  },
+  {
+   "type": "tf",
+   "question": "Total internal reflection can occur when light travels from a denser medium to a less dense medium.",
+   "answer": true,
+   "explanation": "Correct. Total internal reflection happens when light travels from a medium with a higher refractive index to one with a lower refractive index, and the angle of incidence is greater than the critical angle.",
+   "topic": "Waves",
+   "id": "Waves-138"
+  },
+  {
+   "type": "tf",
+   "question": "Ultrasound is a sound wave with a very high amplitude.",
+   "answer": false,
+   "explanation": "Incorrect. Ultrasound refers to sound waves with frequencies above the range of human hearing (typically > 20,000 Hz). Its amplitude is not necessarily high.",
+   "topic": "Waves",
+   "id": "Waves-139"
+  },
+  {
+   "type": "tf",
+   "question": "Electromagnetic waves require a medium to travel.",
+   "answer": false,
+   "explanation": "Incorrect. Electromagnetic waves, such as light and radio waves, are disturbances in electric and magnetic fields and can travel through a vacuum. Mechanical waves (like sound) require a medium.",
+   "topic": "Waves",
+   "id": "Waves-140"
+  },
+  {
+   "type": "tf",
+   "question": "The loudness of a sound is measured in Hertz (Hz).",
+   "answer": false,
+   "explanation": "Incorrect. The loudness or sound intensity level is measured in decibels (dB). Frequency is measured in Hertz (Hz).",
+   "topic": "Waves",
+   "id": "Waves-141"
+  },
+  {
+   "type": "tf",
+   "question": "For a stationary wave on a string, any point at a node has zero displacement at all times.",
+   "answer": true,
+   "explanation": "True. This is the definition of a node.",
+   "topic": "Waves",
+   "id": "Waves-142"
+  },
+  {
+   "type": "tf",
+   "question": "For a stationary wave, a point at an antinode vibrates sinusoidally with maximum amplitude A.",
+   "answer": true,
+   "explanation": "True. This is the definition of an antinode.",
+   "topic": "Waves",
+   "id": "Waves-143"
+  },
+  {
+   "type": "tf",
+   "question": "A single snapshot of a stationary wave uniquely reveals the period.",
+   "answer": false,
+   "explanation": "False. A snapshot gives the spatial pattern, not the temporal period.",
+   "topic": "Waves",
+   "id": "Waves-144"
+  },
+  {
+   "type": "tf",
+   "question": "In a glass prism, violet light deviates more than red because its refractive index is higher (violet travels slower).",
+   "answer": true,
+   "explanation": "True. This is due to normal dispersion in glass.",
+   "topic": "Waves",
+   "id": "Waves-145"
+  },
+  {
+   "type": "tf",
+   "question": "A typical ultraviolet wavelength in vacuum is of order 10⁻⁷ m.",
+   "answer": true,
+   "explanation": "True. The UV range is approximately 10–400 nm.",
+   "topic": "Waves",
+   "id": "Waves-146"
+  },
+  {
+   "type": "tf",
+   "question": "A typical microwave wavelength in vacuum is of order 10⁻⁵ m.",
+   "answer": false,
+   "explanation": "False. Microwaves are typically in the range of ~10⁻² to 10⁻¹ m.",
+   "topic": "Waves",
+   "id": "Waves-147"
+  },
+  {
+   "type": "tf",
+   "question": "On a given string, doubling the driving frequency doubles the wave speed.",
+   "answer": false,
+   "explanation": "False. The wave speed v ≈ √(T/μ) is set by the string's tension and mass per unit length, not by the driving frequency.",
+   "topic": "Waves",
+   "id": "Waves-148"
+  },
+  {
+   "type": "tf",
+   "question": "On the same string, changing the frequency changes the wavelength but not (to first order) the wave speed.",
+   "answer": true,
+   "explanation": "True. This follows from the wave equation v = fλ.",
+   "topic": "Waves",
+   "id": "Waves-149"
+  },
+  {
+   "type": "tf",
+   "question": "When a standing wave pattern shifts from one harmonic to the next, some pairs of points that were out of phase can become in phase.",
+   "answer": true,
+   "explanation": "True. The mode shapes change the phase relations between points.",
+   "topic": "Waves",
+   "id": "Waves-150"
+  },
+  {
+   "type": "tf",
+   "question": "In a stretched string, nodes are at fixed ends; the second harmonic has twice as many loops as the first.",
+   "answer": true,
+   "explanation": "True. This describes the relationship between mode numbers.",
+   "topic": "Waves",
+   "id": "Waves-151"
+  },
+  {
+   "type": "tf",
+   "question": "In a longitudinal wave, equilibrium positions are fixed; particles oscillate about them.",
+   "answer": true,
+   "explanation": "True. Medium particles vibrate around fixed equilibrium positions.",
+   "topic": "Waves",
+   "id": "Waves-152"
+  },
+  {
+   "type": "tf",
+   "question": "A particle is momentarily at rest whenever it passes through the equilibrium position.",
+   "answer": false,
+   "explanation": "False. It moves fastest at the equilibrium position.",
+   "topic": "Waves",
+   "id": "Waves-153"
+  },
+  {
+   "type": "tf",
+   "question": "Two waves of different frequencies cannot be superposed at the same point.",
+   "answer": false,
+   "explanation": "False. The superposition principle still applies; the resultant wave varies in time (beats are possible).",
+   "topic": "Waves",
+   "id": "Waves-154"
+  },
+  {
+   "type": "tf",
+   "question": "Submarines use ultrasound instead of microwaves mainly because microwaves are strongly absorbed by seawater.",
+   "answer": true,
+   "explanation": "True. Water is lossy at microwave frequencies.",
+   "topic": "Waves",
+   "id": "Waves-155"
+  },
+  {
+   "type": "tf",
+   "question": "When two pulses on a string meet, the instantaneous shape is the algebraic sum of their displacements.",
+   "answer": true,
+   "explanation": "True. This is the superposition principle for waves on strings.",
+   "topic": "Waves",
+   "id": "Waves-156"
+  },
+  {
+   "type": "tf",
+   "question": "In a standing wave on a string, the distance between adjacent nodes equals half a wavelength.",
+   "answer": true,
+   "explanation": "True. The spacing between a node and an antinode is λ/4, so the node-to-node distance is λ/2.",
+   "topic": "Waves",
+   "id": "Waves-157"
+  },
+  {
+   "type": "tf",
+   "question": "In a standing wave, all points within the same loop (between two adjacent nodes) oscillate in phase; neighboring loops are in antiphase.",
+   "answer": true,
+   "explanation": "True. This is the standard phase relationship for standing waves.",
+   "topic": "Waves",
+   "id": "Waves-158"
+  },
+  {
+   "type": "tf",
+   "question": "In a longitudinal wave, particle displacement is parallel to the direction of wave propagation.",
+   "answer": true,
+   "explanation": "True. This is the definition of a longitudinal wave.",
+   "topic": "Waves",
+   "id": "Waves-159"
+  },
+  {
+   "type": "tf",
+   "question": "In simple harmonic oscillation of a particle in a wave, the particle’s speed is maximum at its equilibrium position.",
+   "answer": true,
+   "explanation": "True. Maximum velocity occurs at zero displacement in SHM.",
+   "topic": "Waves",
+   "id": "Waves-160"
+  },
+  {
+   "type": "tf",
+   "question": "With white light on a diffraction grating, the central maximum appears white because all wavelengths overlap at θ = 0.",
+   "answer": true,
+   "explanation": "True. The m = 0 order is achromatic, meaning it is not spread into colors.",
+   "topic": "Waves",
+   "id": "Waves-161"
+  },
+  {
+   "type": "tf",
+   "question": "Higher diffraction orders in a grating spread colors more than lower orders.",
+   "answer": true,
+   "explanation": "True. From θ ≈ arcsin(mλ/d), a larger order 'm' increases the angular spread by wavelength.",
+   "topic": "Waves",
+   "id": "Waves-162"
+  },
+  {
+   "type": "tf",
+   "question": "Two incoherent sources will not produce a stable, observable interference pattern even though waves still superpose physically.",
+   "answer": true,
+   "explanation": "True. Random phase differences destroy the conditions for stationary fringes.",
+   "topic": "Waves",
+   "id": "Waves-163"
+  },
+  {
+   "type": "tf",
+   "question": "For coherent sources, increasing the source separation decreases fringe spacing (closer fringes).",
+   "answer": true,
+   "explanation": "True. Fringe spacing is inversely proportional to the separation of the sources.",
+   "topic": "Waves",
+   "id": "Waves-164"
+  },
+  {
+   "type": "tf",
+   "question": "Antinodal lines from two coherent point sources on water are curved, not straight.",
+   "answer": true,
+   "explanation": "True. The loci of points with a constant path difference form hyperbolas, which are curved.",
+   "topic": "Waves",
+   "id": "Waves-165"
+  },
+  {
+   "type": "tf",
+   "question": "A mirage requires a refractive-index gradient near hot ground that bends rays by refraction.",
+   "answer": true,
+   "explanation": "True. Thermal gradients in the air create a non-uniform refractive index that curves light paths.",
+   "topic": "Waves",
+   "id": "Waves-166"
+  },
+  {
+   "type": "tf",
+   "question": "At an interface from a higher to a lower refractive index (e.g., plastic to air), a refracted ray bends away from the normal.",
+   "answer": true,
+   "explanation": "True. This is a direct consequence of Snell’s law.",
+   "topic": "Waves",
+   "id": "Waves-167"
+  },
+  {
+   "type": "tf",
+   "question": "A ray totally internally reflecting within a block may later emerge if at a subsequent boundary its incidence angle becomes smaller than the critical angle.",
+   "answer": true,
+   "explanation": "True. The internal geometry of the block can change the incidence angle at the next surface.",
+   "topic": "Waves",
+   "id": "Waves-168"
+  },
+  {
+   "type": "tf",
+   "question": "Peak-to-trough displacement of a sinusoidal wave equals 2A if the amplitude is A.",
+   "answer": true,
+   "explanation": "True. This is by definition of amplitude, which is the maximum displacement from the equilibrium position.",
+   "topic": "Waves",
+   "id": "Waves-169"
+  },
+  {
+   "type": "tf",
+   "question": "In echo sounding, the travel time corresponds to a one-way trip to the seabed.",
+   "answer": false,
+   "explanation": "False. The time measured is for a round trip (down and back).",
+   "topic": "Waves",
+   "id": "Waves-170"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-01",
+   "question": "When a water wave travels from shallow to deep water, its frequency",
+   "options": {
+    "A": "increases",
+    "B": "decreases",
+    "C": "stays the same (set by source)",
+    "D": "becomes zero"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. Frequency is set by the source and stays the same; speed and wavelength change with depth.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-02",
+   "question": "When light enters glass from air, its frequency",
+   "options": {
+    "A": "increases",
+    "B": "decreases",
+    "C": "unchanged; speed and wavelength change",
+    "D": "becomes the colour’s complementary"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. Frequency is unchanged at the boundary; in glass the speed drops and so wavelength drops (v = fλ).",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-03",
+   "question": "On a stretched string, if frequency doubles while tension and mass/length fixed, wave speed",
+   "options": {
+    "A": "doubles",
+    "B": "halves",
+    "C": "stays (approximately) the same; wavelength halves",
+    "D": "quadruples"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. On a given string, wave speed depends on tension and μ, not on driving frequency; doubling f halves λ.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-04",
+   "question": "In a longitudinal sound wave, a particle at the equilibrium position",
+   "options": {
+    "A": "is always instantaneously at rest",
+    "B": "may have maximum speed there (like SHM through centre)",
+    "C": "only moves perpendicular to wave travel",
+    "D": "has undefined displacement forever"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Like SHM through the centre, a particle at the equilibrium position can have maximum speed (zero displacement, max |v|).",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-05",
+   "question": "Particle motion in a longitudinal wave is",
+   "options": {
+    "A": "perpendicular to propagation",
+    "B": "parallel to propagation",
+    "C": "circular only",
+    "D": "random only"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. In a longitudinal wave, particle oscillation is parallel to the direction of propagation.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-06",
+   "question": "Two waves of different frequencies at one point",
+   "options": {
+    "A": "always reinforce to a larger fixed amplitude",
+    "B": "do not form a steady interference maximum like equal-f coherent sources",
+    "C": "cannot exist in air",
+    "D": "must cancel completely"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Steady interference maxima need equal frequencies and coherence; different frequencies do not lock a fixed fringe pattern.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-07",
+   "question": "Stable interference fringes from two sources require the sources to be",
+   "options": {
+    "A": "out of phase",
+    "B": "coherent (constant phase relation)",
+    "C": "incoherent",
+    "D": "of different frequencies only"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Stable fringes need coherent sources (constant phase difference). ‘Out of phase’ is not the same as incoherent.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-08",
+   "question": "Microwaves in air travel at approximately",
+   "options": {
+    "A": "speed of sound",
+    "B": "speed of light",
+    "C": "speed of water waves",
+    "D": "zero"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Microwaves are electromagnetic waves, so in air they travel at nearly the speed of light.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-09",
+   "question": "An echo sounding measures depth using travel time t. Distance is proportional to",
+   "options": {
+    "A": "vt (one-way mistaken as full path)",
+    "B": "½ vt (there and back)",
+    "C": "2 vt",
+    "D": "v/t"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. The pulse travels to the reflector and back, so depth = ½ vt, not vt.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-10",
+   "question": "Apparent depth of a pool floor viewed from air is",
+   "options": {
+    "A": "deeper than real",
+    "B": "shallower than real",
+    "C": "equal always",
+    "D": "unrelated to refraction"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Refraction makes the pool floor look shallower than its real depth when viewed from air.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-11",
+   "question": "A short-sighted (myopic) person cannot see distant objects clearly. Correction uses a",
+   "options": {
+    "A": "convex (converging) lens",
+    "B": "concave (diverging) lens",
+    "C": "plane mirror only",
+    "D": "prism only"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Myopia focuses distant rays in front of the retina; a diverging (concave) lens corrects it.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-12",
+   "question": "A ray in denser medium meets a boundary with air. If it refracts into air, it bends",
+   "options": {
+    "A": "towards the normal",
+    "B": "away from the normal",
+    "C": "not at all",
+    "D": "always reflects only"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Entering a less dense medium (denser→air), the ray speeds up and bends away from the normal.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-13",
+   "question": "Diffraction and refraction are",
+   "options": {
+    "A": "the same effect with different names",
+    "B": "different: refraction = speed/direction change across media; diffraction = spreading at obstacles/apertures",
+    "C": "only properties of sound",
+    "D": "only properties of light"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Refraction is change of speed/direction across media; diffraction is spreading at obstacles or apertures — different effects.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-14",
+   "question": "EM spectrum: which travels at c in vacuum?",
+   "options": {
+    "A": "only visible light",
+    "B": "only radio",
+    "C": "all EM waves (radio→γ)",
+    "D": "only γ"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. All electromagnetic waves travel at c in vacuum, from radio through γ rays.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-15",
+   "question": "Constructive interference of two coherent waves of equal amplitude occurs when path difference is",
+   "options": {
+    "A": "(n+½)λ",
+    "B": "nλ",
+    "C": "always zero only if amplitudes differ",
+    "D": "independent of λ"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. For coherent equal-amplitude waves, constructive interference occurs when path difference is an integer number of wavelengths (nλ).",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-16",
+   "question": "For ultrasound imaging of fine detail, higher frequency generally gives",
+   "options": {
+    "A": "worse resolution but is chosen because ‘less harmful’",
+    "B": "better resolution (shorter λ), with penetration trade-offs",
+    "C": "no change in resolution",
+    "D": "infinite penetration"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Higher frequency means shorter wavelength, which improves resolution; penetration into tissue usually falls.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-17",
+   "question": "Polarisation is a property that demonstrates",
+   "options": {
+    "A": "sound must be transverse",
+    "B": "light (EM) has transverse character",
+    "C": "all waves are longitudinal",
+    "D": "frequency depends on medium"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Polarisation shows transverse character; longitudinal sound waves in air cannot be polarised that way.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-18",
+   "question": "In Young’s double slit, increasing slit separation a (other things fixed) makes fringe spacing",
+   "options": {
+    "A": "larger",
+    "B": "smaller",
+    "C": "unchanged",
+    "D": "random"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Fringe spacing Δy = λD/a, so larger slit separation a gives closer fringes.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-19",
+   "question": "Amplitude of a mechanical wave is most directly related to",
+   "options": {
+    "A": "frequency only",
+    "B": "energy/intensity carried",
+    "C": "wave speed in the medium only",
+    "D": "wavelength only"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. For a mechanical wave, amplitude is most directly linked to the energy (and intensity) it carries.",
+   "topic": "Waves"
+  },
+  {
+   "type": "mc",
+   "id": "Wave-20",
+   "question": "Critical angle for glass→air depends on",
+   "options": {
+    "A": "only the refractive index of glass relative to air (and geometry definition)",
+    "B": "the colour of the observer’s shirt",
+    "C": "magnetic field",
+    "D": "only the thickness of glass"
+   },
+   "answer": "A",
+   "explanation": "Correct answer: A. Critical angle for glass→air depends on the refractive indices (sin c = 1/n for glass to air), not on colour of clothing, B-field, or glass thickness alone.",
+   "topic": "Waves"
+  },
+  {
+   "type": "tf",
+   "question": "The resistance of a metallic conductor typically decreases as its temperature increases.",
+   "answer": false,
+   "explanation": "Incorrect. For a metallic conductor, resistance increases with temperature. Higher temperature causes the metal ions to vibrate more, leading to more frequent collisions with the charge carriers (electrons) and thus impeding their flow.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-191"
+  },
+  {
+   "type": "tf",
+   "question": "A transformer can step up DC voltage.",
+   "answer": false,
+   "explanation": "Incorrect. Transformers operate on the principle of mutual electromagnetic induction, which requires a changing magnetic flux. DC current produces a constant magnetic field, so it cannot induce a current in the secondary coil. Transformers only work with AC.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-192"
+  },
+  {
+   "type": "tf",
+   "question": "According to Lenz's law, the induced current will flow in a direction that opposes the change in magnetic flux that produced it.",
+   "answer": true,
+   "explanation": "Correct. This is the fundamental statement of Lenz's law. It's a consequence of the conservation of energy, ensuring that you have to do work to create the induced current.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-193"
+  },
+  {
+   "type": "tf",
+   "question": "In a uniform electric field, the electric potential increases in the direction of the electric field lines.",
+   "answer": false,
+   "explanation": "Incorrect. Electric field lines point from regions of higher potential to regions of lower potential. Therefore, electric potential decreases in the direction of the electric field.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-194"
+  },
+  {
+   "type": "tf",
+   "question": "Adding resistors in parallel decreases the total resistance of the circuit.",
+   "answer": true,
+   "explanation": "Correct. When resistors are added in parallel, more paths are available for the current to flow, which reduces the overall resistance. The equivalent resistance is always less than the smallest individual resistance.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-195"
+  },
+  {
+   "type": "tf",
+   "question": "The magnetic field inside a long solenoid is strongest at its ends.",
+   "answer": false,
+   "explanation": "Incorrect. The magnetic field inside a long, ideal solenoid is nearly uniform and strongest in its center, far from the ends. The field becomes weaker and diverges outside the ends.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-196"
+  },
+  {
+   "type": "tf",
+   "question": "An electron moving parallel to a magnetic field line will experience a magnetic force.",
+   "answer": false,
+   "explanation": "Incorrect. The magnetic force on a charged particle is given by F = qvBsin(θ). If the velocity (v) is parallel to the magnetic field (B), the angle θ is 0°, and sin(0°) = 0, so the force is zero.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-197"
+  },
+  {
+   "type": "tf",
+   "question": "Ohm's law (V=IR) is a fundamental law of physics and is always obeyed by all materials.",
+   "answer": false,
+   "explanation": "Incorrect. Ohm's law is an empirical relationship that holds true for many materials (ohmic materials) under certain conditions. It is not a fundamental law, and many devices (like diodes and transistors) are non-ohmic.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-198"
+  },
+  {
+   "type": "tf",
+   "question": "A capacitor stores energy in its magnetic field.",
+   "answer": false,
+   "explanation": "Incorrect. A capacitor stores energy in the electric field between its plates. An inductor stores energy in its magnetic field.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-199"
+  },
+  {
+   "type": "tf",
+   "question": "The Earth's magnetic north pole is located at the geographic North Pole.",
+   "answer": false,
+   "explanation": "Incorrect. The Earth's magnetic north pole (where a compass needle points) is actually a magnetic south pole, located near the geographic North Pole. Opposite poles attract.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-200"
+  },
+  {
+   "type": "tf",
+   "question": "Kirchhoff's junction rule is a consequence of the conservation of charge.",
+   "answer": true,
+   "explanation": "Correct. The junction rule states that the total current entering a junction must equal the total current leaving it. This is a direct statement that charge does not accumulate at a junction.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-201"
+  },
+  {
+   "type": "tf",
+   "question": "In a step-up transformer, the current in the secondary coil is greater than the current in the primary coil.",
+   "answer": false,
+   "explanation": "Incorrect. For an ideal transformer, power is conserved (P_in = P_out, so V_p * I_p = V_s * I_s). If the voltage is stepped up (V_s > V_p), the current must be stepped down (I_s < I_p) to conserve power.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-202"
+  },
+  {
+   "type": "tf",
+   "question": "Electric field lines can cross each other.",
+   "answer": false,
+   "explanation": "Incorrect. Electric field lines can never cross. If they did, it would imply that the electric field has two different directions at the same point, which is impossible.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-203"
+  },
+  {
+   "type": "tf",
+   "question": "A voltmeter should have a very high internal resistance.",
+   "answer": true,
+   "explanation": "Correct. A voltmeter is connected in parallel with the component it measures. To avoid drawing significant current from the circuit and altering the voltage it is intended to measure, it must have a very high resistance.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-204"
+  },
+  {
+   "type": "tf",
+   "question": "The force between two parallel current-carrying wires is attractive if the currents are in opposite directions.",
+   "answer": false,
+   "explanation": "Incorrect. The force is attractive if the currents are in the same direction and repulsive if they are in opposite directions.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-205"
+  },
+  {
+   "type": "tf",
+   "question": "An ammeter should be connected in series and have a very high resistance.",
+   "answer": false,
+   "explanation": "Incorrect. An ammeter is connected in series to measure the current flowing through a part of the circuit. It must have a very low resistance so that it does not significantly impede the current it is trying to measure.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-206"
+  },
+  {
+   "type": "tf",
+   "question": "The unit of capacitance, the Farad, is equivalent to a Coulomb per Volt.",
+   "answer": true,
+   "explanation": "Correct. Capacitance is defined as the ratio of charge stored to the potential difference (C = Q/V), so its unit, the Farad (F), is equivalent to C/V.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-207"
+  },
+  {
+   "type": "tf",
+   "question": "A moving electric charge produces both an electric and a magnetic field.",
+   "answer": true,
+   "explanation": "Correct. A stationary charge produces only an electric field. A moving charge (a current) produces both an electric field and a magnetic field.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-208"
+  },
+  {
+   "type": "tf",
+   "question": "For charges −4Q and +Q on a line, the point where the net electric field is zero lies outside the segment between them.",
+   "answer": true,
+   "explanation": "True. Between them, the fields point in the same direction; cancellation occurs outside, near the side of the smaller-magnitude charge.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-209"
+  },
+  {
+   "type": "tf",
+   "question": "In electromagnetic induction, the induced magnetic torque on a rotating coil opposes its rotation.",
+   "answer": true,
+   "explanation": "True. This is a direct consequence of Lenz’s law.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-210"
+  },
+  {
+   "type": "tf",
+   "question": "The induced e.m.f. in a rotating coil is maximum when the plane of the coil is parallel to the field.",
+   "answer": true,
+   "explanation": "True. The rate of change of magnetic flux, |dΦ/dt|, is maximum at this orientation (θ = 90°).",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-211"
+  },
+  {
+   "type": "tf",
+   "question": "The r.m.s. voltage of a sinusoid is Vp/√2; changing frequency does not change Vrms if Vp is fixed.",
+   "answer": true,
+   "explanation": "True. This is the definition of Vrms for a sinusoidal voltage.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-212"
+  },
+  {
+   "type": "tf",
+   "question": "In a simple d.c. motor with a split-ring commutator, the current reverses every half-turn.",
+   "answer": true,
+   "explanation": "True. This is necessary to maintain continuous rotation.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-213"
+  },
+  {
+   "type": "tf",
+   "question": "For a rod moving across rails in a uniform B into the page, the induced emf magnitude is Bdv, where d is the rail separation.",
+   "answer": true,
+   "explanation": "True. The induced EMF is ℰ = Blv, with l being the separation of the rails (the active length).",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-214"
+  },
+  {
+   "type": "tf",
+   "question": "Transformers: Total output power equals (number of bulbs) × (rated power per bulb); input power equals output/efficiency.",
+   "answer": true,
+   "explanation": "True. P_out = ΣP_rated, and P_in = P_out/η.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-215"
+  },
+  {
+   "type": "tf",
+   "question": "Electric field vectors add by vector addition; the resultant at a point is the vector sum of contributions from all charges.",
+   "answer": true,
+   "explanation": "True. This is the principle of superposition.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-216"
+  },
+  {
+   "type": "tf",
+   "question": "The electrical resistance between opposite faces of a metallic cube of side x is proportional to 1/x.",
+   "answer": true,
+   "explanation": "True. R = ρL/A = ρx/x² = ρ/x.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-217"
+  },
+  {
+   "type": "tf",
+   "question": "A metal rod moving across a magnetic field with open terminals has an induced emf but no induced current; hence no magnetic drag force acts on it.",
+   "answer": true,
+   "explanation": "True. With no circuit, there is no current, so there is no force F = IL×B.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-218"
+  },
+  {
+   "type": "tf",
+   "question": "Resistivity is a property of an object, while resistance is a property of a material.",
+   "answer": false,
+   "explanation": "Incorrect. It is the other way around. Resistivity (ρ) is an intrinsic property of a material. Resistance (R) is a property of a specific object that depends on its material (resistivity), length, and cross-sectional area (R = ρL/A).",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-219"
+  },
+  {
+   "type": "tf",
+   "question": "Electric shock severity depends primarily on current through the body, not voltage alone.",
+   "answer": true,
+   "explanation": "True. A high voltage is dangerous mainly because it can drive a large and harmful current through you.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-220"
+  },
+  {
+   "type": "tf",
+   "question": "A bird perched on a single high-voltage line is usually safe because the potential difference across its feet is tiny, so negligible current flows through its body.",
+   "answer": true,
+   "explanation": "True. The bird is at a nearly uniform high potential, so there is no significant voltage drop across its body.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-221"
+  },
+  {
+   "type": "tf",
+   "question": "Resistance depends on cross-sectional area, not surface area.",
+   "answer": true,
+   "explanation": "True. The formula is R = ρL/A, where A is the perpendicular cross-sectional area.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-222"
+  },
+  {
+   "type": "tf",
+   "question": "In a search-coil experiment inside a solenoid, the induced emf is maximized when the coil’s plane is perpendicular to the field lines (coil axis parallel to B).",
+   "answer": true,
+   "explanation": "True. This orientation maximizes the change in flux linkage as the coil is moved or the field is changed.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-223"
+  },
+  {
+   "type": "tf",
+   "question": "Bulbs connected in parallel share the same potential difference; hence energy dissipated per unit charge is the same for each bulb.",
+   "answer": true,
+   "explanation": "True. This is the definition of potential difference (voltage).",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-224"
+  },
+  {
+   "type": "tf",
+   "question": "In that parallel-bulb circuit, the brighter bulb dissipates more power per second and carries a larger current.",
+   "answer": true,
+   "explanation": "True. Since P = VI and V is the same for both, a larger power P implies a larger current I.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-225"
+  },
+  {
+   "type": "tf",
+   "question": "In a moving rod within a magnetic field, the end indicated by v × B (for positive charges) becomes the positive terminal of the induced emf.",
+   "answer": true,
+   "explanation": "True. This describes the direction of charge separation due to the magnetic force.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-226"
+  },
+  {
+   "type": "tf",
+   "question": "If the moving-rod circuit is closed, the induced current generates a magnetic force opposing the motion.",
+   "answer": true,
+   "explanation": "True. This is a direct consequence of Lenz’s law, where the force F opposes the velocity v.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-227"
+  },
+  {
+   "type": "tf",
+   "question": "The magnetic force on a straight current-carrying wire is maximal when the wire is perpendicular to B and zero when parallel to B.",
+   "answer": true,
+   "explanation": "True. The force is given by F = B I L sinθ.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-228"
+  },
+  {
+   "type": "tf",
+   "question": "In a rectangular coil, segments parallel to the magnetic field experience negligible magnetic force; torque comes mainly from the sides perpendicular to B.",
+   "answer": true,
+   "explanation": "True. This is due to the sinθ dependence of the magnetic force.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-229"
+  },
+  {
+   "type": "tf",
+   "question": "In a current-carrying spring, adjacent wire segments with currents in the same direction attract each other; in opposite directions they repel.",
+   "answer": true,
+   "explanation": "True. This is the basis of magnetic deformation in springs and coils.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-230"
+  },
+  {
+   "type": "tf",
+   "question": "Two parallel long conductors carrying currents in the same direction attract each other.",
+   "answer": true,
+   "explanation": "True. This is a standard result of Ampere’s force law.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-231"
+  },
+  {
+   "type": "tf",
+   "question": "In a uniform electric field, charged particles follow parabolic trajectories (constant acceleration a = qE/m), neglecting other forces.",
+   "answer": true,
+   "explanation": "True. This is analogous to projectile motion under gravity.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-232"
+  },
+  {
+   "type": "tf",
+   "question": "In the same electric field, α-particles deflect much less than β-particles because of the α’s much larger mass and lower charge-to-mass ratio.",
+   "answer": true,
+   "explanation": "True. Since a = qE/m and the mass of an alpha particle is much greater than an electron, its acceleration is much smaller.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-233"
+  },
+  {
+   "type": "tf",
+   "question": "When summing electric fields from multiple point charges, vector addition (component-wise) must be used; magnitudes do not simply add.",
+   "answer": true,
+   "explanation": "True. This was a point of struggle for candidates involving vector sums.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-234"
+  },
+  {
+   "type": "tf",
+   "question": "For two identical positive charges placed symmetrically, the electric field at the midpoint is non-zero and points outward along the symmetry axis.",
+   "answer": true,
+   "explanation": "True. The fields from each charge add together, they do not cancel out.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-235"
+  },
+  {
+   "type": "tf",
+   "question": "The instantaneous induced emf in a rotating coil is proportional to the time rate of change of flux, ℰ = −d(NΦ)/dt, not to the flux itself.",
+   "answer": true,
+   "explanation": "True. This explains why the emf is maximum when the flux is changing fastest.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-236"
+  },
+  {
+   "type": "tf",
+   "question": "When the coil’s plane is perpendicular to B (flux maximum), the induced emf is instantaneously zero.",
+   "answer": true,
+   "explanation": "True. At this point, the rate of change of flux, dΦ/dt, is zero.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-237"
+  },
+  {
+   "type": "tf",
+   "question": "In the rotating frame example, the magnetic braking torque is opposite to the rotation at all instants (Lenz’s law).",
+   "answer": true,
+   "explanation": "True. Induced effects always oppose the change that produces them.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-238"
+  },
+  {
+   "type": "tf",
+   "question": "A protective resistor placed in the ammeter branch limits current and helps prevent meter damage if misused.",
+   "answer": true,
+   "explanation": "True. This is the purpose of the protective resistor in the circuit.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-239"
+  },
+  {
+   "type": "tf",
+   "question": "In parallel networks, the potential difference across each branch equals the source potential difference.",
+   "answer": true,
+   "explanation": "True. This fundamental circuit rule was missed by some.",
+   "topic": "Electricity & Magnetism",
+   "id": "Electricity & Magnetism-240"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-01",
+   "question": "A metal rod moves in a magnetic field but is not part of a closed circuit. There can be",
+   "options": {
+    "A": "an induced current along the rod anyway",
+    "B": "an induced e.m.f. (charge separation) but no sustained current",
+    "C": "neither e.m.f. nor any charge shift",
+    "D": "only heat without e.m.f."
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Motional e.m.f. can separate charges on an open rod, but a sustained current needs a closed circuit.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-02",
+   "question": "Magnetic force on a current-carrying wire is",
+   "options": {
+    "A": "parallel to B",
+    "B": "perpendicular to B (and to I) when F = BIL sinθ",
+    "C": "independent of direction of I",
+    "D": "always zero in uniform B"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Magnetic force on a current is perpendicular to both B and I (F = BIL sinθ), not parallel to B.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-03",
+   "question": "Open conducting rod moving in B: opposing magnetic drag force",
+   "options": {
+    "A": "always acts to slow it",
+    "B": "requires induced current; without closed path, no magnetic drag of that kind",
+    "C": "equals weight",
+    "D": "is electrostatic only and always huge"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Magnetic drag from induction needs an induced current; with no closed path there is no such magnetic drag.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-04",
+   "question": "When magnetic flux through a rotating coil is instantaneously zero, induced e.m.f./current is",
+   "options": {
+    "A": "necessarily zero",
+    "B": "often maximum because dΦ/dt is largest then",
+    "C": "undefined",
+    "D": "equal to flux"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Induced e.m.f. depends on dΦ/dt, not on Φ itself — when flux is zero mid-swing, the rate of change is often largest.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-05",
+   "question": "Eddy-current braking on a vehicle",
+   "options": {
+    "A": "works even when the vehicle is completely at rest",
+    "B": "needs relative motion / changing flux while moving",
+    "C": "uses permanent friction pads only",
+    "D": "increases speed"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Eddy-current braking needs relative motion (changing flux); it does not act when the vehicle is fully at rest.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-06",
+   "question": "After the field of a coil becomes steady, eddy currents in a nearby metal ring",
+   "options": {
+    "A": "continue forever",
+    "B": "stop (no changing flux) so magnetic lift/force from eddy effects ceases",
+    "C": "grow without limit",
+    "D": "reverse gravity"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Eddy currents need changing flux; once the field is steady they stop and the related magnetic force ceases.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-07",
+   "question": "Unlike magnetic poles",
+   "options": {
+    "A": "repel",
+    "B": "attract",
+    "C": "are positive and negative charges",
+    "D": "do not exist"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Unlike magnetic poles attract. Magnetic poles are not the same as ± electric charges.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-08",
+   "question": "Raising resistance of a heater on fixed mains voltage",
+   "options": {
+    "A": "increases power (P = V²/R falls when R rises)",
+    "B": "decreases power for fixed V",
+    "C": "does not change power",
+    "D": "makes P infinite"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. For fixed V, P = V²/R, so raising resistance lowers power — a common trap is thinking power rises.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-09",
+   "question": "Mains ‘220 V’ in HK normally means",
+   "options": {
+    "A": "peak voltage",
+    "B": "r.m.s. voltage",
+    "C": "average of |v| over a day",
+    "D": "d.c. voltage"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Mains ‘220 V’ in Hong Kong means the r.m.s. voltage, not the peak.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-10",
+   "question": "Electric shock hazard is primarily due to",
+   "options": {
+    "A": "high voltage by itself with zero current",
+    "B": "large current through the body",
+    "C": "magnetic field of the Earth",
+    "D": "colour of the wire insulation only"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Shock hazard comes from a large current through the body; voltage alone with no current path is not the injury mechanism.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-11",
+   "question": "A bird can perch on a single high-voltage bare cable mainly because",
+   "options": {
+    "A": "the cable is always thickly insulated",
+    "B": "both feet are at nearly the same potential so little current through the bird",
+    "C": "birds are immune to current",
+    "D": "voltage is zero on all cables"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Both feet are at nearly the same potential on one wire, so little current flows through the bird — not because the cable is insulated.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-12",
+   "question": "In a simple d.c. motor, current in the armature coil",
+   "options": {
+    "A": "keeps one direction all the time without commutation",
+    "B": "is reversed each half-turn by the commutator so torque direction stays useful",
+    "C": "is zero always",
+    "D": "is alternating in the battery"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. The commutator reverses armature current each half-turn so the torque keeps driving rotation in one sense.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-13",
+   "question": "Charged particle moving in uniform B (F magnetic only)",
+   "options": {
+    "A": "speed changes; KE changes",
+    "B": "speed stays the same; direction can change (circular/helical)",
+    "C": "must stop",
+    "D": "feels force parallel to v"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Magnetic force is always ⊥ to v, so it changes direction but not speed; KE stays constant (circular/helical path).",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-14",
+   "question": "Electron moving parallel to B experiences magnetic force",
+   "options": {
+    "A": "maximum",
+    "B": "zero (sinθ = 0)",
+    "C": "along B",
+    "D": "independent of charge"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. F = qvB sinθ; if v is parallel to B then sinθ = 0, so magnetic force is zero.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-15",
+   "question": "Lamps dark in a circuit may be",
+   "options": {
+    "A": "only open-circuit",
+    "B": "open OR shorted (bypassed) — need to diagnose",
+    "C": "always higher resistance",
+    "D": "evidence voltage is infinite"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. A dark lamp can be open-circuit or shorted/bypassed — you must diagnose which, not assume only open.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-16",
+   "question": "Adding identical resistors in parallel",
+   "options": {
+    "A": "increases total resistance",
+    "B": "decreases total resistance",
+    "C": "leaves total unchanged",
+    "D": "makes resistance negative"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Parallel paths add conductance, so total resistance falls when identical resistors are added in parallel.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-17",
+   "question": "Transformer action requires",
+   "options": {
+    "A": "steady d.c. primary current forever",
+    "B": "changing flux (usually a.c.) linking coils",
+    "C": "only electrostatic induction",
+    "D": "no core ever"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. A transformer needs changing flux linking the coils (usually a.c.); steady d.c. does not induce a secondary e.m.f.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-18",
+   "question": "Electric field direction is the direction of force on a",
+   "options": {
+    "A": "negative test charge",
+    "B": "positive test charge",
+    "C": "neutron",
+    "D": "magnetic north pole"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. By definition, E-field direction is the force on a positive test charge; potential decreases along field lines.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-19",
+   "question": "Resistance R of a uniform wire satisfies",
+   "options": {
+    "A": "R ∝ A / ℓ",
+    "B": "R ∝ ℓ / A",
+    "C": "R independent of material",
+    "D": "R ∝ ℓ² A"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. R = ρℓ/A, so resistance rises with length and falls with cross-sectional area.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-20",
+   "question": "In parallel branches, energy transferred per unit charge through each branch (from same two nodes) is",
+   "options": {
+    "A": "larger in the brighter lamp only because brightness means higher V",
+    "B": "the same (same pd); brightness differences come from current/power",
+    "C": "zero in both",
+    "D": "inversely proportional to charge"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Parallel branches share the same pd, so energy per unit charge (V) is the same; brightness differs via current and power.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-21",
+   "question": "Lenz’s law: induced current direction",
+   "options": {
+    "A": "supports the flux change",
+    "B": "opposes the change in flux that produces it",
+    "C": "is random",
+    "D": "is always from N to S outside magnets only"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Lenz’s law: the induced current’s direction opposes the change in flux that produces it.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "E&M-22",
+   "question": "Magnetic field along the axis inside a long solenoid is",
+   "options": {
+    "A": "strongest at the ends and zero in middle",
+    "B": "approximately uniform and strong inside, weaker outside",
+    "C": "zero inside",
+    "D": "only electric"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Inside a long solenoid the field is approximately uniform and strong; it is weaker outside — not strongest only at the ends.",
+   "topic": "Electricity & Magnetism"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-01",
+   "question": "Nuclear fusion is",
+   "options": {
+    "A": "always a spontaneous process like α decay",
+    "B": "not generally spontaneous; needs extreme conditions to overcome repulsion",
+    "C": "the splitting of a heavy nucleus",
+    "D": "emission of γ only"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Fusion of light nuclei is not generally spontaneous; nuclei must overcome electrostatic repulsion under extreme conditions (unlike α decay).",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-02",
+   "question": "A film badge worn in air is generally unsuitable for monitoring α exposure because",
+   "options": {
+    "A": "α are too penetrating",
+    "B": "α have very short range in air and usually don’t reach the badge",
+    "C": "α are undetectable by any film",
+    "D": "α are neutral"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. α particles have a very short range in air, so they usually never reach a film badge worn in air — not because they are too penetrating.",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-03",
+   "question": "Isotopes of an element have",
+   "options": {
+    "A": "same mass number, different atomic number",
+    "B": "same atomic number Z, different mass number A (different N)",
+    "C": "same A and Z",
+    "D": "different Z and different chemical behaviour always as different elements"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Isotopes share the same atomic number Z (same element) but different mass number A (different neutron number).",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-04",
+   "question": "Binding energy of a nucleus is",
+   "options": {
+    "A": "energy you must supply to assemble nucleons into the nucleus",
+    "B": "energy required to separate the nucleus into individual nucleons",
+    "C": "always equal to mc² of one electron",
+    "D": "the kinetic energy of α particles only"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Binding energy is the energy needed to separate a nucleus into free nucleons (or released when they assemble).",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-05",
+   "question": "Moderator in a thermal fission reactor slows",
+   "options": {
+    "A": "electrons",
+    "B": "neutrons",
+    "C": "α particles in fuel rods as primary purpose",
+    "D": "atoms of uranium chemically"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. The moderator slows fast neutrons so they are more likely to cause fission in a thermal reactor — not electrons or α particles.",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-06",
+   "question": "Most α particles pass straight through thin gold foil. This observation alone",
+   "options": {
+    "A": "is enough to rule out Thomson’s plum-pudding model",
+    "B": "fits both plum-pudding and nuclear models, so does not by itself invalidate Thomson",
+    "C": "proves electrons orbit like planets",
+    "D": "proves α have no charge"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Straight-through α tracks fit both plum-pudding and nuclear models; large-angle scatters are what rule out Thomson.",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-07",
+   "question": "γ radiation in a magnetic field is",
+   "options": {
+    "A": "deflected like β⁻",
+    "B": "undeflected (uncharged EM radiation)",
+    "C": "deflected opposite to α",
+    "D": "stopped by paper"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. γ rays are uncharged electromagnetic radiation, so a magnetic field does not deflect them.",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-08",
+   "question": "A pure radioisotope that appears to emit α, β and γ may do so because",
+   "options": {
+    "A": "the sample must be chemically impure",
+    "B": "a decay series / daughter products contribute different radiations",
+    "C": "γ is charged",
+    "D": "half-life is infinite"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. A decay chain’s parent and daughters can emit different radiations, so a ‘pure’ starting nuclide may appear to give α, β and γ together.",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-09",
+   "question": "Very long half-life means",
+   "options": {
+    "A": "activity is automatically negligible and always harmless regardless of quantity",
+    "B": "decay is slow per nucleus; hazard still depends on amount, type, and exposure",
+    "C": "the nuclide is not radioactive",
+    "D": "activity is infinite"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Long half-life means slow decay per nucleus; total hazard still depends on amount, radiation type and exposure — it is not automatically harmless.",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-14",
+   "question": "Nuclear fission is",
+   "options": {
+    "A": "combining light nuclei",
+    "B": "splitting a heavy nucleus into lighter nuclei",
+    "C": "identical to chemical burning",
+    "D": "always fusion"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Fission is splitting a heavy nucleus into lighter nuclei; fusion is combining light nuclei.",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-15",
+   "question": "α particles ‘neutralise’ charged smoke/dust in a detector mainly by",
+   "options": {
+    "A": "chemically combining with dust particles directly as the whole story",
+    "B": "ionising air; ions then neutralise charged particles",
+    "C": "magnetic deflection",
+    "D": "increasing gravity"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. α particles ionise air; the ions then neutralise charged smoke/dust — not by chemically sticking to dust as the whole story.",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-16",
+   "question": "Half-life is the time for",
+   "options": {
+    "A": "all nuclei to decay",
+    "B": "half the nuclei (of a large sample) to decay",
+    "C": "activity to become zero",
+    "D": "mass number to halve always"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Half-life is the time for half the nuclei in a large sample to decay — not for all to decay or for activity to reach zero.",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-17",
+   "question": "Power delivered by a radioisotope heat source depends most directly on",
+   "options": {
+    "A": "total number of atoms ignoring decay rate",
+    "B": "activity (decays per second) and energy per decay",
+    "C": "colour of the container",
+    "D": "only the chemical reactivity"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Thermal power scales with decays per second (activity) and energy released per decay.",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-18",
+   "question": "If moderator water is lost in a thermal reactor, the chain reaction may stop because",
+   "options": {
+    "A": "fuel concentration magically drops",
+    "B": "supply of slowed neutrons for fission is lost",
+    "C": "neutrons become too slow to do anything ever",
+    "D": "α emission stops uranium existing"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Without moderator water, neutrons are not slowed for thermal fission, so the chain reaction can stop.",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-19",
+   "question": "α, β, γ ionising ability / penetrating power (qualitative)",
+   "options": {
+    "A": "α most penetrating",
+    "B": "α least penetrating (stopped by paper/few cm air); γ most penetrating of the three",
+    "C": "β never ionises",
+    "D": "all three identical"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. α ionise strongly but penetrate least (paper / few cm air); γ penetrate most of the three.",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Radiation-20",
+   "question": "Energy invested in pushing two nuclei together against electrostatic repulsion is stored mainly as",
+   "options": {
+    "A": "random heat only with no potential",
+    "B": "electrical potential energy",
+    "C": "nuclear binding already more negative automatically",
+    "D": "sound"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Work done against electrostatic repulsion is stored as electrical potential energy of the two nuclei.",
+   "topic": "Radiation"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-01",
+   "question": "The kilowatt-hour (kW·h) is a unit of",
+   "options": {
+    "A": "power",
+    "B": "energy",
+    "C": "force",
+    "D": "electric current"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Power is in W or kW; energy = power × time, so the kilowatt-hour is a unit of energy.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-02",
+   "question": "A domestic appliance rated 2 kW runs for 3 hours. Energy transferred from the mains is closest to",
+   "options": {
+    "A": "6 kW·h",
+    "B": "6 kW",
+    "C": "2/3 kW·h",
+    "D": "5 J"
+   },
+   "answer": "A",
+   "explanation": "Correct answer: A. E = Pt = 2 kW × 3 h = 6 kW·h. A confuses energy with power.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-03",
+   "question": "Electricity tariff charges are usually based mainly on",
+   "options": {
+    "A": "peak voltage only",
+    "B": "resistance of wiring only",
+    "C": "energy used (e.g. kW·h)",
+    "D": "frequency of the supply only"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. Domestic cost tracks energy consumed (and sometimes demand), not voltage or frequency alone.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-04",
+   "question": "Regenerative braking on a vehicle mainly recovers energy by",
+   "options": {
+    "A": "converting kinetic energy of the vehicle into electrical energy to recharge a battery",
+    "B": "storing heat from friction pads as electrical energy",
+    "C": "increasing rolling friction deliberately",
+    "D": "turning gravitational PE of the road into chemical energy in petrol"
+   },
+   "answer": "A",
+   "explanation": "Correct answer: A. Regenerative braking converts the vehicle’s kinetic energy into electrical energy stored in a battery — not friction heat into electricity.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-05",
+   "question": "If a regenerative-braking battery is already full, the vehicle",
+   "options": {
+    "A": "cannot be stopped at all",
+    "B": "must accelerate until the battery empties",
+    "C": "loses all mechanical brakes permanently",
+    "D": "can still be stopped using ordinary friction brakes (regen may be limited)"
+   },
+   "answer": "D",
+   "explanation": "Correct answer: D. Ordinary friction brakes still work if the regen battery is full; battery state does not remove mechanical braking.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-06",
+   "question": "On a level road at steady speed against constant drag, a heavier vehicle compared with a lighter one",
+   "options": {
+    "A": "always needs much larger driving force just to keep that same steady speed",
+    "B": "needs zero power",
+    "C": "does not need extra driving force merely because of mass; extra force/power matters mainly when accelerating",
+    "D": "cannot travel at constant speed"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. At steady speed, drive force balances drag; extra mass matters mainly when accelerating, not just to hold the same speed against the same drag.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-07",
+   "question": "Power and work done are",
+   "options": {
+    "A": "different: power is the rate of doing work / transferring energy",
+    "B": "the same physical quantity",
+    "C": "both measured in joules only",
+    "D": "both measured in watts only"
+   },
+   "answer": "A",
+   "explanation": "Correct answer: A. Power is the rate of doing work or transferring energy (P = W/t or P = Fv); work and power are not the same quantity.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-08",
+   "question": "Lamp luminous efficacy and electrical efficiency are",
+   "options": {
+    "A": "always identical names for the same ratio",
+    "B": "both measured only in ohms",
+    "C": "undefined for LEDs",
+    "D": "related ideas but not the same: efficacy concerns useful light per electrical power; efficiency is broader energy conversion"
+   },
+   "answer": "D",
+   "explanation": "Correct answer: D. Luminous efficacy is useful light output per electrical power; electrical efficiency is a broader energy-conversion ratio — related ideas, not identical.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-09",
+   "question": "Painting a photovoltaic solar cell’s active surface black",
+   "options": {
+    "A": "must raise electrical energy output because black absorbs more radiation",
+    "B": "makes efficiency automatically 100%",
+    "C": "need not raise electrical output: absorption as heat is not the same as photovoltaic conversion",
+    "D": "turns sunlight into chemical energy in silicon always"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. Black surfaces absorb more radiation as heat, but that does not automatically raise photovoltaic electrical output.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-10",
+   "question": "In a simple solar–battery setup, useful bookkeeping of energy forms should include that",
+   "options": {
+    "A": "solar input is electromagnetic radiation; the battery stores chemical energy when charged",
+    "B": "the Sun’s thermal energy is converted directly to electricity and the battery’s chemical store can be ignored",
+    "C": "only nuclear energy is involved",
+    "D": "photons have no energy"
+   },
+   "answer": "A",
+   "explanation": "Correct answer: A. Solar input is EM radiation; a charged battery stores chemical energy. Do not skip the chemical store or call the chain merely ‘thermal→electrical’.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-11",
+   "question": "A building material with a larger U-value (other things equal) means",
+   "options": {
+    "A": "better insulation (less heat loss rate per area per temperature difference)",
+    "B": "higher electrical resistivity",
+    "C": "zero heat capacity",
+    "D": "poorer insulation: higher thermal transmittance / faster heat loss for given ΔT and area"
+   },
+   "answer": "D",
+   "explanation": "Correct answer: D. U-value = heat transfer rate per unit area per unit temperature difference — higher U ⇒ worse insulator (Energy: building performance).",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-12",
+   "question": "Double glazing reduces heat loss through a window mainly by",
+   "options": {
+    "A": "increasing U-value a lot",
+    "B": "trapping a poorly conducting gas/air layer so conduction/convection across the pane gap falls",
+    "C": "stopping all radiation completely",
+    "D": "making glass denser than lead"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Insulation qualitative: trapped air / gap cuts conduction–convection (Energy: buildings).",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-13",
+   "question": "Which is a renewable energy source in the usual DSE classification sense?",
+   "options": {
+    "A": "coal",
+    "B": "natural gas",
+    "C": "wind",
+    "D": "petroleum"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. Wind is classed as renewable; coal, natural gas and petroleum are non-renewable fossil fuels.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-14",
+   "question": "Fossil fuels are classed as non-renewable mainly because",
+   "options": {
+    "A": "they release no energy when burned",
+    "B": "they form far more slowly than we use them",
+    "C": "they cannot produce electricity ever",
+    "D": "they have infinite reserves on human timescales"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Fossil fuels form far more slowly than we consume them, so they are non-renewable on human timescales.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-15",
+   "question": "For the same useful output, a process with higher efficiency",
+   "options": {
+    "A": "wastes a smaller fraction of input energy",
+    "B": "wastes a larger fraction of input energy",
+    "C": "must use nuclear fuel",
+    "D": "has efficiency above 100% in a heat engine"
+   },
+   "answer": "A",
+   "explanation": "Correct answer: A. η = useful output / input; higher η ⇒ less waste fraction.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-16",
+   "question": "In a pressurised-water reactor (PWR), the pressurised primary coolant water typically",
+   "options": {
+    "A": "boils and that steam directly drives the turbine",
+    "B": "is only a moderator and carries no heat",
+    "C": "stays liquid under high pressure; heat is transferred to a secondary loop that produces steam for the turbine",
+    "D": "must be liquid sodium"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. In a PWR the pressurised primary coolant stays liquid; heat goes to a secondary loop that makes steam for the turbine.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-17",
+   "question": "Using LED lighting instead of an inefficient lamp for the same useful light generally",
+   "options": {
+    "A": "increases electrical energy use for that lighting task",
+    "B": "changes the mains frequency",
+    "C": "removes the need for any power source",
+    "D": "reduces electrical energy use because more of the input becomes useful light (less waste heat per lumen)"
+   },
+   "answer": "D",
+   "explanation": "Correct answer: D. Lighting / saving energy: higher efficacy → less electrical energy for same light.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "mc",
+   "id": "Energy-18",
+   "question": "Transport energy efficiency discussions often emphasise that regenerative braking",
+   "options": {
+    "A": "replaces the need for any friction brakes forever",
+    "B": "can return some kinetic energy to stored electrical energy, improving overall energy use on stop–go journeys",
+    "C": "increases fuel use at every stop",
+    "D": "only works on vehicles with empty fuel tanks"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Regenerative braking can return some kinetic energy to the battery, improving energy use on stop–go journeys — it does not replace friction brakes forever.",
+   "topic": "Energy and Use of Energy"
+  },
+  {
+   "type": "tf",
+   "question": "Alpha particles are positively charged.",
+   "answer": true,
+   "explanation": "Correct. An alpha particle is a helium nucleus, consisting of two protons and two neutrons, giving it a charge of +2e.",
+   "topic": "Atomic World",
+   "id": "Atomic World-297"
+  },
+  {
+   "type": "tf",
+   "question": "Gamma rays can be deflected by a magnetic field.",
+   "answer": false,
+   "explanation": "Incorrect. Gamma rays are high-energy electromagnetic radiation (photons). They have no charge and therefore are not deflected by electric or magnetic fields.",
+   "topic": "Atomic World",
+   "id": "Atomic World-298"
+  },
+  {
+   "type": "tf",
+   "question": "Isotopes of an element have the same number of neutrons but a different number of protons.",
+   "answer": false,
+   "explanation": "Incorrect. Isotopes of an element have the same number of protons (which defines the element) but a different number of neutrons, resulting in a different mass number.",
+   "topic": "Atomic World",
+   "id": "Atomic World-299"
+  },
+  {
+   "type": "tf",
+   "question": "During beta decay, a neutron in the nucleus is converted into a proton and an electron.",
+   "answer": true,
+   "explanation": "Correct. In beta-minus decay, a neutron transforms into a proton (which remains in the nucleus), and an electron (the beta particle) and an antineutrino are emitted.",
+   "topic": "Atomic World",
+   "id": "Atomic World-300"
+  },
+  {
+   "type": "tf",
+   "question": "Nuclear fission is the process of combining light nuclei to form a heavier nucleus.",
+   "answer": false,
+   "explanation": "Incorrect. Nuclear fission is the process of splitting a heavy, unstable nucleus into two or more lighter nuclei. Combining light nuclei is called nuclear fusion.",
+   "topic": "Atomic World",
+   "id": "Atomic World-301"
+  },
+  {
+   "type": "tf",
+   "question": "The half-life of a radioactive substance is the time it takes for half of its atoms to decay.",
+   "answer": true,
+   "explanation": "Correct. This is the definition of half-life. After one half-life, the activity of the sample is also reduced by half.",
+   "topic": "Atomic World",
+   "id": "Atomic World-302"
+  },
+  {
+   "type": "tf",
+   "question": "In the Bohr model, electron angular momentum is quantized.",
+   "answer": true,
+   "explanation": "True. This is a foundational postulate of the Bohr model.",
+   "topic": "Atomic World",
+   "id": "Atomic World-303"
+  },
+  {
+   "type": "tf",
+   "question": "An electron dropping from n = 3 to n = 1 can produce three spectral lines in total.",
+   "answer": true,
+   "explanation": "True. The possible transitions are 3→1, 3→2, and 2→1.",
+   "topic": "Atomic World",
+   "id": "Atomic World-304"
+  },
+  {
+   "type": "tf",
+   "question": "Conventional film badges cannot reliably monitor alpha radiation exposure to workers.",
+   "answer": true,
+   "explanation": "True. Alpha particles are easily stopped by the badge’s covering and the air.",
+   "topic": "Atomic World",
+   "id": "Atomic World-305"
+  },
+  {
+   "type": "tf",
+   "question": "The stopping potential is equal to the maximum photoelectron kinetic energy divided by e.",
+   "answer": true,
+   "explanation": "True. The relationship is eVs = Kmax.",
+   "topic": "Atomic World",
+   "id": "Atomic World-306"
+  },
+  {
+   "type": "tf",
+   "question": "Increasing light frequency increases the saturation current.",
+   "answer": false,
+   "explanation": "False. The saturation current depends mainly on intensity; frequency changes Kmax.",
+   "topic": "Atomic World",
+   "id": "Atomic World-307"
+  },
+  {
+   "type": "tf",
+   "question": "In a uniform electric field, β-particles (electrons) are deflected more than α-particles, in opposite directions.",
+   "answer": true,
+   "explanation": "True. This is due to their much smaller mass and opposite charge.",
+   "topic": "Atomic World",
+   "id": "Atomic World-308"
+  },
+  {
+   "type": "tf",
+   "question": "Natural ionizing radiation can be found in sea water, rocks, and the human body.",
+   "answer": true,
+   "explanation": "True. These contain traces of radionuclides (e.g., K-40).",
+   "topic": "Atomic World",
+   "id": "Atomic World-309"
+  },
+  {
+   "type": "tf",
+   "question": "All of an atom's mass is concentrated in its nucleus.",
+   "answer": false,
+   "explanation": "Incorrect. While the vast majority (over 99.9%) of an atom's mass is in the nucleus, the electrons orbiting the nucleus also contribute a small amount to the total mass.",
+   "topic": "Atomic World",
+   "id": "Atomic World-310"
+  },
+  {
+   "type": "tf",
+   "question": "The penetrating power of beta particles is generally greater than that of alpha particles.",
+   "answer": true,
+   "explanation": "Correct. The order of penetrating power is typically gamma > beta > alpha. Alpha particles are large and highly ionizing, so they are stopped easily (by paper or skin). Beta particles are smaller and can penetrate further (stopped by thin aluminum).",
+   "topic": "Atomic World",
+   "id": "Atomic World-311"
+  },
+  {
+   "type": "tf",
+   "question": "Einstein's mass-energy equivalence principle is given by E = mc.",
+   "answer": false,
+   "explanation": "Incorrect. The famous equation is E = mc², where 'c' is the speed of light. This relationship shows that mass and energy are interchangeable.",
+   "topic": "Atomic World",
+   "id": "Atomic World-312"
+  },
+  {
+   "type": "tf",
+   "question": "In the photoelectric effect, increasing the intensity of the incident light increases the maximum kinetic energy of the emitted electrons.",
+   "answer": false,
+   "explanation": "Incorrect. Increasing the intensity of the light increases the number of photons, which in turn increases the number of emitted electrons (the photoelectric current). The maximum kinetic energy of the electrons is determined by the frequency of the incident light, not its intensity.",
+   "topic": "Atomic World",
+   "id": "Atomic World-313"
+  },
+  {
+   "type": "tf",
+   "question": "A chain reaction in a nuclear reactor is controlled by using control rods that absorb protons.",
+   "answer": false,
+   "explanation": "Incorrect. Control rods, typically made of materials like boron or cadmium, control the reaction rate by absorbing excess neutrons, not protons.",
+   "topic": "Atomic World",
+   "id": "Atomic World-314"
+  },
+  {
+   "type": "tf",
+   "question": "Background radiation is solely due to man-made sources.",
+   "answer": false,
+   "explanation": "Incorrect. Background radiation comes from both natural sources (like radon gas, cosmic rays, radioactive elements in rocks) and man-made sources (like medical x-rays and nuclear fallout).",
+   "topic": "Atomic World",
+   "id": "Atomic World-315"
+  },
+  {
+   "type": "tf",
+   "question": "Nuclear fusion reactions release more energy per nucleon than fission reactions.",
+   "answer": true,
+   "explanation": "Correct. While a single fission event releases more total energy than a single fusion event, fusion of light elements (like hydrogen) releases significantly more energy per unit of mass (per nucleon).",
+   "topic": "Atomic World",
+   "id": "Atomic World-316"
+  },
+  {
+   "type": "tf",
+   "question": "Rutherford's gold foil experiment proved the existence of the neutron.",
+   "answer": false,
+   "explanation": "Incorrect. Rutherford's experiment led to the discovery of the atomic nucleus and the proposal of the planetary model of the atom. The neutron was discovered later by James Chadwick in 1932.",
+   "topic": "Atomic World",
+   "id": "Atomic World-317"
+  },
+  {
+   "type": "tf",
+   "question": "The strong nuclear force is responsible for holding electrons in orbit around the nucleus.",
+   "answer": false,
+   "explanation": "Incorrect. The strong nuclear force is the force that binds protons and neutrons together within the nucleus. The electromagnetic force is responsible for keeping electrons in orbit.",
+   "topic": "Atomic World",
+   "id": "Atomic World-318"
+  },
+  {
+   "type": "tf",
+   "question": "Light exhibits properties of both a particle and a wave.",
+   "answer": true,
+   "explanation": "Correct. This is the principle of wave-particle duality. Light can behave as an electromagnetic wave (showing diffraction and interference) and as a particle or photon (as seen in the photoelectric effect).",
+   "topic": "Atomic World",
+   "id": "Atomic World-319"
+  },
+  {
+   "type": "tf",
+   "question": "Radioactive decay is a random and spontaneous process.",
+   "answer": true,
+   "explanation": "Correct. It is impossible to predict when a specific nucleus will decay. The process is governed by probability, which is why we use statistical measures like half-life to describe it for a large number of atoms.",
+   "topic": "Atomic World",
+   "id": "Atomic World-320"
+  },
+  {
+   "type": "tf",
+   "question": "The activity of a radioactive sample is measured in Joules.",
+   "answer": false,
+   "explanation": "Incorrect. The activity of a radioactive sample (the rate of decay) is measured in Becquerels (Bq), where 1 Bq = 1 decay per second. Energy is measured in Joules.",
+   "topic": "Atomic World",
+   "id": "Atomic World-321"
+  },
+  {
+   "type": "tf",
+   "question": "An electron can exist in any orbit around a nucleus, as long as it has enough energy.",
+   "answer": false,
+   "explanation": "Incorrect. According to the Bohr model and quantum mechanics, electrons can only exist in specific, discrete energy levels or orbitals around the nucleus. They cannot exist in the spaces between these allowed orbits.",
+   "topic": "Atomic World",
+   "id": "Atomic World-322"
+  },
+  {
+   "type": "tf",
+   "question": "In a controlled nuclear fission reactor, the goal is to have the multiplication factor k exactly equal to 1.",
+   "answer": true,
+   "explanation": "Correct. A multiplication factor (k) of 1 means that each fission event causes, on average, exactly one other fission event. This leads to a self-sustaining chain reaction at a constant rate, which is known as a critical state.",
+   "topic": "Atomic World",
+   "id": "Atomic World-323"
+  },
+  {
+   "type": "tf",
+   "question": "In α-decay at rest, the α and daughter nucleus have equal and opposite momenta, but not equal kinetic energies.",
+   "answer": true,
+   "explanation": "True. They have the same momentum magnitude |p|, but KE ∝ p²/2m; the lighter α particle gets more KE.",
+   "topic": "Atomic World",
+   "id": "Atomic World-324"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-01",
+   "question": "In the photoelectric effect, increasing the intensity of light (same frequency above threshold) mainly increases",
+   "options": {
+    "A": "the maximum kinetic energy of each photoelectron",
+    "B": "the work function of the metal",
+    "C": "the number of photoelectrons emitted per second (photocurrent), not Kmax",
+    "D": "the threshold frequency of the metal"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. Higher intensity means more photons per second → more photoelectrons (larger photocurrent); Kmax depends on frequency, not intensity.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-02",
+   "question": "Increasing the frequency of incident light above threshold (intensity fixed) mainly",
+   "options": {
+    "A": "increases maximum photoelectron KE; saturation current is not set by frequency",
+    "B": "increases saturation photocurrent in proportion to frequency",
+    "C": "lowers the work function",
+    "D": "stops emission"
+   },
+   "answer": "A",
+   "explanation": "Correct answer: A. Higher frequency raises maximum photoelectron KE; saturation current is set by intensity (photon arrival rate), not frequency.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-03",
+   "question": "Stopping potential Vs in a photoelectric experiment satisfies",
+   "options": {
+    "A": "Vs equals Kmax numerically in joules with no conversion",
+    "B": "eVs = Kmax",
+    "C": "Vs equals the work function in eV always",
+    "D": "Vs equals photon energy hf with no subtraction of work function"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Stopping potential satisfies eVs = Kmax; Vs is not the work function, and it is not hf with no φ subtracted.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-04",
+   "question": "The work function of a metal is",
+   "options": {
+    "A": "equal to hf for any incident light used",
+    "B": "the same as stopping potential in volts with no e factor",
+    "C": "zero for all metals",
+    "D": "the minimum energy needed to free an electron from the surface; not simply “the photon energy” of whatever light is shining"
+   },
+   "answer": "D",
+   "explanation": "Correct answer: D. Work function φ is the minimum energy to free an electron from the metal — not simply the photon energy hf of whatever light is shining.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-05",
+   "question": "Photoelectrons from a metal illuminated by monochromatic light show a spread of KE mainly because",
+   "options": {
+    "A": "electrons inside the metal need different energies to reach the surface (work function is a minimum); emission itself sets the spread",
+    "B": "electrons lose random amounts of energy only while drifting from cathode to anode in the tube",
+    "C": "the photon energy changes after each collision with air",
+    "D": "magnetic fields in the lab quantise KE"
+   },
+   "answer": "A",
+   "explanation": "Correct answer: A. Electrons need different energies to leave the surface (φ is a minimum), so emitted KE spreads; it is not mainly random losses on the flight to the anode.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-06",
+   "question": "The threshold frequency of a metal",
+   "options": {
+    "A": "rises whenever you use a higher-frequency lamp",
+    "B": "is the same for all metals",
+    "C": "is a property of the metal (linked to work function), not something that tracks the lamp frequency you happen to choose",
+    "D": "equals the mains frequency"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. Threshold frequency is a property of the metal (set by φ), not something that tracks the lamp frequency you choose.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-07",
+   "question": "In photoelectric equations, c in E = hc/λ is",
+   "options": {
+    "A": "the speed of the photoelectron",
+    "B": "the speed of light in vacuum (photon), not the electron’s speed",
+    "C": "the wave speed of sound",
+    "D": "always 3 m/s"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. In E = hc/λ, c is the speed of light for the photon — not the photoelectron’s speed.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-08",
+   "question": "In the Bohr model of hydrogen, while the electron remains in an allowed orbit it",
+   "options": {
+    "A": "continuously radiates EM waves like a classical accelerating charge",
+    "B": "must spiral into the nucleus in microseconds",
+    "C": "has continuously variable energy",
+    "D": "does not radiate; energy of that stationary state stays constant until a jump"
+   },
+   "answer": "D",
+   "explanation": "Correct answer: D. In Bohr’s model an electron in an allowed orbit does not radiate; energy stays fixed until a quantum jump.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-09",
+   "question": "A photon can excite a hydrogen atom from one Bohr level to a higher one only if",
+   "options": {
+    "A": "its energy matches the exact level difference ΔE (one photon ↔ one transition)",
+    "B": "its energy is any value larger than the level gap ΔE",
+    "C": "two half-energy photons arrive together",
+    "D": "the photon energy equals the electron’s total energy at the upper level alone"
+   },
+   "answer": "A",
+   "explanation": "Correct answer: A. One photon must match the exact level difference ΔE; photons do not pool half-energies, and photon energy is not the upper level’s En alone.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-10",
+   "question": "The first excited state of hydrogen corresponds to",
+   "options": {
+    "A": "n = 1",
+    "B": "n = 2",
+    "C": "n = 0",
+    "D": "n = ∞ only"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Ground state is n = 1; the first excited state is n = 2.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-11",
+   "question": "Bohr orbit radius scales as rn ∝ n². Compared with the ground-state radius, the first excited orbit is",
+   "options": {
+    "A": "the same",
+    "B": "2 times larger",
+    "C": "4 times larger",
+    "D": "9 times larger"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. Since rn ∝ n², for n = 2 the orbit radius is 4 times the ground-state radius.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-12",
+   "question": "Excitation of an atom and ionisation of an atom are",
+   "options": {
+    "A": "the same process",
+    "B": "both impossible for hydrogen",
+    "C": "both require exactly zero energy",
+    "D": "different: excitation raises an electron to a higher bound level; ionisation removes it from the atom"
+   },
+   "answer": "D",
+   "explanation": "Correct answer: D. Excitation moves an electron to a higher bound level; ionisation removes it from the atom — different processes.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-13",
+   "question": "To ionise ground-state hydrogen, a photon must have",
+   "options": {
+    "A": "energy at least 13.6 eV; excess can appear as KE of the freed electron",
+    "B": "energy exactly 13.6 eV only; any larger energy cannot ionise",
+    "C": "energy less than 13.6 eV always",
+    "D": "energy equal to the Rydberg gas constant in joules"
+   },
+   "answer": "A",
+   "explanation": "Correct answer: A. Ionisation needs at least 13.6 eV; any excess can appear as KE of the freed electron (energies above 13.6 eV still work).",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-14",
+   "question": "If a photon’s energy exceeds the ionisation energy of an atom,",
+   "options": {
+    "A": "the atom absorbs only part of the photon and the same photon continues with the leftover energy",
+    "B": "photons never interact with atoms",
+    "C": "the atom can absorb the whole photon; ionisation occurs and excess energy can go to the electron’s KE",
+    "D": "only elastic scattering of half the energy is allowed"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. The atom absorbs the whole photon; ionisation can occur and leftover energy becomes electron KE — photons are not partly absorbed and partly continued.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-15",
+   "question": "In Rutherford’s nuclear model, electrons",
+   "options": {
+    "A": "must fall straight into the nucleus because attraction has no orbit idea",
+    "B": "are outside a tiny nucleus; classical orbits still had a radiation problem that Bohr later addressed",
+    "C": "fill the entire atom uniformly like plum pudding",
+    "D": "are inside the nucleus with the protons"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Rutherford places electrons outside a tiny nucleus; classical orbiting still had a radiation problem that Bohr later addressed — electrons do not simply ‘fall straight in with no orbit idea’.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-16",
+   "question": "Most α particles pass straight through thin gold foil. By itself this observation",
+   "options": {
+    "A": "immediately disproves Thomson’s plum-pudding model",
+    "B": "proves neutrons exist",
+    "C": "proves electrons orbit in Bohr radii",
+    "D": "fits both plum-pudding and nuclear models, so it alone does not rule out Thomson"
+   },
+   "answer": "D",
+   "explanation": "Correct answer: D. Straight-through α tracks fit both models; large-angle scatters are what invalidate Thomson’s plum pudding.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-17",
+   "question": "A nanoparticle of a material",
+   "options": {
+    "A": "need not have a different shape; nano refers to size scale, not a mandatory shape change",
+    "B": "must always have a different shape from the same material in bulk",
+    "C": "cannot be crystalline",
+    "D": "must be exactly one atom across"
+   },
+   "answer": "A",
+   "explanation": "Correct answer: A. ‘Nano’ refers to size scale; a nanoparticle need not have a different shape from the bulk material.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-18",
+   "question": "Resolving power and minimum angular separation: a higher resolving power corresponds to",
+   "options": {
+    "A": "a larger minimum angular separation",
+    "B": "infinite wavelength only",
+    "C": "a smaller minimum angular separation",
+    "D": "zero aperture always"
+   },
+   "answer": "C",
+   "explanation": "Correct answer: C. Higher resolving power means a smaller minimum resolvable angular separation θmin.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-19",
+   "question": "The energy of a photon emitted in a hydrogen transition equals",
+   "options": {
+    "A": "the electron’s total energy in the upper level alone",
+    "B": "the difference between the two level energies involved",
+    "C": "always 13.6 eV",
+    "D": "the Rydberg constant numerically in eV with no formula"
+   },
+   "answer": "B",
+   "explanation": "Correct answer: B. Photon energy equals the difference |ΔE| between the two levels, not the electron’s total energy in one level alone.",
+   "topic": "Atomic World"
+  },
+  {
+   "type": "mc",
+   "id": "Atomic-20",
+   "question": "Light’s wave–particle behaviour is illustrated by the fact that",
+   "options": {
+    "A": "interference needs waves while the photoelectric effect needs quantised photons — both can be true of light",
+    "B": "light is only a wave forever",
+    "C": "light is only a particle forever",
+    "D": "photoelectric effect proves light has no frequency"
+   },
+   "answer": "A",
+   "explanation": "Correct answer: A. Interference shows wave behaviour; the photoelectric effect needs quantised photons — both can be true of light (wave–particle duality).",
+   "topic": "Atomic World"
+  }
+ ],
+ "packs": [
+  {
+   "day": 1,
+   "count": 12,
+   "ids": [
+    "Mechanics-1",
+    "Mechanics-2",
+    "Mechanics-3",
+    "Mechanics-4",
+    "Mechanics-5",
+    "Mechanics-6",
+    "Mechanics-7",
+    "Mechanics-8",
+    "Mechanics-9",
+    "Mechanics-10",
+    "Mechanics-11",
+    "Mechanics-12"
+   ]
+  },
+  {
+   "day": 2,
+   "count": 12,
+   "ids": [
+    "Mechanics-13",
+    "Mechanics-14",
+    "Mechanics-15",
+    "Mechanics-16",
+    "Mechanics-17",
+    "Mechanics-18",
+    "Mechanics-19",
+    "Mechanics-20",
+    "Mechanics-21",
+    "Mechanics-22",
+    "Mechanics-23",
+    "Mechanics-24"
+   ]
+  },
+  {
+   "day": 3,
+   "count": 12,
+   "ids": [
+    "Mechanics-25",
+    "Mechanics-26",
+    "Mechanics-27",
+    "Mechanics-28",
+    "Mechanics-29",
+    "Mechanics-30",
+    "Mechanics-31",
+    "Mechanics-32",
+    "Mechanics-33",
+    "Mechanics-34",
+    "Mechanics-35",
+    "Mechanics-36"
+   ]
+  },
+  {
+   "day": 4,
+   "count": 12,
+   "ids": [
+    "Mechanics-37",
+    "Mechanics-38",
+    "Mechanics-39",
+    "Mechanics-40",
+    "Mechanics-41",
+    "Mechanics-42",
+    "Mechanics-43",
+    "Mechanics-44",
+    "Mechanics-45",
+    "Mechanics-46",
+    "Mechanics-47",
+    "Mechanics-48"
+   ]
+  },
+  {
+   "day": 5,
+   "count": 12,
+   "ids": [
+    "Mechanics-49",
+    "Mechanics-50",
+    "Mechanics-51",
+    "Mechanics-52",
+    "Mechanics-53",
+    "Mechanics-54",
+    "Mechanics-55",
+    "Mechanics-56",
+    "Mechanics-57",
+    "Mechanics-58",
+    "Force-01",
+    "Force-02"
+   ]
+  },
+  {
+   "day": 6,
+   "count": 12,
+   "ids": [
+    "Force-03",
+    "Force-04",
+    "Force-05",
+    "Force-06",
+    "Force-07",
+    "Force-08",
+    "Force-09",
+    "Force-10",
+    "Force-11",
+    "Force-12",
+    "Force-13",
+    "Force-14"
+   ]
+  },
+  {
+   "day": 7,
+   "count": 12,
+   "ids": [
+    "Force-15",
+    "Force-16",
+    "Force-17",
+    "Force-18",
+    "Force-19",
+    "Force-20",
+    "Heat & Gases-79",
+    "Heat & Gases-80",
+    "Heat & Gases-81",
+    "Heat & Gases-82",
+    "Heat & Gases-83",
+    "Heat & Gases-84"
+   ]
+  },
+  {
+   "day": 8,
+   "count": 12,
+   "ids": [
+    "Heat & Gases-85",
+    "Heat & Gases-86",
+    "Heat & Gases-87",
+    "Heat & Gases-88",
+    "Heat & Gases-89",
+    "Heat & Gases-90",
+    "Heat & Gases-91",
+    "Heat & Gases-92",
+    "Heat & Gases-93",
+    "Heat & Gases-94",
+    "Heat & Gases-95",
+    "Heat & Gases-96"
+   ]
+  },
+  {
+   "day": 9,
+   "count": 12,
+   "ids": [
+    "Heat & Gases-97",
+    "Heat & Gases-98",
+    "Heat & Gases-99",
+    "Heat & Gases-100",
+    "Heat & Gases-101",
+    "Heat & Gases-102",
+    "Heat & Gases-103",
+    "Heat & Gases-104",
+    "Heat & Gases-105",
+    "Heat & Gases-106",
+    "Heat & Gases-107",
+    "Heat-01"
+   ]
+  },
+  {
+   "day": 10,
+   "count": 12,
+   "ids": [
+    "Heat-02",
+    "Heat-03",
+    "Heat-04",
+    "Heat-05",
+    "Heat-06",
+    "Heat-07",
+    "Heat-08",
+    "Heat-09",
+    "Heat-10",
+    "Heat-11",
+    "Heat-13",
+    "Heat-14"
+   ]
+  },
+  {
+   "day": 11,
+   "count": 12,
+   "ids": [
+    "Heat-15",
+    "Heat-16",
+    "Heat-17",
+    "Heat-18",
+    "Waves-125",
+    "Waves-126",
+    "Waves-127",
+    "Waves-128",
+    "Waves-129",
+    "Waves-130",
+    "Waves-131",
+    "Waves-132"
+   ]
+  },
+  {
+   "day": 12,
+   "count": 12,
+   "ids": [
+    "Waves-133",
+    "Waves-134",
+    "Waves-135",
+    "Waves-136",
+    "Waves-137",
+    "Waves-138",
+    "Waves-139",
+    "Waves-140",
+    "Waves-141",
+    "Waves-142",
+    "Waves-143",
+    "Waves-144"
+   ]
+  },
+  {
+   "day": 13,
+   "count": 12,
+   "ids": [
+    "Waves-145",
+    "Waves-146",
+    "Waves-147",
+    "Waves-148",
+    "Waves-149",
+    "Waves-150",
+    "Waves-151",
+    "Waves-152",
+    "Waves-153",
+    "Waves-154",
+    "Waves-155",
+    "Waves-156"
+   ]
+  },
+  {
+   "day": 14,
+   "count": 12,
+   "ids": [
+    "Waves-157",
+    "Waves-158",
+    "Waves-159",
+    "Waves-160",
+    "Waves-161",
+    "Waves-162",
+    "Waves-163",
+    "Waves-164",
+    "Waves-165",
+    "Waves-166",
+    "Waves-167",
+    "Waves-168"
+   ]
+  },
+  {
+   "day": 15,
+   "count": 11,
+   "ids": [
+    "Waves-169",
+    "Waves-170",
+    "Wave-01",
+    "Wave-02",
+    "Wave-03",
+    "Wave-04",
+    "Wave-05",
+    "Wave-06",
+    "Wave-07",
+    "Wave-08",
+    "Wave-09"
+   ]
+  },
+  {
+   "day": 16,
+   "count": 11,
+   "ids": [
+    "Wave-10",
+    "Wave-11",
+    "Wave-12",
+    "Wave-13",
+    "Wave-14",
+    "Wave-15",
+    "Wave-16",
+    "Wave-17",
+    "Wave-18",
+    "Wave-19",
+    "Wave-20"
+   ]
+  },
+  {
+   "day": 17,
+   "count": 11,
+   "ids": [
+    "Electricity & Magnetism-191",
+    "Electricity & Magnetism-192",
+    "Electricity & Magnetism-193",
+    "Electricity & Magnetism-194",
+    "Electricity & Magnetism-195",
+    "Electricity & Magnetism-196",
+    "Electricity & Magnetism-197",
+    "Electricity & Magnetism-198",
+    "Electricity & Magnetism-199",
+    "Electricity & Magnetism-200",
+    "Electricity & Magnetism-201"
+   ]
+  },
+  {
+   "day": 18,
+   "count": 11,
+   "ids": [
+    "Electricity & Magnetism-202",
+    "Electricity & Magnetism-203",
+    "Electricity & Magnetism-204",
+    "Electricity & Magnetism-205",
+    "Electricity & Magnetism-206",
+    "Electricity & Magnetism-207",
+    "Electricity & Magnetism-208",
+    "Electricity & Magnetism-209",
+    "Electricity & Magnetism-210",
+    "Electricity & Magnetism-211",
+    "Electricity & Magnetism-212"
+   ]
+  },
+  {
+   "day": 19,
+   "count": 11,
+   "ids": [
+    "Electricity & Magnetism-213",
+    "Electricity & Magnetism-214",
+    "Electricity & Magnetism-215",
+    "Electricity & Magnetism-216",
+    "Electricity & Magnetism-217",
+    "Electricity & Magnetism-218",
+    "Electricity & Magnetism-219",
+    "Electricity & Magnetism-220",
+    "Electricity & Magnetism-221",
+    "Electricity & Magnetism-222",
+    "Electricity & Magnetism-223"
+   ]
+  },
+  {
+   "day": 20,
+   "count": 11,
+   "ids": [
+    "Electricity & Magnetism-224",
+    "Electricity & Magnetism-225",
+    "Electricity & Magnetism-226",
+    "Electricity & Magnetism-227",
+    "Electricity & Magnetism-228",
+    "Electricity & Magnetism-229",
+    "Electricity & Magnetism-230",
+    "Electricity & Magnetism-231",
+    "Electricity & Magnetism-232",
+    "Electricity & Magnetism-233",
+    "Electricity & Magnetism-234"
+   ]
+  },
+  {
+   "day": 21,
+   "count": 11,
+   "ids": [
+    "Electricity & Magnetism-235",
+    "Electricity & Magnetism-236",
+    "Electricity & Magnetism-237",
+    "Electricity & Magnetism-238",
+    "Electricity & Magnetism-239",
+    "Electricity & Magnetism-240",
+    "E&M-01",
+    "E&M-02",
+    "E&M-03",
+    "E&M-04",
+    "E&M-05"
+   ]
+  },
+  {
+   "day": 22,
+   "count": 11,
+   "ids": [
+    "E&M-06",
+    "E&M-07",
+    "E&M-08",
+    "E&M-09",
+    "E&M-10",
+    "E&M-11",
+    "E&M-12",
+    "E&M-13",
+    "E&M-14",
+    "E&M-15",
+    "E&M-16"
+   ]
+  },
+  {
+   "day": 23,
+   "count": 11,
+   "ids": [
+    "E&M-17",
+    "E&M-18",
+    "E&M-19",
+    "E&M-20",
+    "E&M-21",
+    "E&M-22",
+    "Radiation-01",
+    "Radiation-02",
+    "Radiation-03",
+    "Radiation-04",
+    "Radiation-05"
+   ]
+  },
+  {
+   "day": 24,
+   "count": 11,
+   "ids": [
+    "Radiation-06",
+    "Radiation-07",
+    "Radiation-08",
+    "Radiation-09",
+    "Radiation-14",
+    "Radiation-15",
+    "Radiation-16",
+    "Radiation-17",
+    "Radiation-18",
+    "Radiation-19",
+    "Radiation-20"
+   ]
+  },
+  {
+   "day": 25,
+   "count": 11,
+   "ids": [
+    "Energy-01",
+    "Energy-02",
+    "Energy-03",
+    "Energy-04",
+    "Energy-05",
+    "Energy-06",
+    "Energy-07",
+    "Energy-08",
+    "Energy-09",
+    "Energy-10",
+    "Energy-11"
+   ]
+  },
+  {
+   "day": 26,
+   "count": 11,
+   "ids": [
+    "Energy-12",
+    "Energy-13",
+    "Energy-14",
+    "Energy-15",
+    "Energy-16",
+    "Energy-17",
+    "Energy-18",
+    "Atomic World-297",
+    "Atomic World-298",
+    "Atomic World-299",
+    "Atomic World-300"
+   ]
+  },
+  {
+   "day": 27,
+   "count": 11,
+   "ids": [
+    "Atomic World-301",
+    "Atomic World-302",
+    "Atomic World-303",
+    "Atomic World-304",
+    "Atomic World-305",
+    "Atomic World-306",
+    "Atomic World-307",
+    "Atomic World-308",
+    "Atomic World-309",
+    "Atomic World-310",
+    "Atomic World-311"
+   ]
+  },
+  {
+   "day": 28,
+   "count": 11,
+   "ids": [
+    "Atomic World-312",
+    "Atomic World-313",
+    "Atomic World-314",
+    "Atomic World-315",
+    "Atomic World-316",
+    "Atomic World-317",
+    "Atomic World-318",
+    "Atomic World-319",
+    "Atomic World-320",
+    "Atomic World-321",
+    "Atomic World-322"
+   ]
+  },
+  {
+   "day": 29,
+   "count": 11,
+   "ids": [
+    "Atomic World-323",
+    "Atomic World-324",
+    "Atomic-01",
+    "Atomic-02",
+    "Atomic-03",
+    "Atomic-04",
+    "Atomic-05",
+    "Atomic-06",
+    "Atomic-07",
+    "Atomic-08",
+    "Atomic-09"
+   ]
+  },
+  {
+   "day": 30,
+   "count": 11,
+   "ids": [
+    "Atomic-10",
+    "Atomic-11",
+    "Atomic-12",
+    "Atomic-13",
+    "Atomic-14",
+    "Atomic-15",
+    "Atomic-16",
+    "Atomic-17",
+    "Atomic-18",
+    "Atomic-19",
+    "Atomic-20"
+   ]
+  }
+ ]
+}

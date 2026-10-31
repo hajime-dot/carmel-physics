@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#990011" />
+  <title>Daily DSE traps · C-Physics</title>
+  <style>
+    :root {
+      --carmel: #990011;
+      --carmel-dark: #7a000e;
+      --carmel-soft: #f8e8ea;
+      --bg: #f4f5f7;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --muted: #5c5c5c;
+      --border: #e2e4e8;
+      --ok: #1f6b3a;
+      --ok-soft: #e7f4ec;
+      --no: #990011;
+      --no-soft: #f8e8ea;
+      --header-h: 56px;
+      --radius: 12px;
+      --shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hidden { display: none !important; }
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: var(--header-h);
+      background: var(--carmel);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.15);
+    }
+    .brand { min-width: 0; }
+    .brand h1 {
+      font-size: 17px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+    .brand p { font-size: 12px; opacity: .85; }
+    main {
+      width: min(760px, calc(100% - 32px));
+      margin: 24px auto 48px;
+    }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 28px 22px;
+    }
+    .kicker {
+      color: var(--carmel);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    h2 { font-size: 28px; letter-spacing: -0.02em; margin: 6px 0 8px; }
+    .lead { color: var(--muted); font-size: 15px; line-height: 1.45; }
+    .name-box { margin-top: 22px; display: flex; flex-direction: column; gap: 10px; }
+    input[type="text"] {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0 14px;
+      font-size: 16px;
+      font-family: inherit;
+      background: #fff;
+      color: var(--text);
+    }
+    input[type="text"]:focus { outline: 2px solid var(--carmel); border-color: transparent; }
+    #name-input.ring-2 { outline: 2px solid var(--carmel); }
+    button { font-family: inherit; cursor: pointer; }
+    .btn {
+      min-height: 48px;
+      border: none;
+      border-radius: 10px;
+      padding: 0 18px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .btn-primary { background: var(--carmel); color: #fff; }
+    .btn-primary:hover { background: var(--carmel-dark); }
+    .btn-quiet { background: #eef0f3; color: var(--text); }
+    .btn-quiet:hover { background: #e4e7eb; }
+    .btn:disabled, .btn.opacity-50 { opacity: .45; cursor: default; }
+    .quiz-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    #progress-indicator {
+      font-size: 13px;
+      font-weight: 650;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 12px;
+      margin-left: auto;
+    }
+    .card { width: 100%; }
+    .card-face {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 22px 20px 18px;
+      display: none;
+      flex-direction: column;
+      gap: 18px;
+      min-height: 280px;
+    }
+    #card-front { display: flex; }
+    .card.flipped #card-front { display: none; }
+    .card.flipped #card-back { display: flex; }
+    #topic-title { color: var(--carmel); font-weight: 700; font-size: 14px; }
+    #question-text { font-size: 20px; line-height: 1.45; letter-spacing: -0.01em; }
+    #explanation-text { color: #333; font-size: 16px; line-height: 1.55; }
+    #feedback-text { font-size: 22px; }
+    #answer-buttons.tf-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    #answer-buttons.mc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 520px) {
+      #answer-buttons.mc-grid { grid-template-columns: 1fr; }
+    }
+    .answer-btn {
+      min-height: 56px;
+      border-radius: 12px;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 750;
+      text-align: left;
+      padding: 12px 14px;
+      line-height: 1.35;
+    }
+    .answer-btn.tf-true { background: var(--ok); text-align: center; }
+    .answer-btn.tf-false { background: var(--no); text-align: center; }
+    .answer-btn.mc-opt {
+      background: #1a1a1a;
+      font-size: 15px;
+      font-weight: 650;
+      min-height: 64px;
+    }
+    .answer-btn.mc-opt .letter {
+      display: inline-block;
+      min-width: 1.4em;
+      font-weight: 800;
+      color: #ffd6db;
+      margin-right: 6px;
+    }
+    .answer-btn:hover { filter: brightness(1.05); }
+    .answer-btn:disabled { opacity: .55; cursor: default; filter: none; }
+    .nav-row { display: flex; justify-content: space-between; gap: 10px; margin-top: auto; }
+    .text-emerald-600 { color: var(--ok) !important; }
+    .text-rose-600 { color: var(--no) !important; }
+    #end-screen { text-align: left; }
+    #end-title { color: var(--carmel); font-size: 28px; margin-bottom: 8px; text-align: center; }
+    #end-message { color: #333; font-size: 17px; line-height: 1.5; margin-bottom: 12px; text-align: center; }
+    #submit-status {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 650;
+      margin-bottom: 16px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #eef0f3;
+      color: var(--muted);
+    }
+    #submit-status.ok { background: var(--ok-soft); color: var(--ok); }
+    #submit-status.warn { background: #fff6e5; color: #8a5a00; }
+    #submit-status.err { background: var(--no-soft); color: var(--carmel-dark); }
+    .review-list { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+    .review-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: #fff;
+      text-align: left;
+    }
+    .review-item.wrong { border-color: #e8b4ba; background: var(--no-soft); }
+    .review-item.right { border-color: #b7dcc4; background: var(--ok-soft); }
+    .review-item .meta {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--carmel);
+      margin-bottom: 4px;
+    }
+    .review-item .q { font-size: 15px; font-weight: 650; line-height: 1.4; margin-bottom: 6px; }
+    .review-item .exp { font-size: 14px; color: #333; line-height: 1.45; }
+    .review-item .ans {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .end-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 18px; }
+    .load-error {
+      background: var(--no-soft);
+      border: 1px solid #e8b4ba;
+      color: var(--carmel-dark);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .footer-note {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 11px;
+      color: #9a9a9a;
+    }
+    @media (max-width: 640px) {
+      h2, #end-title { font-size: 24px; }
+      #question-text { font-size: 18px; }
+      main { width: min(760px, calc(100% - 20px)); margin-top: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <h1 id="header-title">Daily traps</h1>
+      <p id="header-subtitle">S6 Physics</p>
+    </div>
+  </header>
+
+  <main>
+    <div id="error-screen" class="hidden">
+      <div class="panel">
+        <p class="kicker">Daily traps</p>
+        <h2>Invalid day</h2>
+        <p class="lead" id="error-message"></p>
+        <div id="valid-range" class="load-error"></div>
+      </div>
+    </div>
+
+    <div id="name-screen" class="hidden">
+      <div class="panel">
+        <p class="kicker" id="course-kicker">S6 Physics</p>
+        <h2 id="name-heading">Daily DSE traps</h2>
+        <p class="lead" id="name-lead">Enter your English name, then answer today’s traps. You will see the score and short explanations at the end.</p>
+        <div class="name-box">
+          <input type="text" id="name-input" placeholder="English name" autocomplete="name" />
+          <button id="start-btn" class="btn btn-primary" type="button">Start</button>
+        </div>
+        <div id="load-error" class="load-error hidden"></div>
+      </div>
+    </div>
+
+    <div id="quiz-screen" class="hidden">
+      <div class="quiz-bar">
+        <div id="progress-indicator"></div>
+      </div>
+      <div id="card" class="card">
+        <div id="card-front" class="card-face">
+          <div>
+            <p id="topic-title"></p>
+            <p id="question-text"></p>
+          </div>
+          <div id="answer-buttons" class="tf-grid"></div>
+        </div>
+        <div id="card-back" class="card-face">
+          <div>
+            <h2 id="feedback-text"></h2>
+            <p id="explanation-text"></p>
+          </div>
+          <div class="nav-row">
+            <button id="prev-btn" class="btn btn-quiet" type="button">← Previous</button>
+            <button id="next-btn" class="btn btn-primary" type="button">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="end-screen" class="hidden panel">
+      <h2 id="end-title"></h2>
+      <p id="end-message"></p>
+      <div id="submit-status">Preparing results…</div>
+      <div id="review-list" class="review-list"></div>
+      <div class="end-actions">
+        <button id="restart-btn" class="btn btn-quiet" type="button">Change name / restart</button>
+      </div>
+    </div>
+
+    <p class="footer-note">Teaching use only · Carmel HKDSE · not for public share</p>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const errorScreen = document.getElementById('error-screen');
+      const nameScreen = document.getElementById('name-screen');
+      const quizScreen = document.getElementById('quiz-screen');
+      const endScreen = document.getElementById('end-screen');
+      const nameInput = document.getElementById('name-input');
+      const startBtn = document.getElementById('start-btn');
+      const loadError = document.getElementById('load-error');
+      const headerTitle = document.getElementById('header-title');
+      const headerSubtitle = document.getElementById('header-subtitle');
+      const courseKicker = document.getElementById('course-kicker');
+      const nameHeading = document.getElementById('name-heading');
+      const nameLead = document.getElementById('name-lead');
+      const errorMessage = document.getElementById('error-message');
+      const validRange = document.getElementById('valid-range');
+
+      const card = document.getElementById('card');
+      const topicTitle = document.getElementById('topic-title');
+      const questionText = document.getElementById('question-text');
+      const answerButtons = document.getElementById('answer-buttons');
+      const explanationText = document.getElementById('explanation-text');
+      const feedbackText = document.getElementById('feedback-text');
+      const nextBtn = document.getElementById('next-btn');
+      const prevBtn = document.getElementById('prev-btn');
+      const progressIndicator = document.getElementById('progress-indicator');
+      const endTitle = document.getElementById('end-title');
+      const endMessage = document.getElementById('end-message');
+      const submitStatus = document.getElementById('submit-status');
+      const reviewList = document.getElementById('review-list');
+      const restartBtn = document.getElementById('restart-btn');
+
+      let bank = null;
+      let config = { sheetWebAppUrl: '', courseLabel: 'S6 Physics', title: 'Daily DSE traps' };
+      let dataReady = false;
+      let dayNum = null;
+      let questions = [];
+      let userName = '';
+      let currentQuestionIndex = 0;
+      let userAnswers = [];
+      let submitted = false;
+
+      function params() {
+        return new URLSearchParams(window.location.search);
+      }
+
+      function parseDay() {
+        const raw = params().get('day');
+        if (raw == null || String(raw).trim() === '') return { ok: false, reason: 'missing' };
+        const n = Number(raw);
+        if (!Number.isInteger(n)) return { ok: false, reason: 'invalid', raw: raw };
+        return { ok: true, day: n };
+      }
+
+      function showScreen(id) {
+        [errorScreen, nameScreen, quizScreen, endScreen].forEach(el => el.classList.add('hidden'));
+        const map = { error: errorScreen, name: nameScreen, quiz: quizScreen, end: endScreen };
+        map[id].classList.remove('hidden');
+      }
+
+      function showLoadError(msg) {
+        loadError.textContent = msg;
+        loadError.classList.remove('hidden');
+        startBtn.disabled = true;
+      }
+
+      function escapeHtml(s) {
+        return String(s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function itemType(q) {
+        return q && q.type === 'mc' ? 'mc' : 'tf';
+      }
+
+      function formatCorrectAnswer(q) {
+        if (itemType(q) === 'mc') return String(q.answer).toUpperCase();
+        return q.answer ? 'True' : 'False';
+      }
+
+      function formatUserAnswer(q, choice) {
+        if (choice == null) return '—';
+        if (itemType(q) === 'mc') return String(choice).toUpperCase();
+        return choice ? 'True' : 'False';
+      }
+
+      async function loadAll() {
+        try {
+          const [bankRes, cfgRes] = await Promise.all([
+            fetch('./day-packs.json'),
+            fetch('./config.json').catch(() => null)
+          ]);
+          if (!bankRes.ok) throw new Error('day-packs.json HTTP ' + bankRes.status);
+          bank = await bankRes.json();
+          if (cfgRes && cfgRes.ok) {
+            const c = await cfgRes.json();
+            config = Object.assign(config, c || {});
+          }
+          dataReady = true;
+        } catch (err) {
+          showScreen('name');
+          showLoadError(
+            'Could not load ./day-packs.json. Open via a local server (python3 -m http.server), not file://. ' +
+            (err && err.message ? err.message : String(err))
+          );
+          return false;
+        }
+        return true;
+      }
+
+      function resolvePack(day) {
+        const packs = bank.packs || [];
+        const pack = packs.find(p => Number(p.day) === Number(day));
+        if (!pack) return null;
+        const byId = {};
+        (bank.items || []).forEach(it => { byId[it.id] = it; });
+        const items = [];
+        for (const id of pack.ids) {
+          const it = byId[id];
+          if (it) items.push(it);
+        }
+        return { pack: pack, items: items };
+      }
+
+      function applyChrome(day) {
+        const title = config.title || 'Daily DSE traps';
+        const course = config.courseLabel || 'S6 Physics';
+        headerTitle.textContent = 'Daily traps · Day ' + day;
+        headerSubtitle.textContent = course;
+        courseKicker.textContent = course;
+        nameHeading.textContent = title + ' · Day ' + day;
+        const n = questions.length;
+        nameLead.textContent =
+          'Day ' + day + ' · ' + n + ' question' + (n === 1 ? '' : 's') +
+          '. Enter your English name, then Start.';
+        document.title = title + ' · Day ' + day;
+      }
+
+      function renderAnswerButtons(question) {
+        answerButtons.innerHTML = '';
+        if (itemType(question) === 'mc') {
+          answerButtons.className = 'mc-grid';
+          ['A', 'B', 'C', 'D'].forEach(letter => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'answer-btn mc-opt';
+            btn.dataset.answer = letter;
+            const text = (question.options && question.options[letter]) || '';
+            btn.innerHTML = '<span class="letter">' + letter + '</span>' + escapeHtml(text);
+            answerButtons.appendChild(btn);
+          });
+        } else {
+          answerButtons.className = 'tf-grid';
+          const t = document.createElement('button');
+          t.type = 'button';
+          t.className = 'answer-btn tf-true';
+          t.dataset.answer = 'true';
+          t.textContent = 'True';
+          const f = document.createElement('button');
+          f.type = 'button';
+          f.className = 'answer-btn tf-false';
+          f.dataset.answer = 'false';
+          f.textContent = 'False';
+          answerButtons.appendChild(t);
+          answerButtons.appendChild(f);
+        }
+        answerButtons.style.display = 'grid';
+      }
+
+      function startQuiz() {
+        userAnswers = questions.map(() => ({
+          answered: false,
+          correct: null,
+          userChoice: null
+        }));
+        currentQuestionIndex = 0;
+        submitted = false;
+        showScreen('quiz');
+        displayQuestion();
+      }
+
+      function displayQuestion() {
+        if (currentQuestionIndex >= questions.length) {
+          showEndScreen();
+          return;
+        }
+        const question = questions[currentQuestionIndex];
+        const answerState = userAnswers[currentQuestionIndex];
+        card.classList.remove('flipped');
+        setTimeout(() => {
+          const kind = itemType(question) === 'mc' ? 'MC' : 'T/F';
+          topicTitle.textContent = (question.topic || 'Trap') + ' · ' + kind;
+          questionText.textContent = question.question;
+          explanationText.textContent = question.explanation || '';
+          renderAnswerButtons(question);
+          if (answerState.answered) {
+            showFeedback(answerState.correct);
+          } else {
+            answerButtons.style.display = 'grid';
+          }
+        }, 120);
+        progressIndicator.textContent =
+          'Day ' + dayNum + ' · Q ' + (currentQuestionIndex + 1) + '/' + questions.length;
+        prevBtn.disabled = currentQuestionIndex === 0;
+        prevBtn.classList.toggle('opacity-50', prevBtn.disabled);
+        nextBtn.textContent =
+          currentQuestionIndex >= questions.length - 1 ? 'Finish →' : 'Next →';
+      }
+
+      function handleAnswer(e) {
+        const btn = e.target.closest('.answer-btn');
+        if (!btn || !answerButtons.contains(btn)) return;
+        if (userAnswers[currentQuestionIndex].answered) return;
+        const question = questions[currentQuestionIndex];
+        let selected;
+        let isCorrect;
+        if (itemType(question) === 'mc') {
+          selected = String(btn.dataset.answer).toUpperCase();
+          isCorrect = selected === String(question.answer).toUpperCase();
+        } else {
+          selected = btn.dataset.answer === 'true';
+          isCorrect = selected === !!question.answer;
+        }
+        userAnswers[currentQuestionIndex] = {
+          answered: true,
+          correct: isCorrect,
+          userChoice: selected
+        };
+        showFeedback(isCorrect);
+      }
+
+      function showFeedback(isCorrect) {
+        card.classList.add('flipped');
+        feedbackText.textContent = isCorrect ? 'Correct!' : 'Incorrect.';
+        feedbackText.className = isCorrect ? 'text-emerald-600' : 'text-rose-600';
+        answerButtons.style.display = 'none';
+      }
+
+      function nextQuestion() {
+        if (!userAnswers[currentQuestionIndex].answered) return;
+        if (currentQuestionIndex < questions.length - 1) {
+          currentQuestionIndex++;
+          displayQuestion();
+        } else {
+          showEndScreen();
+        }
+      }
+
+      function prevQuestion() {
+        if (currentQuestionIndex > 0) {
+          currentQuestionIndex--;
+          displayQuestion();
+        }
+      }
+
+      function buildPayload() {
+        const score = userAnswers.filter(a => a.correct).length;
+        const total = questions.length;
+        const pct = total ? Math.round((score / total) * 100) : 0;
+        const answers = questions.map((q, i) => {
+          const ua = userAnswers[i] || {};
+          return {
+            id: q.id,
+            type: itemType(q),
+            correct: !!ua.correct,
+            userAnswer: itemType(q) === 'mc'
+              ? (ua.userChoice != null ? String(ua.userChoice).toUpperCase() : null)
+              : (ua.userChoice == null ? null : !!ua.userChoice),
+            correctAnswer: itemType(q) === 'mc'
+              ? String(q.answer).toUpperCase()
+              : !!q.answer
+          };
+        });
+        return {
+          timestamp: new Date().toISOString(),
+          day: dayNum,
+          englishName: userName,
+          score: score,
+          total: total,
+          pct: pct,
+          answers: answers
+        };
+      }
+
+      function isPlaceholderUrl(url) {
+        if (!url || typeof url !== 'string') return true;
+        const u = url.trim();
+        if (!u) return true;
+        if (/placeholder|XXXX|YOUR_|example\.com/i.test(u)) return true;
+        return false;
+      }
+
+      async function submitOnce(payload) {
+        if (submitted) return;
+        submitted = true;
+        const url = (config.sheetWebAppUrl || '').trim();
+        if (isPlaceholderUrl(url)) {
+          submitStatus.className = 'warn';
+          submitStatus.textContent =
+            'Results not sent — teacher has not set Sheet URL yet';
+          return;
+        }
+        submitStatus.className = '';
+        submitStatus.textContent = 'Sending results…';
+        try {
+          // text/plain JSON + no-cors: Apps Script–friendly (avoids CORS preflight).
+          // Response body is opaque; treat resolved fetch as Submitted.
+          await fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+          });
+          submitStatus.className = 'ok';
+          submitStatus.textContent = 'Submitted';
+        } catch (err) {
+          submitted = false;
+          submitStatus.className = 'err';
+          submitStatus.textContent =
+            'Send failed — ' + (err && err.message ? err.message : 'network error');
+        }
+      }
+
+      function renderReview(payload) {
+        reviewList.innerHTML = '';
+        questions.forEach((q, i) => {
+          const ua = userAnswers[i] || {};
+          const div = document.createElement('div');
+          div.className = 'review-item ' + (ua.correct ? 'right' : 'wrong');
+          const kind = itemType(q) === 'mc' ? 'MC' : 'T/F';
+          div.innerHTML =
+            '<div class="meta">Q' + (i + 1) + ' · ' + escapeHtml(q.topic || '') +
+            ' · ' + kind + ' · ' + (ua.correct ? '✓' : '✗') + '</div>' +
+            '<div class="q">' + escapeHtml(q.question) + '</div>' +
+            '<div class="ans">Your answer: ' + escapeHtml(formatUserAnswer(q, ua.userChoice)) +
+            ' · Correct: ' + escapeHtml(formatCorrectAnswer(q)) + '</div>' +
+            '<div class="exp">' + escapeHtml(q.explanation || '') + '</div>';
+          reviewList.appendChild(div);
+        });
+      }
+
+      function showEndScreen() {
+        showScreen('end');
+        const payload = buildPayload();
+        endTitle.textContent = 'Day ' + dayNum + ' complete';
+        endMessage.textContent =
+          userName + ' · score ' + payload.score + ' / ' + payload.total +
+          ' (' + payload.pct + '%)';
+        renderReview(payload);
+        submitOnce(payload);
+      }
+
+      function showDayError(parsed) {
+        showScreen('error');
+        headerTitle.textContent = 'Daily traps';
+        if (parsed.reason === 'missing') {
+          errorMessage.textContent =
+            'Add a day query, e.g. ?day=1. Valid days: 1–30.';
+        } else {
+          errorMessage.textContent =
+            '“' + String(parsed.raw != null ? parsed.raw : parsed.day) +
+            '” is not a valid day. Use an integer from 1 to 30.';
+        }
+        validRange.textContent = 'Valid range: ?day=1 … ?day=30';
+      }
+
+      startBtn.addEventListener('click', () => {
+        if (!dataReady) {
+          showLoadError('Question bank is still loading or failed to load.');
+          return;
+        }
+        const name = nameInput.value.trim();
+        if (!name) {
+          nameInput.classList.add('ring-2');
+          setTimeout(() => nameInput.classList.remove('ring-2'), 1500);
+          return;
+        }
+        userName = name;
+        startQuiz();
+      });
+
+      nameInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') startBtn.click();
+      });
+
+      answerButtons.addEventListener('click', handleAnswer);
+      nextBtn.addEventListener('click', nextQuestion);
+      prevBtn.addEventListener('click', prevQuestion);
+
+      restartBtn.addEventListener('click', () => {
+        submitted = false;
+        nameInput.value = userName;
+        showScreen('name');
+      });
+
+      (async function init() {
+        const parsed = parseDay();
+        const ok = await loadAll();
+        if (!ok) return;
+
+        const maxDay = Number(bank.days) || 30;
+        if (!parsed.ok || parsed.day < 1 || parsed.day > maxDay) {
+          if (!parsed.ok) showDayError(parsed);
+          else showDayError({ ok: false, reason: 'invalid', raw: parsed.day });
+          validRange.textContent = 'Valid range: ?day=1 … ?day=' + maxDay;
+          return;
+        }
+
+        dayNum = parsed.day;
+        const resolved = resolvePack(dayNum);
+        if (!resolved || !resolved.items.length) {
+          showScreen('error');
+          errorMessage.textContent = 'No questions found for day ' + dayNum + '.';
+          validRange.textContent = 'Valid range: ?day=1 … ?day=' + maxDay;
+          return;
+        }
+        // Stable pack order (matches teacher WhatsApp day links).
+        questions = resolved.items;
+        applyChrome(dayNum);
+        showScreen('name');
+      })();
+    });
+  </script>
+</body>
+</html>
