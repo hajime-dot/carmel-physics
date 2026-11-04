@@ -388,6 +388,27 @@
       cursor: pointer;
     }
     .trap-topics button:hover { border-color: var(--carmel); color: var(--carmel); }
+    .daily-card { margin-top: 12px; }
+    .daily-title {
+      font-size: 17px;
+      line-height: 1.35;
+      margin: 2px 0 8px;
+    }
+    .daily-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 12px 0 6px;
+    }
+    .daily-vocab { margin: 0 0 4px 18px; }
+    .daily-vocab li { font-size: 14px; line-height: 1.45; margin-bottom: 6px; }
+    .daily-q {
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 0;
+    }
     .badge {
       display: inline-block;
       font-size: 11px;
@@ -750,6 +771,16 @@
           <p class="trap-next-label">Another question</p>
           <div class="trap-topics" id="trapTopics"></div>
         </div>
+        <article class="fact-card daily-card" id="dailyCard" hidden>
+          <div class="fact-kicker">Physics Daily · S4–S6 · <span id="dailyDay"></span></div>
+          <h3 class="daily-title" id="dailyTitle"></h3>
+          <a class="fact-wiki" id="dailyLink" href="#" target="_blank" rel="noopener noreferrer"></a>
+          <p class="fact-text" id="dailySummary"></p>
+          <p class="daily-label">Key words</p>
+          <ol class="daily-vocab" id="dailyVocab"></ol>
+          <p class="daily-label">Discuss</p>
+          <p class="daily-q" id="dailyQuestion"></p>
+        </article>
       </section>
 
       <section class="panel" id="panel-sims" data-panel="sims" aria-labelledby="sims-title">
@@ -2720,6 +2751,51 @@ CE,2009,44,A`;
       '<div class="stat"><div class="n">' + toolsReady + '</div><div class="l">Tools ready</div></div>' +
       '<div class="stat"><div class="n">' + toolsStub + '</div><div class="l">Tools stubbed</div></div>';
     renderHomeFact();
+    renderDailyArticle();
+  }
+
+  function hkToday() {
+    return new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Asia/Hong_Kong',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).format(new Date());
+  }
+
+  function renderDailyArticle() {
+    var card = document.getElementById('dailyCard');
+    if (!card) return;
+    fetch('tools/physics-daily.json')
+      .then(function (res) { if (!res.ok) throw new Error('daily'); return res.json(); })
+      .then(function (list) {
+        var today = hkToday();
+        var pick = null;
+        (list || []).forEach(function (item) {
+          if (!item || !item.date || item.date > today) return;
+          if (!pick || item.date > pick.date) pick = item;
+        });
+        if (!pick) return;
+        card.hidden = false;
+        document.getElementById('dailyDay').textContent = 'Day ' + pick.day;
+        document.getElementById('dailyTitle').textContent = pick.title;
+        var link = document.getElementById('dailyLink');
+        link.href = pick.url;
+        link.textContent = 'Read the article';
+        document.getElementById('dailySummary').textContent = pick.summary;
+        var vocab = document.getElementById('dailyVocab');
+        vocab.textContent = '';
+        (pick.vocab || []).forEach(function (v) {
+          var li = document.createElement('li');
+          var b = document.createElement('strong');
+          b.textContent = v.term;
+          li.appendChild(b);
+          li.appendChild(document.createTextNode(' — ' + v.meaning));
+          vocab.appendChild(li);
+        });
+        document.getElementById('dailyQuestion').textContent = pick.question;
+      })
+      .catch(function () {});
   }
 
   function renderChips() {

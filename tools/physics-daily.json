@@ -1,0 +1,15 @@
+[
+  {
+    "day": 1,
+    "date": "2026-11-04",
+    "title": "CERN finds evidence of a one-in-10-billion particle decay after a 42-year search",
+    "url": "https://home.cern/news/news/physics/lhcb-finds-evidence-one-ten-billion-particle-decay",
+    "summary": "Scientists at CERN's Large Hadron Collider have found evidence of the rarest particle decay ever seen — a beauty particle turning into two muons, which only happens once in 10 billion times. The search took over 42 years, starting in 1984, and this is the first time one experiment has seen it alone. The result matches our current best theory, the Standard Model, but it also opens a door to explore the \"zeptoverse\" — an unimaginably tiny world where dark matter might be hiding.",
+    "vocab": [
+      { "term": "Decay", "meaning": "when an unstable particle breaks down into smaller particles" },
+      { "term": "Muon", "meaning": "a particle like an electron, but heavier; lives very briefly" },
+      { "term": "Standard Model", "meaning": "the current theory explaining all known fundamental particles and forces" }
+    ],
+    "question": "If this decay is so rare that we needed to look at hundreds of millions of collisions per second to find it, why do physicists spend 40+ years chasing it? What could we learn if it happened more often than predicted?"
+  }
+]
