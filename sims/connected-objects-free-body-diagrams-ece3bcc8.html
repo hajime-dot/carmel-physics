@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connected Objects Dynamics & Free-Body Diagram Lab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* Custom Range Sliders */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #4f46e5;
+      cursor: pointer;
+      border: 2px solid #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+      background: #4338ca;
+    }
+    @keyframes pulsePair {
+      0%, 100% { filter: drop-shadow(0 0 2px rgba(6, 182, 212, 0.4)); }
+      50% { filter: drop-shadow(0 0 9px rgba(6, 182, 212, 0.95)); }
+    }
+    .action-reaction-glow {
+      animation: pulsePair 1.8s infinite ease-in-out;
+    }
+    .formula-box {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border-left: 4px solid #4f46e5;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-sm">
+          F=ma
+        </div>
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-indigo-600 block">Interactive Physics Pedagogy Lab</span>
+          <h1 class="text-lg sm:text-xl font-extrabold text-slate-900 leading-tight">Connected Objects &amp; Free-Body Diagrams (Newton's 2nd &amp; 3rd Laws)</h1>
+        </div>
+      </div>
+
+      <!-- Quick Textbook Presets -->
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-semibold text-slate-500 mr-1">Textbook Presets:</span>
+        <button id="presetCrateBtn" onclick="applyPreset('woodenCrates')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100 transition flex items-center gap-1.5 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+          1. Wooden Crates (Person Pushing)
+        </button>
+        <button id="presetEx1Btn" onclick="applyPreset('example1')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+          2. Ex 1: Two Boxes (1 kg &amp; 3 kg)
+        </button>
+        <button id="presetEx2Btn" onclick="applyPreset('example2')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+          3. Ex 2: Stacked Apple &amp; Book
+        </button>
+        <button id="presetInclineBtn" onclick="applyPreset('inclinePreset')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-sky-50 text-sky-700 border border-sky-200 hover:bg-sky-100 transition flex items-center gap-1.5 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-sky-600"></span>
+          4. Inclined Plane (15°)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Grid -->
+  <main class="max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-5 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- LEFT COLUMN: Live Motion Simulation + Interactive Free-Body Diagram Inspector (7 cols) -->
+    <div class="lg:col-span-7 flex flex-col gap-5">
+
+      <!-- 1. Motion Simulation Card -->
+      <section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <!-- Card Top Bar -->
+        <div class="px-4 py-3 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <h2 class="font-bold text-sm text-slate-800">1. Physical Motion &amp; Ticker-Tape Simulation</h2>
+            <span id="scenarioBadge" class="text-xs px-2.5 py-0.5 rounded-full font-semibold bg-indigo-100 text-indigo-800">Side-by-Side Boxes</span>
+          </div>
+
+          <!-- Real-Time Kinematics Readout Pill -->
+          <div class="flex items-center gap-3 bg-white px-3 py-1 rounded-lg border border-slate-200 text-xs mono">
+            <div><span class="text-slate-400">t =</span> <span id="readoutTime" class="font-bold text-slate-800">0.00</span> s</div>
+            <div class="text-slate-300">|</div>
+            <div><span class="text-slate-400">a =</span> <span id="readoutAcc" class="font-bold text-indigo-600">1.00</span> m/s²</div>
+            <div class="text-slate-300">|</div>
+            <div><span class="text-slate-400">v =</span> <span id="readoutVel" class="font-bold text-emerald-600">0.00</span> m/s</div>
+            <div class="text-slate-300">|</div>
+            <div><span class="text-slate-400">s =</span> <span id="readoutPos" class="font-bold text-amber-600">0.00</span> m</div>
+          </div>
+        </div>
+
+        <!-- Simulation Canvas -->
+        <div class="relative w-full h-[255px] sm:h-[275px] bg-gradient-to-b from-sky-50/60 to-white">
+          <canvas id="simCanvas" class="w-full h-full block"></canvas>
+
+          <!-- Overlay System Boundary & Ticker-Tape Toggle Pills -->
+          <div class="absolute top-3 left-3 flex flex-wrap items-center gap-2">
+            <label class="flex items-center gap-1.5 bg-white/90 backdrop-blur px-2.5 py-1 rounded-lg border border-slate-200 shadow-sm text-xs font-medium text-slate-700 cursor-pointer select-none">
+              <input type="checkbox" id="showSystemBoxCheck" checked onchange="renderAll()" class="rounded text-indigo-600 focus:ring-indigo-500" />
+              <span>Highlight Isolated Boundary</span>
+            </label>
+            <label class="flex items-center gap-1.5 bg-white/90 backdrop-blur px-2.5 py-1 rounded-lg border border-slate-200 shadow-sm text-xs font-medium text-slate-700 cursor-pointer select-none">
+              <input type="checkbox" id="showSimVectorsCheck" checked onchange="renderAll()" class="rounded text-indigo-600 focus:ring-indigo-500" />
+              <span>Show Force Arrows</span>
+            </label>
+            <label class="flex items-center gap-1.5 bg-white/90 backdrop-blur px-2.5 py-1 rounded-lg border border-slate-200 shadow-sm text-xs font-medium text-slate-700 cursor-pointer select-none">
+              <input type="checkbox" id="showTickerCheck" checked onchange="renderAll()" class="rounded text-indigo-600 focus:ring-indigo-500" />
+              <span>Ticker-Tape Trail (Δt = 0.25s)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Playback & Transport Bar -->
+        <div class="px-4 py-3 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <button id="playPauseBtn" onclick="togglePlay()" class="px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs flex items-center gap-1.5 shadow-sm transition">
+              <svg id="playIcon" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
+              <span id="playBtnText">Play Motion</span>
+            </button>
+            <button onclick="stepSimulation()" class="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 font-semibold text-xs transition shadow-sm">
+              Step +0.20s
+            </button>
+            <button onclick="resetSimulation()" class="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 font-semibold text-xs transition shadow-sm">
+              Reset (t = 0)
+            </button>
+          </div>
+
+          <div id="motionStatusText" class="text-xs font-medium text-slate-600">
+            Status: <span class="text-emerald-700 font-semibold">Ready — System accelerates at 1.00 m/s²</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Free-Body Diagram (FBD) Granularity Inspector (4-Way Selector) -->
+      <section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex-1 flex flex-col">
+        <!-- FBD Header & 4-Way View Mode Controller -->
+        <div class="px-4 py-3 bg-slate-50 border-b border-slate-200 flex flex-col gap-2.5">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 class="font-bold text-sm text-slate-800">2. Interactive Free-Body Diagram (FBD) Inspector</h2>
+              <p class="text-xs text-slate-500">Isolate <strong>A + B Together</strong>, <strong>Object A Only</strong>, <strong>Object B Only</strong>, or compare <strong>Both A &amp; B Separated</strong>.</p>
+            </div>
+
+            <!-- Vector Scaling Toggle -->
+            <div class="flex items-center gap-1 bg-slate-200/80 p-1 rounded-lg text-[11px]">
+              <span class="px-1.5 text-slate-600 font-semibold">Vectors:</span>
+              <button id="scaleEnhancedBtn" onclick="setVectorScale('enhanced')" class="px-2 py-0.5 rounded font-bold bg-white text-indigo-700 shadow-sm">Enhanced Visibility</button>
+              <button id="scaleTrueBtn" onclick="setVectorScale('trueScale')" class="px-2 py-0.5 rounded font-medium text-slate-600 hover:text-slate-900">True-to-Scale</button>
+            </div>
+          </div>
+
+          <!-- 4-Way Segmented Control -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 bg-slate-200/80 p-1.5 rounded-xl">
+            <button id="viewCombinedBtn" onclick="setFBDView('combined')" class="py-1.5 px-2.5 rounded-lg text-xs font-bold transition bg-white text-indigo-700 shadow-sm text-center">
+              System (A + B Together)
+            </button>
+            <button id="viewOnlyABtn" onclick="setFBDView('onlyA')" class="py-1.5 px-2.5 rounded-lg text-xs font-bold transition text-slate-700 hover:text-slate-900 text-center">
+              Object A Only (FBD)
+            </button>
+            <button id="viewOnlyBBtn" onclick="setFBDView('onlyB')" class="py-1.5 px-2.5 rounded-lg text-xs font-bold transition text-slate-700 hover:text-slate-900 text-center">
+              Object B Only (FBD)
+            </button>
+            <button id="viewSeparatedBtn" onclick="setFBDView('separated')" class="py-1.5 px-2.5 rounded-lg text-xs font-bold transition text-slate-700 hover:text-slate-900 text-center">
+              Both A &amp; B Separated
+            </button>
+          </div>
+        </div>
+
+        <!-- Secondary Toolbar inside FBD Inspector -->
+        <div class="px-4 py-2 bg-indigo-50/50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div id="fbdModeDescription" class="text-slate-700 font-medium">
+            <span class="font-bold text-indigo-700">System (A + B Together):</span> Internal forces between A and B cancel out! Only external forces are shown.
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <!-- Common Mistake Ghost Overlay Button (Especially helpful on Object B Only) -->
+            <label id="mistakeToggleLabel" class="flex items-center gap-1.5 font-semibold text-rose-800 bg-rose-50 border border-rose-200 px-2.5 py-1 rounded-lg cursor-pointer select-none hover:bg-rose-100 transition">
+              <input type="checkbox" id="showMistakeCheck" onchange="renderAll()" class="rounded text-rose-600 focus:ring-rose-500" />
+              <span>Show Common Mistake (Why isn't F on B?)</span>
+            </label>
+
+            <label class="flex items-center gap-1.5 font-semibold text-cyan-800 bg-cyan-50 border border-cyan-200 px-2.5 py-1 rounded-lg cursor-pointer select-none">
+              <input type="checkbox" id="highlightThirdLawCheck" checked onchange="renderAll()" class="rounded text-cyan-600 focus:ring-cyan-500" />
+              <span>Highlight 3rd Law Pair (F<sub>AB</sub> &amp; F<sub>BA</sub>)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Horizontal Tug-of-War Net Force Sum Bar -->
+        <div id="tugOfWarBar" class="px-4 py-2 bg-slate-50/80 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <!-- Dynamically populated to show Forward Forces - Backward Forces = Net Force (m*a) -->
+        </div>
+
+        <!-- SVG Vector FBD Canvas -->
+        <div class="relative flex-1 min-h-[340px] sm:min-h-[375px] bg-white flex items-center justify-center p-2">
+          <svg id="fbdSvg" viewBox="0 0 760 365" class="w-full h-full max-h-[400px] select-none"></svg>
+        </div>
+
+        <!-- Vector Color Legend Footer -->
+        <div class="px-4 py-2.5 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div class="flex flex-wrap items-center gap-4">
+            <span class="flex items-center gap-1.5 font-medium text-slate-700">
+              <span class="w-3 h-1.5 rounded bg-red-600 inline-block"></span> External Forces (F, R, W)
+            </span>
+            <span class="flex items-center gap-1.5 font-medium text-slate-700">
+              <span class="w-3 h-1.5 rounded bg-cyan-500 inline-block"></span> Internal Contact/Friction Pair (F<sub>AB</sub>, F<sub>BA</sub>)
+            </span>
+            <span class="flex items-center gap-1.5 font-medium text-slate-700">
+              <span class="w-3 h-1.5 rounded bg-amber-600 inline-block"></span> External Surface Friction (f)
+            </span>
+          </div>
+          <span class="text-slate-400">Ghost outlines show neighbouring object context</span>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- RIGHT COLUMN: Controls, Scenarios, Step-by-Step Math & Student Misconception Quiz (5 cols) -->
+    <div class="lg:col-span-5 flex flex-col gap-5">
+
+      <!-- 3. System Setup & Interactive Parameter Controls -->
+      <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-5">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+          <div>
+            <h2 class="font-bold text-sm text-slate-800">3. System Configuration &amp; Force Controls</h2>
+            <p class="text-xs text-slate-500">Adjust masses, applied force, surface type, or load a textbook problem.</p>
+          </div>
+          <!-- Gravity g selector -->
+          <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg text-xs">
+            <span class="px-1.5 text-slate-500 font-medium">g:</span>
+            <button id="g10Btn" onclick="setGravity(10)" class="px-2 py-0.5 rounded font-bold bg-white text-slate-800 shadow-sm">10</button>
+            <button id="g981Btn" onclick="setGravity(9.81)" class="px-2 py-0.5 rounded font-medium text-slate-600">9.81</button>
+          </div>
+        </div>
+
+        <!-- Scenario & Surface Mode Switchers -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">System Arrangement</label>
+            <div class="grid grid-cols-2 bg-slate-100 p-1 rounded-xl text-xs font-semibold">
+              <button id="modeSideBtn" onclick="setScenario('sideBySide')" class="py-1.5 px-2 rounded-lg bg-white text-indigo-700 shadow-sm transition">
+                Side-by-Side (Ex 1)
+              </button>
+              <button id="modeStackedBtn" onclick="setScenario('stacked')" class="py-1.5 px-2 rounded-lg text-slate-600 hover:text-slate-900 transition">
+                Stacked A on B (Ex 2)
+              </button>
+            </div>
+          </div>
+
+          <div id="surfaceTypeContainer">
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Surface Orientation</label>
+            <div class="grid grid-cols-2 bg-slate-100 p-1 rounded-xl text-xs font-semibold">
+              <button id="surfHorizBtn" onclick="setSurface('horizontal')" class="py-1.5 px-2 rounded-lg bg-white text-indigo-700 shadow-sm transition">
+                Horizontal (0°)
+              </button>
+              <button id="surfInclinedBtn" onclick="setSurface('inclined')" class="py-1.5 px-2 rounded-lg text-slate-600 hover:text-slate-900 transition">
+                Inclined Plane (θ)
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Parameter Sliders -->
+        <div class="space-y-3.5">
+          <!-- Mass A -->
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <label for="massASlider" class="font-semibold text-slate-700" id="massALabel">Mass of Box A (m<sub>A</sub>)</label>
+              <div class="flex items-center gap-1">
+                <input type="number" id="massAInput" min="0.2" max="10" step="0.1" value="1.0" onchange="syncFromInput('mA', this.value)" class="w-16 text-right px-1.5 py-0.5 border border-slate-300 rounded text-xs font-bold mono text-indigo-700" />
+                <span class="text-slate-500 font-medium">kg</span>
+              </div>
+            </div>
+            <input type="range" id="massASlider" min="0.2" max="10" step="0.1" value="1.0" oninput="syncFromSlider('mA', this.value)" class="w-full" />
+          </div>
+
+          <!-- Mass B -->
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <label for="massBSlider" class="font-semibold text-slate-700" id="massBLabel">Mass of Box B (m<sub>B</sub>)</label>
+              <div class="flex items-center gap-1">
+                <input type="number" id="massBInput" min="0.2" max="10" step="0.1" value="3.0" onchange="syncFromInput('mB', this.value)" class="w-16 text-right px-1.5 py-0.5 border border-slate-300 rounded text-xs font-bold mono text-indigo-700" />
+                <span class="text-slate-500 font-medium">kg</span>
+              </div>
+            </div>
+            <input type="range" id="massBSlider" min="0.2" max="10" step="0.1" value="3.0" oninput="syncFromSlider('mB', this.value)" class="w-full" />
+          </div>
+
+          <!-- Applied External Force F -->
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <label for="forceSlider" class="font-semibold text-slate-700" id="forceLabel">Applied Horizontal Force (F<sub>app</sub> on A)</label>
+              <div class="flex items-center gap-1">
+                <input type="number" id="forceInput" min="0" max="100" step="0.5" value="4.0" onchange="syncFromInput('Fapp', this.value)" class="w-16 text-right px-1.5 py-0.5 border border-slate-300 rounded text-xs font-bold mono text-red-600" />
+                <span class="text-slate-500 font-medium">N</span>
+              </div>
+            </div>
+            <input type="range" id="forceSlider" min="0" max="100" step="0.5" value="4.0" oninput="syncFromSlider('Fapp', this.value)" class="w-full" />
+          </div>
+
+          <!-- Friction Control -->
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <label for="muSlider" class="font-semibold text-slate-700" id="frictionLabel">Surface Coefficient of Friction (μ)</label>
+              <div class="flex items-center gap-1">
+                <input type="number" id="muInput" min="0" max="1.0" step="0.005" value="0.00" onchange="syncFromInput('mu', this.value)" class="w-20 text-right px-1.5 py-0.5 border border-slate-300 rounded text-xs font-bold mono text-amber-700" />
+                <span id="frictionUnitSpan" class="text-slate-500 font-medium">μ</span>
+              </div>
+            </div>
+            <input type="range" id="muSlider" min="0" max="1.0" step="0.005" value="0.00" oninput="syncFromSlider('mu', this.value)" class="w-full" />
+          </div>
+
+          <!-- Incline Angle (Shown when Inclined Plane is active) -->
+          <div id="angleControlRow" class="hidden pt-1 border-t border-slate-100">
+            <div class="flex justify-between text-xs mb-1">
+              <label for="angleSlider" class="font-semibold text-slate-700">Incline Angle (θ)</label>
+              <div class="flex items-center gap-1">
+                <input type="number" id="angleInput" min="0" max="30" step="1" value="15" onchange="syncFromInput('theta', this.value)" class="w-16 text-right px-1.5 py-0.5 border border-slate-300 rounded text-xs font-bold mono text-indigo-700" />
+                <span class="text-slate-500 font-medium">°</span>
+              </div>
+            </div>
+            <input type="range" id="angleSlider" min="0" max="30" step="1" value="15" oninput="syncFromSlider('theta', this.value)" class="w-full" />
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Step-by-Step Pedagogical Calculation Breakdown -->
+      <section class="bg-white rounded-2xl border border-slate-200 shadow-sm flex-1 flex flex-col overflow-hidden">
+        <div class="px-4 py-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+          <div>
+            <h2 class="font-bold text-sm text-slate-800">4. Real-Time Step-by-Step Solution Breakdown</h2>
+            <p class="text-xs text-slate-500">See how treating the objects as a system vs. isolating one object solves the problem.</p>
+          </div>
+          <span class="text-xs font-mono bg-indigo-50 text-indigo-700 px-2 py-1 rounded font-semibold border border-indigo-200">F<sub>net</sub> = m·a</span>
+        </div>
+
+        <div class="p-4 sm:p-5 space-y-4 overflow-y-auto">
+          <!-- Active Problem Statement Banner -->
+          <div id="problemBanner" class="p-3 rounded-xl bg-amber-50/90 border border-amber-200 text-xs text-slate-800 leading-relaxed">
+          </div>
+
+          <!-- STEP 1: Treat as a Whole System -->
+          <div class="rounded-xl border border-slate-200 p-3.5 bg-white shadow-2xs">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-600">Step 1: Treat as One Combined System (A + B)</span>
+              <button onclick="setFBDView('combined')" class="text-[11px] font-semibold text-indigo-600 hover:underline">Show System FBD →</button>
+            </div>
+            <div id="step1Content" class="text-xs text-slate-700 space-y-2 leading-relaxed">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- STEP 2: Isolate Individual Object to Find Internal Force -->
+          <div class="rounded-xl border border-slate-200 p-3.5 bg-white shadow-2xs">
+            <div class="flex items-center justify-between mb-2">
+              <span id="step2Title" class="text-xs font-extrabold uppercase tracking-wider text-cyan-700">Step 2: Isolate Individual Object for Internal Force</span>
+              <div class="flex items-center gap-2">
+                <button onclick="setFBDView('onlyA')" class="text-[11px] font-semibold text-amber-700 hover:underline">Isolate A →</button>
+                <button onclick="setFBDView('onlyB')" class="text-[11px] font-semibold text-cyan-700 hover:underline">Isolate B →</button>
+              </div>
+            </div>
+            <div id="step2Content" class="text-xs text-slate-700 space-y-2 leading-relaxed">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- STEP 3: Student Misconception Buster & Interactive Mini-Quiz -->
+          <div class="rounded-xl border border-indigo-200 bg-indigo-50/40 p-3.5 space-y-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-indigo-600 text-white text-[10px] font-extrabold uppercase">Student Point-of-View Check</span>
+                <h3 class="text-xs font-bold text-slate-800">Misconception Buster &amp; Quick Predictor</h3>
+              </div>
+              <span id="thirdLawMagnitudeBadge" class="mono text-[11px] font-bold text-cyan-800 bg-white px-2 py-0.5 rounded border border-cyan-200">|F_AB| = |F_BA| = 3.00 N</span>
+            </div>
+
+            <p id="quizQuestionText" class="text-xs text-slate-700 font-medium leading-relaxed">
+              <!-- Populated dynamically based on current scenario -->
+            </p>
+
+            <!-- Interactive Quiz Choice Buttons -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-1.5 pt-0.5">
+              <button onclick="answerQuiz('equalF')" class="px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-xs font-semibold text-slate-700 text-left transition">
+                A) Equal to F<sub>app</sub> (full force transmitted)
+              </button>
+              <button onclick="answerQuiz('lessF')" class="px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-xs font-semibold text-slate-700 text-left transition">
+                B) Less than F<sub>app</sub> (part accelerates A)
+              </button>
+              <button onclick="answerQuiz('cancelZero')" class="px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-xs font-semibold text-slate-700 text-left transition">
+                C) Net force is zero (F<sub>AB</sub> &amp; F<sub>BA</sub> cancel)
+              </button>
+            </div>
+
+            <div id="quizFeedbackBox" class="hidden p-2.5 rounded-lg text-xs leading-relaxed border"></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    /*************************************************************************
+     * APPLICATION STATE & PHYSICS ENGINE
+     *************************************************************************/
+    const state = {
+      scenario: 'sideBySide',      // 'sideBySide' (Example 1 / Crates) | 'stacked' (Example 2 Apple on Book)
+      presetName: 'example1',      // 'example1' | 'example2' | 'woodenCrates' | 'inclinePreset' | 'custom'
+      surface: 'horizontal',       // 'horizontal' | 'inclined'
+      fbdView: 'combined',         // 'combined' | 'onlyA' | 'onlyB' | 'separated'
+      vectorScale: 'enhanced',     // 'enhanced' | 'trueScale'
+      mA: 1.0,                     // kg
+      mB: 3.0,                     // kg
+      Fapp: 4.0,                   // N
+      mu: 0.0,                     // coefficient of kinetic/sliding friction with ground/table
+      theta: 0,                    // incline angle in degrees (for sideBySide inclined)
+      g: 10.0,                     // gravitational field strength (10 N/kg or 9.81 N/kg)
+      // Simulation kinematics
+      playing: false,
+      t: 0,
+      v: 0,
+      s: 0,
+      lastFrameTime: null
+    };
+
+    /**
+     * Compute complete physics quantities for the current state
+     */
+    function calculatePhysics() {
+      const mA = state.mA;
+      const mB = state.mB;
+      const mTotal = mA + mB;
+      const g = state.g;
+      const Fapp = state.Fapp;
+      const mu = state.mu;
+      const thetaRad = (state.surface === 'inclined' && state.scenario === 'sideBySide')
+        ? (state.theta * Math.PI / 180)
+        : 0;
+
+      const cosT = Math.cos(thetaRad);
+      const sinT = Math.sin(thetaRad);
+
+      const WA = mA * g;
+      const WB = mB * g;
+      const WTotal = mTotal * g;
+
+      if (state.scenario === 'sideBySide') {
+        // Side-by-side boxes A and B on surface
+        const RA = WA * cosT;
+        const RB = WB * cosT;
+        const RTotal = RA + RB;
+
+        // Maximum friction from surface on A and B
+        const fA_max = mu * RA;
+        const fB_max = mu * RB;
+        const fTotal_max = fA_max + fB_max;
+
+        // Down-slope gravity components
+        const WAx = WA * sinT;
+        const WBx = WB * sinT;
+        const WTotal_x = WTotal * sinT;
+
+        // Driving force forward along surface (assuming motion to the right / up-slope if Fapp overcomes gravity + friction)
+        const netDrivingWithoutFriction = Fapp - WTotal_x;
+
+        let a = 0;
+        let fA = 0;
+        let fB = 0;
+        let fTotal = 0;
+        let isMoving = false;
+
+        if (netDrivingWithoutFriction > fTotal_max) {
+          isMoving = true;
+          fA = fA_max;
+          fB = fB_max;
+          fTotal = fTotal_max;
+          a = (Fapp - WTotal_x - fTotal) / mTotal;
+        } else {
+          // Remains at rest (static friction balances driving force)
+          isMoving = false;
+          a = 0;
+          fTotal = Math.max(0, netDrivingWithoutFriction);
+          fA = fTotal * (mA / mTotal);
+          fB = fTotal * (mB / mTotal);
+        }
+
+        // Contact force between A and B:
+        // Isolate B: F_BA - fB - WBx = mB * a  =>  F_BA = mB * a + fB + WBx
+        const F_BA = Math.max(0, mB * a + fB + WBx);
+        const F_AB = F_BA; // Action-reaction magnitude
+
+        return {
+          mA, mB, mTotal, g, Fapp, mu, thetaRad,
+          WA, WB, WTotal,
+          RA, RB, RTotal,
+          fA, fB, fTotal,
+          WAx, WBx, WTotal_x,
+          a,
+          F_BA, // Force acting on B by A (to the right)
+          F_AB, // Force acting on A by B (to the left)
+          isMoving,
+          fTable: fTotal
+        };
+      } else {
+        // Scenario 2: Stacked Objects (Apple A on top of Book B on rough horizontal table)
+        // External force Fapp is applied horizontally to Book B!
+        // Apple A sits on top of Book B and moves together with B without slipping.
+        const RA = WA;             // Normal force on Apple A by Book B (upward)
+        const R_BA_vert = WA;      // Normal force on Book B by Apple A (downward)
+        const RB = WB + WA;        // Normal reaction from table on Book B (upward)
+        const RTotal = RB;         // External normal reaction from table on the combined system
+
+        const fTable_max = mu * RB;
+        let a = 0;
+        let fTable = 0;
+        let isMoving = false;
+
+        if (Fapp > fTable_max) {
+          isMoving = true;
+          fTable = fTable_max;
+          a = (Fapp - fTable) / mTotal;
+        } else {
+          isMoving = false;
+          fTable = Fapp;
+          a = 0;
+        }
+
+        // Isolate Apple A horizontally:
+        // The ONLY horizontal force acting on Apple A is the static friction f_AB exerted by Book B towards the right!
+        // By Newton's 2nd Law on A: f_AB = mA * a (to the right)
+        // By Newton's 3rd Law, Apple A exerts an equal and opposite friction f_BA = mA * a on Book B (to the left).
+        const f_AB = mA * a; // Friction acting on A by B (to the right)
+        const f_BA = f_AB;   // Friction acting on B by A (to the left)
+
+        return {
+          mA, mB, mTotal, g, Fapp, mu, thetaRad: 0,
+          WA, WB, WTotal,
+          RA, RB, RTotal, R_BA_vert,
+          fA: 0,
+          fB: fTable,
+          fTotal: fTable,
+          fTable,
+          WAx: 0, WBx: 0, WTotal_x: 0,
+          a,
+          F_BA: f_BA, // Horizontal contact (friction) between A and B
+          F_AB: f_AB,
+          isMoving
+        };
+      }
+    }
+
+    /*************************************************************************
+     * PRESETS & UI CONTROLS SYNCHRONIZATION
+     *************************************************************************/
+    function applyPreset(preset) {
+      state.presetName = preset;
+      resetSimulation();
+      const feedback = document.getElementById('quizFeedbackBox');
+      if (feedback) feedback.classList.add('hidden');
+
+      if (preset === 'example1') {
+        // Textbook Example 1: Pushing two boxes (mA = 1 kg, mB = 3 kg, smooth horizontal surface, F = 4 N)
+        state.scenario = 'sideBySide';
+        state.surface = 'horizontal';
+        state.g = 10;
+        state.mA = 1.0;
+        state.mB = 3.0;
+        state.Fapp = 4.0;
+        state.mu = 0.0;
+        state.theta = 0;
+      } else if (preset === 'example2') {
+        // Textbook Example 2: Stacked objects (Apple A = 0.5 kg, Book B = 0.8 kg, F = 14 N on B, s = 3 m in 2 s => a = 1.5 m/s^2)
+        state.scenario = 'stacked';
+        state.surface = 'horizontal';
+        state.g = 10;
+        state.mA = 0.5;
+        state.mB = 0.8;
+        state.Fapp = 14.0;
+        state.mu = 12.05 / ((0.5 + 0.8) * state.g);
+        state.theta = 0;
+      } else if (preset === 'woodenCrates') {
+        // Textbook Illustration 1: Person pushing wooden Box A and Box B
+        state.scenario = 'sideBySide';
+        state.surface = 'horizontal';
+        state.g = 10;
+        state.mA = 3.0;
+        state.mB = 2.0;
+        state.Fapp = 25.0;
+        state.mu = 0.20;
+        state.theta = 0;
+      } else if (preset === 'inclinePreset') {
+        // Preset 4: Connected boxes pushed up an inclined plane (15 deg)
+        state.scenario = 'sideBySide';
+        state.surface = 'inclined';
+        state.g = 10;
+        state.mA = 2.0;
+        state.mB = 3.0;
+        state.Fapp = 35.0;
+        state.mu = 0.10;
+        state.theta = 15;
+      }
+
+      syncControlsFromState();
+      renderAll();
+    }
+
+    function setVectorScale(scaleMode) {
+      state.vectorScale = scaleMode;
+      const enhBtn = document.getElementById('scaleEnhancedBtn');
+      const trueBtn = document.getElementById('scaleTrueBtn');
+      if (scaleMode === 'enhanced') {
+        enhBtn.className = 'px-2 py-0.5 rounded font-bold bg-white text-indigo-700 shadow-sm';
+        trueBtn.className = 'px-2 py-0.5 rounded font-medium text-slate-600 hover:text-slate-900';
+      } else {
+        trueBtn.className = 'px-2 py-0.5 rounded font-bold bg-white text-indigo-700 shadow-sm';
+        enhBtn.className = 'px-2 py-0.5 rounded font-medium text-slate-600 hover:text-slate-900';
+      }
+      renderAll();
+    }
+    function setFBDView(view) {
+      state.fbdView = view;
+      const buttons = {
+        combined: document.getElementById('viewCombinedBtn'),
+        onlyA: document.getElementById('viewOnlyABtn'),
+        onlyB: document.getElementById('viewOnlyBBtn'),
+        separated: document.getElementById('viewSeparatedBtn')
+      };
+      const desc = document.getElementById('fbdModeDescription');
+
+      Object.keys(buttons).forEach(key => {
+        if (key === view) {
+          buttons[key].className = 'py-1.5 px-2.5 rounded-lg text-xs font-bold transition bg-white text-indigo-700 shadow-sm text-center ring-1 ring-indigo-200';
+        } else {
+          buttons[key].className = 'py-1.5 px-2.5 rounded-lg text-xs font-bold transition text-slate-700 hover:text-slate-900 text-center';
+        }
+      });
+
+      if (view === 'combined') {
+        desc.innerHTML = `<span class="font-bold text-indigo-700">System (A + B Together):</span> Internal contact forces (<span class="mono">F<sub>AB</sub></span> &amp; <span class="mono">F<sub>BA</sub></span>) are inside the system boundary and cancel out.`;
+      } else if (view === 'onlyA') {
+        desc.innerHTML = `<span class="font-bold text-amber-700">Object A Only (Isolated FBD):</span> Shows ONLY forces acting ON Object A (with Object B as a faint ghost outline for context).`;
+      } else if (view === 'onlyB') {
+        desc.innerHTML = `<span class="font-bold text-cyan-700">Object B Only (Isolated FBD):</span> Shows ONLY forces acting ON Object B. Notice how external force F on A does not act directly on B!`;
+      } else {
+        desc.innerHTML = `<span class="font-bold text-cyan-700">Both A &amp; B Separated:</span> Compare both individual Free-Body Diagrams side-by-side to inspect Newton's 3rd Law action-reaction pair.`;
+      }
+      renderAll();
+    }
+
+    function setScenario(scen) {
+      state.scenario = scen;
+      state.presetName = 'custom';
+      if (scen === 'stacked') {
+        state.surface = 'horizontal';
+        state.theta = 0;
+        if (state.mu === 0) state.mu = 0.25;
+      }
+      resetSimulation();
+      syncControlsFromState();
+      renderAll();
+    }
+
+    function setSurface(surf) {
+      state.surface = surf;
+      state.presetName = 'custom';
+      if (surf === 'inclined' && state.theta === 0) {
+        state.theta = 15;
+      }
+      resetSimulation();
+      syncControlsFromState();
+      renderAll();
+    }
+
+    function setGravity(gVal) {
+      state.g = gVal;
+      resetSimulation();
+      syncControlsFromState();
+      renderAll();
+    }
+
+    function syncFromSlider(param, val) {
+      state.presetName = 'custom';
+      state[param] = parseFloat(val);
+      resetSimulation();
+      syncControlsFromState();
+      renderAll();
+    }
+
+    function syncFromInput(param, val) {
+      let num = parseFloat(val);
+      if (isNaN(num)) num = 0;
+      if (param === 'mA' || param === 'mB') num = Math.max(0.1, Math.min(20, num));
+      if (param === 'Fapp') num = Math.max(0, Math.min(200, num));
+      if (param === 'mu') num = Math.max(0, Math.min(1.5, num));
+      if (param === 'theta') num = Math.max(0, Math.min(45, num));
+      state.presetName = 'custom';
+      state[param] = num;
+      resetSimulation();
+      syncControlsFromState();
+      renderAll();
+    }
+
+    function syncControlsFromState() {
+      // Scenario buttons
+      const sideBtn = document.getElementById('modeSideBtn');
+      const stackBtn = document.getElementById('modeStackedBtn');
+      const badge = document.getElementById('scenarioBadge');
+      const surfContainer = document.getElementById('surfaceTypeContainer');
+
+      if (state.scenario === 'sideBySide') {
+        sideBtn.className = 'py-1.5 px-2 rounded-lg bg-white text-indigo-700 shadow-sm transition';
+        stackBtn.className = 'py-1.5 px-2 rounded-lg text-slate-600 hover:text-slate-900 transition';
+        badge.textContent = state.surface === 'inclined' ? `Inclined Plane (${state.theta}°)` : 'Side-by-Side Boxes';
+        surfContainer.classList.remove('opacity-40', 'pointer-events-none');
+        document.getElementById('massALabel').innerHTML = 'Mass of Box A (m<sub>A</sub>)';
+        document.getElementById('massBLabel').innerHTML = 'Mass of Box B (m<sub>B</sub>)';
+        document.getElementById('forceLabel').innerHTML = 'Applied Force Pushing Box A (F<sub>app</sub>)';
+      } else {
+        stackBtn.className = 'py-1.5 px-2 rounded-lg bg-white text-emerald-700 shadow-sm transition';
+        sideBtn.className = 'py-1.5 px-2 rounded-lg text-slate-600 hover:text-slate-900 transition';
+        badge.textContent = 'Stacked Objects (Apple A on Book B)';
+        surfContainer.classList.add('opacity-40', 'pointer-events-none');
+        document.getElementById('massALabel').innerHTML = 'Mass of Top Apple A (m<sub>A</sub>)';
+        document.getElementById('massBLabel').innerHTML = 'Mass of Bottom Book B (m<sub>B</sub>)';
+        document.getElementById('forceLabel').innerHTML = 'Applied Force Pulling/Pushing Book B (F<sub>app</sub>)';
+      }
+
+      // Surface buttons
+      const hBtn = document.getElementById('surfHorizBtn');
+      const iBtn = document.getElementById('surfInclinedBtn');
+      const angleRow = document.getElementById('angleControlRow');
+      if (state.surface === 'horizontal' || state.scenario === 'stacked') {
+        hBtn.className = 'py-1.5 px-2 rounded-lg bg-white text-indigo-700 shadow-sm transition';
+        iBtn.className = 'py-1.5 px-2 rounded-lg text-slate-600 hover:text-slate-900 transition';
+        angleRow.classList.add('hidden');
+      } else {
+        iBtn.className = 'py-1.5 px-2 rounded-lg bg-white text-indigo-700 shadow-sm transition';
+        hBtn.className = 'py-1.5 px-2 rounded-lg text-slate-600 hover:text-slate-900 transition';
+        angleRow.classList.remove('hidden');
+      }
+
+      // Gravity buttons
+      const g10 = document.getElementById('g10Btn');
+      const g981 = document.getElementById('g981Btn');
+      if (state.g === 10) {
+        g10.className = 'px-2 py-0.5 rounded font-bold bg-white text-slate-800 shadow-sm';
+        g981.className = 'px-2 py-0.5 rounded font-medium text-slate-600';
+      } else {
+        g981.className = 'px-2 py-0.5 rounded font-bold bg-white text-slate-800 shadow-sm';
+        g10.className = 'px-2 py-0.5 rounded font-medium text-slate-600';
+      }
+
+      // Sliders & numeric inputs
+      document.getElementById('massASlider').value = state.mA;
+      document.getElementById('massAInput').value = state.mA.toFixed(1);
+
+      document.getElementById('massBSlider').value = state.mB;
+      document.getElementById('massBInput').value = state.mB.toFixed(1);
+
+      document.getElementById('forceSlider').value = state.Fapp;
+      document.getElementById('forceInput').value = state.Fapp.toFixed(1);
+
+      document.getElementById('muSlider').value = state.mu;
+      document.getElementById('muInput').value = state.mu.toFixed(3);
+
+      document.getElementById('angleSlider').value = state.theta;
+      document.getElementById('angleInput').value = state.theta;
+    }
+
+    /*************************************************************************
+     * PLAYBACK & KINEMATICS ENGINE
+     *************************************************************************/
+    function togglePlay() {
+      state.playing = !state.playing;
+      const btnText = document.getElementById('playBtnText');
+      if (state.playing) {
+        btnText.textContent = 'Pause Motion';
+        state.lastFrameTime = performance.now();
+        requestAnimationFrame(animationLoop);
+      } else {
+        btnText.textContent = 'Play Motion';
+      }
+    }
+
+    function stepSimulation() {
+      state.playing = false;
+      document.getElementById('playBtnText').textContent = 'Play Motion';
+      advancePhysicsTime(0.20);
+      renderAll();
+    }
+
+    function resetSimulation() {
+      state.playing = false;
+      state.t = 0;
+      state.v = 0;
+      state.s = 0;
+      const btnText = document.getElementById('playBtnText');
+      if (btnText) btnText.textContent = 'Play Motion';
+      renderAll();
+    }
+
+    function advancePhysicsTime(dt) {
+      const phys = calculatePhysics();
+      if (phys.a <= 0) {
+        state.v = 0;
+        return;
+      }
+      state.t += dt;
+      state.v = phys.a * state.t;
+      state.s = 0.5 * phys.a * state.t * state.t;
+
+      // Loop motion smoothly after displacement reaches 6.0 meters
+      if (state.s > 6.0) {
+        state.t = 0;
+        state.v = 0;
+        state.s = 0;
+      }
+    }
+
+    function animationLoop(now) {
+      if (!state.playing) return;
+      const dt = Math.min(0.05, (now - (state.lastFrameTime || now)) / 1000);
+      state.lastFrameTime = now;
+      advancePhysicsTime(dt);
+      renderAll();
+      requestAnimationFrame(animationLoop);
+    }
+
+    /*************************************************************************
+     * TOP CANVAS: PHYSICAL MOTION SIMULATION
+     *************************************************************************/
+    function drawSimulationCanvas(phys) {
+      const canvas = document.getElementById('simCanvas');
+      const rect = canvas.parentElement.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+
+      const ctx = canvas.getContext('2d');
+      ctx.save();
+      ctx.scale(dpr, dpr);
+
+      const W = rect.width;
+      const H = rect.height;
+      ctx.clearRect(0, 0, W, H);
+
+      const showSysBox = document.getElementById('showSystemBoxCheck').checked;
+      const showVectors = document.getElementById('showSimVectorsCheck').checked;
+
+      // Pixel offset from displacement s (1 meter = 42 pixels, wrapped nicely)
+      const pxOffset = Math.min(240, state.s * 42);
+
+      if (state.scenario === 'sideBySide') {
+        // Setup coordinate system (either flat or inclined)
+        ctx.save();
+        const groundY = state.surface === 'inclined' ? H - 35 : H - 48;
+        if (state.surface === 'inclined') {
+          ctx.translate(60, groundY);
+          ctx.rotate(-phys.thetaRad);
+          ctx.translate(-60, -groundY);
+        }
+
+        // Draw floor/surface
+        ctx.fillStyle = '#e2e8f0';
+        ctx.fillRect(-50, groundY, W + 200, 50);
+        ctx.strokeStyle = '#64748b';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(-50, groundY);
+        ctx.lineTo(W + 150, groundY);
+        ctx.stroke();
+
+        // Draw surface hash marks (more dense if mu > 0)
+        const hashSpacing = phys.mu > 0 ? 14 : 36;
+        ctx.strokeStyle = phys.mu > 0 ? '#94a3b8' : '#cbd5e1';
+        ctx.lineWidth = 1.5;
+        for (let x = -20; x < W + 120; x += hashSpacing) {
+          ctx.beginPath();
+          ctx.moveTo(x, groundY);
+          ctx.lineTo(x - 8, groundY + 10);
+          ctx.stroke();
+        }
+
+        // Dimensions of Box A and Box B scaled gently by mass
+        const sizeA = 68 + Math.min(34, phys.mA * 5.5);
+        const sizeB = 68 + Math.min(34, phys.mB * 5.5);
+
+        const startX = 155 + pxOffset;
+        const boxAX = startX;
+        const boxAY = groundY - sizeA;
+        const boxBX = boxAX + sizeA;
+        const boxBY = groundY - sizeB;
+
+        // Draw Ticker-Tape Motion Trail Dots along ground (every 0.25s)
+        const showTicker = document.getElementById('showTickerCheck').checked;
+        if (showTicker && phys.a > 0 && state.t > 0) {
+          for (let ti = 0; ti <= state.t + 0.001; ti += 0.25) {
+            const si = 0.5 * phys.a * ti * ti;
+            const dotX = 155 + Math.min(240, si * 42);
+            ctx.fillStyle = '#4f46e5';
+            ctx.beginPath();
+            ctx.arc(dotX, groundY + 16, 3.5, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        // Draw Cartoon Pusher Person if Wooden Crates preset or Fapp > 0
+        if (phys.Fapp > 0 && state.presetName === 'woodenCrates') {
+          drawPusherPerson(ctx, boxAX, groundY, sizeA);
+        }
+
+        // Apply slight visual emphasis based on which FBD isolation mode is selected
+        ctx.save();
+        if (state.fbdView === 'onlyB') ctx.globalAlpha = 0.45;
+        drawCrateOrBox(ctx, boxAX, boxAY, sizeA, sizeA, 'A', `${phys.mA.toFixed(1)} kg`, state.presetName === 'example1' ? 'cleanA' : 'crate');
+        ctx.restore();
+
+        ctx.save();
+        if (state.fbdView === 'onlyA') ctx.globalAlpha = 0.45;
+        drawCrateOrBox(ctx, boxBX, boxBY, sizeB, sizeB, 'B', `${phys.mB.toFixed(1)} kg`, state.presetName === 'example1' ? 'cleanB' : 'crate');
+        ctx.restore();
+
+        // Draw Dashed Isolation Boundary matching the active FBD view (A+B, A only, or B only)
+        if (showSysBox) {
+          let boundX = boxAX - 8;
+          let boundY = Math.min(boxAY, boxBY) - 14;
+          let boundW = sizeA + sizeB + 16;
+          let boundH = groundY - boundY + 4;
+          let boundLabel = `System (mA + mB = ${phys.mTotal.toFixed(1)} kg)`;
+          let strokeCol = '#1e293b';
+
+          if (state.fbdView === 'onlyA') {
+            boundX = boxAX - 6;
+            boundY = boxAY - 10;
+            boundW = sizeA + 12;
+            boundH = sizeA + 14;
+            boundLabel = `Isolated Object A (${phys.mA.toFixed(1)} kg)`;
+            strokeCol = '#b45309';
+          } else if (state.fbdView === 'onlyB') {
+            boundX = boxBX - 6;
+            boundY = boxBY - 10;
+            boundW = sizeB + 12;
+            boundH = sizeB + 14;
+            boundLabel = `Isolated Object B (${phys.mB.toFixed(1)} kg)`;
+            strokeCol = '#0e7490';
+          }
+
+          if (state.fbdView === 'combined') {
+            ctx.fillStyle = 'rgba(148, 163, 184, 0.20)';
+            ctx.fillRect(boundX, boundY, boundW, boundH);
+          }
+
+          ctx.save();
+          ctx.setLineDash([7, 5]);
+          ctx.strokeStyle = strokeCol;
+          ctx.lineWidth = 2.2;
+          ctx.strokeRect(boundX, boundY, boundW, boundH);
+          ctx.restore();
+
+          ctx.fillStyle = strokeCol;
+          ctx.font = '700 11px Inter, sans-serif';
+          ctx.textAlign = 'left';
+          ctx.fillText(boundLabel, boundX, boundY - 5);
+        }
+
+        // Draw Applied Force arrow pushing Box A on the left
+        if (phys.Fapp > 0 && showVectors) {
+          const arrowLen = Math.max(48, Math.min(105, 35 + phys.Fapp * 1.2));
+          const arrowY = boxAY + sizeA * 0.52;
+          drawCanvasArrow(ctx, boxAX - arrowLen - 4, arrowY, boxAX - 3, arrowY, '#dc2626', 3.5);
+          ctx.fillStyle = '#dc2626';
+          ctx.font = 'bold 13px Inter, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(`F = ${phys.Fapp.toFixed(1)} N`, boxAX - arrowLen / 2 - 4, arrowY - 10);
+        }
+
+        // Draw internal contact force vectors if enabled
+        if (showVectors && phys.F_BA > 0 && state.fbdView !== 'combined') {
+          const contactX = boxBX;
+          const contactY = groundY - Math.min(sizeA, sizeB) * 0.5;
+          const cLen = Math.max(34, Math.min(75, 25 + phys.F_BA * 2.2));
+          if (state.fbdView === 'onlyB' || state.fbdView === 'separated') {
+            drawCanvasArrow(ctx, contactX + 2, contactY - 8, contactX + 2 + cLen, contactY - 8, '#0891b2', 3);
+          }
+          if (state.fbdView === 'onlyA' || state.fbdView === 'separated') {
+            drawCanvasArrow(ctx, contactX - 2, contactY + 8, contactX - 2 - cLen, contactY + 8, '#0891b2', 3);
+          }
+        }
+
+        // Draw acceleration indicator above boxes
+        if (phys.a > 0) {
+          const accX = boxAX + (sizeA + sizeB) / 2;
+          const accY = Math.min(boxAY, boxBY) - 32;
+          drawCanvasArrow(ctx, accX - 30, accY, accX + 35, accY, '#4f46e5', 2.5);
+          ctx.fillStyle = '#4f46e5';
+          ctx.font = 'bold 12px Inter, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(`a = ${phys.a.toFixed(2)} m/s²`, accX, accY - 7);
+        }
+
+        ctx.restore();
+      } else {
+        // SCENARIO 2: STACKED OBJECTS (Apple A on Book B on rough table - Textbook Example 2)
+        const groundY = H - 48;
+
+        // Wooden Table Surface
+        ctx.fillStyle = '#f3e8d6';
+        ctx.fillRect(0, groundY, W, 48);
+        ctx.strokeStyle = '#9a7b56';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(0, groundY);
+        ctx.lineTo(W, groundY);
+        ctx.stroke();
+
+        // Rough table texture lines
+        ctx.strokeStyle = '#d6c2a5';
+        ctx.lineWidth = 1.5;
+        for (let x = 15; x < W; x += 22) {
+          ctx.beginPath();
+          ctx.moveTo(x, groundY + 2);
+          ctx.lineTo(x - 10, groundY + 12);
+          ctx.stroke();
+        }
+
+        const startX = 160 + pxOffset;
+        const bookW = 150;
+        const bookH = 38;
+        const bookX = startX;
+        const bookY = groundY - bookH;
+
+        // Ticker-tape dots for Stacked Mode (verifies s = 3.0m at t = 2.0s)
+        const showTicker = document.getElementById('showTickerCheck').checked;
+        if (showTicker && phys.a > 0 && state.t > 0) {
+          for (let ti = 0; ti <= state.t + 0.001; ti += 0.25) {
+            const si = 0.5 * phys.a * ti * ti;
+            const dotX = 160 + Math.min(240, si * 42);
+            ctx.fillStyle = '#059669';
+            ctx.beginPath();
+            ctx.arc(dotX, groundY + 18, 3.5, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        // Draw Book B
+        ctx.save();
+        if (state.fbdView === 'onlyA') ctx.globalAlpha = 0.4;
+        ctx.fillStyle = '#cbd5e1';
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(bookX, bookY, bookW, bookH, 4);
+        ctx.fill();
+        ctx.stroke();
+
+        // Book pages stripe
+        ctx.fillStyle = '#f8fafc';
+        ctx.fillRect(bookX + 6, bookY + 5, bookW - 14, bookH - 10);
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 1;
+        for (let y = bookY + 10; y < bookY + bookH - 6; y += 5) {
+          ctx.beginPath();
+          ctx.moveTo(bookX + 8, y);
+          ctx.lineTo(bookX + bookW - 10, y);
+          ctx.stroke();
+        }
+
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 13px Inter, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Book B (${phys.mB.toFixed(1)} kg)`, bookX + bookW / 2, bookY + 24);
+        ctx.restore();
+
+        // Draw Apple A on top of Book B
+        const appleCenterX = bookX + bookW / 2;
+        const appleRadius = 28;
+        const appleCenterY = bookY - appleRadius + 2;
+
+        ctx.save();
+        if (state.fbdView === 'onlyB') ctx.globalAlpha = 0.4;
+        const grad = ctx.createRadialGradient(appleCenterX - 8, appleCenterY - 8, 5, appleCenterX, appleCenterY, appleRadius);
+        grad.addColorStop(0, '#bef264');
+        grad.addColorStop(0.7, '#65a30d');
+        grad.addColorStop(1, '#3f6212');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(appleCenterX, appleCenterY, appleRadius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#365314';
+        ctx.lineWidth = 1.8;
+        ctx.stroke();
+
+        // Apple stem
+        ctx.strokeStyle = '#713f12';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(appleCenterX, appleCenterY - appleRadius + 2);
+        ctx.lineTo(appleCenterX + 3, appleCenterY - appleRadius - 9);
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 12px Inter, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(`A (${phys.mA.toFixed(1)} kg)`, appleCenterX, appleCenterY + 4);
+        ctx.restore();
+
+        // Dashed System Boundary around selected FBD target
+        if (showSysBox) {
+          let sysX = bookX - 10;
+          let sysY = appleCenterY - appleRadius - 14;
+          let sysW = bookW + 20;
+          let sysH = groundY - sysY + 2;
+          let label = `System (A + B = ${phys.mTotal.toFixed(2)} kg)`;
+          let strokeCol = '#1e293b';
+
+          if (state.fbdView === 'onlyA') {
+            sysX = appleCenterX - appleRadius - 8;
+            sysY = appleCenterY - appleRadius - 12;
+            sysW = appleRadius * 2 + 16;
+            sysH = appleRadius * 2 + 16;
+            label = `Isolated Apple A (${phys.mA.toFixed(1)} kg)`;
+            strokeCol = '#3f6212';
+          } else if (state.fbdView === 'onlyB') {
+            sysX = bookX - 8;
+            sysY = bookY - 6;
+            sysW = bookW + 16;
+            sysH = bookH + 10;
+            label = `Isolated Book B (${phys.mB.toFixed(1)} kg)`;
+            strokeCol = '#0e7490';
+          }
+
+          if (state.fbdView === 'combined') {
+            ctx.fillStyle = 'rgba(148, 163, 184, 0.18)';
+            ctx.fillRect(sysX, sysY, sysW, sysH);
+          }
+
+          ctx.save();
+          ctx.setLineDash([7, 5]);
+          ctx.strokeStyle = strokeCol;
+          ctx.lineWidth = 2;
+          ctx.strokeRect(sysX, sysY, sysW, sysH);
+          ctx.restore();
+
+          ctx.fillStyle = strokeCol;
+          ctx.font = '700 11px Inter, sans-serif';
+          ctx.textAlign = 'left';
+          ctx.fillText(label, sysX, sysY - 5);
+        }
+
+        // Applied Horizontal Force on Book B
+        if (phys.Fapp > 0 && showVectors) {
+          const arrowLen = Math.max(55, Math.min(110, 40 + phys.Fapp * 2.5));
+          const arrowY = bookY + bookH / 2;
+          drawCanvasArrow(ctx, bookX - arrowLen - 4, arrowY, bookX - 3, arrowY, '#dc2626', 3.5);
+          ctx.fillStyle = '#dc2626';
+          ctx.font = 'bold 13px Inter, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(`${phys.Fapp.toFixed(1)} N`, bookX - arrowLen / 2 - 4, arrowY - 9);
+        }
+
+        // Show internal friction on A by B if vectors enabled
+        if (showVectors && phys.F_AB > 0 && state.fbdView !== 'combined') {
+          drawCanvasArrow(ctx, appleCenterX, bookY - 2, appleCenterX + 48, bookY - 2, '#0891b2', 3);
+          ctx.fillStyle = '#0e7490';
+          ctx.font = 'bold 11px Inter, sans-serif';
+          ctx.textAlign = 'left';
+          ctx.fillText(`f_AB = ${phys.F_AB.toFixed(2)} N`, appleCenterX + 52, bookY - 4);
+        }
+
+        // Acceleration arrow
+        if (phys.a > 0) {
+          const accY = appleCenterY - appleRadius - 28;
+          drawCanvasArrow(ctx, appleCenterX - 32, accY, appleCenterX + 32, accY, '#4f46e5', 2.5);
+          ctx.fillStyle = '#4f46e5';
+          ctx.font = 'bold 12px Inter, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(`a = ${phys.a.toFixed(2)} m/s²`, appleCenterX, accY - 7);
+        }
+      }
+
+      ctx.restore();
+    }
+
+    /**
+     * Draws a stylized figure pushing Box A (like the textbook wooden crate diagram)
+     */
+    function drawPusherPerson(ctx, boxAX, groundY, sizeA) {
+      ctx.save();
+      const handX = boxAX - 2;
+      const handY = groundY - sizeA * 0.58;
+      const shoulderX = handX - 28;
+      const shoulderY = handY + 4;
+      const hipX = shoulderX - 14;
+      const hipY = groundY - 30;
+
+      // Arms pushing against Box A
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 5;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(shoulderX, shoulderY);
+      ctx.lineTo(handX, handY);
+      ctx.stroke();
+
+      // Torso leaning forward
+      ctx.strokeStyle = '#7c3aed';
+      ctx.lineWidth = 11;
+      ctx.beginPath();
+      ctx.moveTo(shoulderX, shoulderY);
+      ctx.lineTo(hipX, hipY);
+      ctx.stroke();
+
+      // Legs
+      ctx.strokeStyle = '#1d4ed8';
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.moveTo(hipX, hipY);
+      ctx.lineTo(hipX - 18, groundY - 2);
+      ctx.moveTo(hipX, hipY);
+      ctx.lineTo(hipX + 10, groundY - 2);
+      ctx.stroke();
+
+      // Head
+      ctx.fillStyle = '#fde68a';
+      ctx.strokeStyle = '#475569';
+      ctx.lineWidth = 1.8;
+      ctx.beginPath();
+      ctx.arc(shoulderX + 2, shoulderY - 13, 9, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawCrateOrBox(ctx, x, y, w, h, label, massText, styleType) {
+      ctx.save();
+      if (styleType === 'cleanA') {
+        ctx.fillStyle = '#e2e8f0';
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 2;
+        ctx.fillRect(x, y, w, h);
+        ctx.strokeRect(x, y, w, h);
+      } else if (styleType === 'cleanB') {
+        ctx.fillStyle = '#bae6fd';
+        ctx.strokeStyle = '#0369a1';
+        ctx.lineWidth = 2;
+        ctx.fillRect(x, y, w, h);
+        ctx.strokeRect(x, y, w, h);
+      } else {
+        // Wooden Crate with frame & diagonal brace (matches textbook image 1)
+        ctx.fillStyle = '#d97706';
+        ctx.strokeStyle = '#92400e';
+        ctx.lineWidth = 2;
+        ctx.fillRect(x, y, w, h);
+        ctx.strokeRect(x, y, w, h);
+
+        // Inner recessed wood panel
+        const pad = Math.max(7, w * 0.1);
+        ctx.fillStyle = '#b45309';
+        ctx.fillRect(x + pad, y + pad, w - pad * 2, h - pad * 2);
+
+        // Diagonal wooden brace
+        ctx.strokeStyle = '#d97706';
+        ctx.lineWidth = pad;
+        ctx.beginPath();
+        ctx.moveTo(x + pad, y + h - pad);
+        ctx.lineTo(x + w - pad, y + pad);
+        ctx.stroke();
+      }
+
+      // Label badge
+      ctx.fillStyle = styleType === 'crate' ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.85)';
+      ctx.beginPath();
+      ctx.roundRect(x + w / 2 - 26, y + h / 2 - 18, 52, 36, 6);
+      ctx.fill();
+
+      ctx.fillStyle = '#0f172a';
+      ctx.font = 'bold 14px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(`Box ${label}`, x + w / 2, y + h / 2 - 2);
+      ctx.font = '600 11px JetBrains Mono, monospace';
+      ctx.fillStyle = '#475569';
+      ctx.fillText(massText, x + w / 2, y + h / 2 + 12);
+      ctx.restore();
+    }
+
+    function drawCanvasArrow(ctx, x1, y1, x2, y2, color, width) {
+      const headLen = 10;
+      const angle = Math.atan2(y2 - y1, x2 - x1);
+      ctx.save();
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = width;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(x2, y2);
+      ctx.lineTo(x2 - headLen * Math.cos(angle - Math.PI / 6), y2 - headLen * Math.sin(angle - Math.PI / 6));
+      ctx.lineTo(x2 - headLen * Math.cos(angle + Math.PI / 6), y2 - headLen * Math.sin(angle + Math.PI / 6));
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
+    /*************************************************************************
+     * BOTTOM SVG: INTERACTIVE FREE-BODY DIAGRAM (FBD) INSPECTOR (4 VIEWS)
+     *************************************************************************/
+    function renderFBDSvg(phys) {
+      const svg = document.getElementById('fbdSvg');
+      const highlight3rd = document.getElementById('highlightThirdLawCheck').checked;
+      const showMistake = document.getElementById('showMistakeCheck').checked;
+      const pairGlowClass = highlight3rd ? 'action-reaction-glow' : '';
+
+      // Helper to scale force vector lengths cleanly onto SVG
+      function scaleHoriz(F) {
+        if (F <= 0.001) return 0;
+        if (state.vectorScale === 'trueScale') {
+          return Math.min(165, Math.max(18, F * 9.5));
+        }
+        return Math.min(140, Math.max(44, 34 + Math.sqrt(F) * 18));
+      }
+      function scaleVert(F) {
+        if (F <= 0.001) return 0;
+        if (state.vectorScale === 'trueScale') {
+          return Math.min(125, Math.max(18, F * 2.8));
+        }
+        return Math.min(115, Math.max(42, 30 + Math.sqrt(F) * 12));
+      }
+
+      // Update Horizontal Tug-of-War Net Force Bar above the SVG
+      updateTugOfWarBar(phys);
+
+      let defs = `
+        <defs>
+          <marker id="arrowRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 9 5 L 0 9 z" fill="#dc2626"/>
+          </marker>
+          <marker id="arrowCyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 9 5 L 0 9 z" fill="#0891b2"/>
+          </marker>
+          <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 9 5 L 0 9 z" fill="#d97706"/>
+          </marker>
+          <marker id="arrowIndigo" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 9 5 L 0 9 z" fill="#4f46e5"/>
+          </marker>
+          <marker id="arrowRose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 9 5 L 0 9 z" fill="#e11d48"/>
+          </marker>
+        </defs>
+      `;
+
+      let content = '';
+
+      if (state.fbdView === 'combined') {
+        // ====================================================================
+        // VIEW 1: SYSTEM (A + B TOGETHER)
+        // ====================================================================
+        const cx = 380;
+        const cy = 180;
+        const boxW = 150;
+        const boxH = 110;
+        const x0 = cx - boxW / 2;
+        const y0 = cy - boxH / 2;
+
+        content += `
+          <rect x="195" y="10" width="370" height="28" rx="8" fill="#ede9fe" stroke="#c4b5fd" />
+          <text x="380" y="29" text-anchor="middle" font-size="13" font-weight="700" fill="#4338ca">
+            Treat Boxes as a System of Objects (m = ${phys.mTotal.toFixed(2)} kg)
+          </text>
+        `;
+
+        content += `
+          <rect x="${x0}" y="${y0}" width="${boxW}" height="${boxH}" fill="#d1d5db" fill-opacity="0.7" stroke="#1e293b" stroke-width="2" stroke-dasharray="7,5" rx="4" />
+          <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="14" font-weight="800" fill="#1e293b">System (A + B)</text>
+          <text x="${cx}" y="${cy + 15}" text-anchor="middle" font-size="12" font-family="JetBrains Mono" font-weight="600" fill="#475569">
+            m = ${phys.mA.toFixed(1)} + ${phys.mB.toFixed(1)} = ${phys.mTotal.toFixed(1)} kg
+          </text>
+        `;
+
+        const rLen = scaleVert(phys.RTotal);
+        content += svgArrow(cx - 4, y0 + boxH, cx - 4, y0 - rLen, '#dc2626', 'arrowRed', 3);
+        content += svgLabel(cx + 10, y0 - rLen * 0.55, `R (= R_A + R_B) = ${phys.RTotal.toFixed(1)} N`, '#dc2626', 'start');
+
+        const wLen = scaleVert(phys.WTotal);
+        content += svgArrow(cx + 6, cy, cx + 6, y0 + boxH + wLen, '#dc2626', 'arrowRed', 3);
+        content += svgLabel(cx + 18, y0 + boxH + wLen * 0.72, `W (= W_A + W_B) = ${phys.WTotal.toFixed(1)} N`, '#dc2626', 'start');
+
+        if (phys.Fapp > 0) {
+          const fLen = scaleHoriz(phys.Fapp);
+          content += svgArrow(x0, cy, x0 + boxW + fLen, cy, '#dc2626', 'arrowRed', 3.2);
+          content += svgLabel(x0 + boxW + fLen + 8, cy + 5, `F = ${phys.Fapp.toFixed(1)} N`, '#dc2626', 'start');
+        }
+
+        if (phys.fTotal > 0.001) {
+          const fricLen = scaleHoriz(phys.fTotal);
+          content += svgArrow(x0 + boxW, y0 + boxH - 12, x0 - fricLen, y0 + boxH - 12, '#d97706', 'arrowAmber', 3);
+          content += svgLabel(x0 - fricLen - 8, y0 + boxH - 8, `f_ext = ${phys.fTotal.toFixed(2)} N`, '#b45309', 'end');
+        }
+
+        if (phys.WTotal_x > 0.01) {
+          const wxLen = scaleHoriz(phys.WTotal_x);
+          content += svgArrow(cx, cy + 26, x0 - wxLen, cy + 26, '#dc2626', 'arrowRed', 2.5);
+          content += svgLabel(x0 - wxLen - 8, cy + 30, `W sinθ = ${phys.WTotal_x.toFixed(2)} N`, '#dc2626', 'end');
+        }
+
+        if (phys.a > 0) {
+          content += svgArrow(cx - 45, 54, cx + 45, 54, '#4f46e5', 'arrowIndigo', 2.5);
+          content += `<text x="${cx}" y="47" text-anchor="middle" font-size="12" font-weight="700" fill="#4f46e5">a = F_net,ext / (m_A + m_B) = ${phys.a.toFixed(2)} m/s²</text>`;
+        }
+
+        if (showMistake) {
+          content += `
+            <rect x="95" y="280" width="570" height="36" rx="8" fill="#fff1f2" stroke="#fecdd3" />
+            <text x="380" y="302" text-anchor="middle" font-size="11.5" font-weight="700" fill="#be123c">
+              Common Mistake Alert: Never include internal forces F_AB or F_BA in the Combined System equation because they cancel out (+${phys.F_BA.toFixed(2)} N − ${phys.F_AB.toFixed(2)} N = 0)!
+            </text>
+          `;
+        }
+
+        content += `
+          <rect x="135" y="325" width="490" height="28" rx="6" fill="#f1f5f9" stroke="#cbd5e1" />
+          <text x="380" y="343" text-anchor="middle" font-size="11.5" font-weight="600" fill="#334155">
+            Internal contact forces F_AB and F_BA (+${phys.F_BA.toFixed(2)} N and −${phys.F_AB.toFixed(2)} N) are inside the dashed box and cancel out!
+          </text>
+        `;
+
+      } else if (state.fbdView === 'onlyA') {
+        // ====================================================================
+        // VIEW 2: OBJECT A ONLY (ISOLATED FBD WITH GHOST B CONTEXT)
+        // ====================================================================
+        const cxA = 355;
+        const cyA = 180;
+        const boxWA = 112;
+        const boxHA = 96;
+
+        content += `
+          <rect x="180" y="10" width="400" height="28" rx="8" fill="#fef3c7" stroke="#fde68a" />
+          <text x="380" y="29" text-anchor="middle" font-size="13" font-weight="700" fill="#92400e">
+            Isolated Free-Body Diagram: Object A Only (m_A = ${phys.mA.toFixed(2)} kg)
+          </text>
+        `;
+
+        if (state.scenario === 'sideBySide') {
+          // Faint Ghost Outline of Neighbour Box B on the right
+          content += `
+            <rect x="${cxA + boxWA/2 + 4}" y="${cyA - boxHA/2 + 12}" width="90" height="${boxHA - 12}" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,5" rx="4" />
+            <text x="${cxA + boxWA/2 + 49}" y="${cyA + 8}" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8">Ghost Box B</text>
+          `;
+
+          // Isolated Box A
+          content += `
+            <rect x="${cxA - boxWA/2}" y="${cyA - boxHA/2}" width="${boxWA}" height="${boxHA}" fill="#f59e0b" fill-opacity="0.26" stroke="#b45309" stroke-width="2.5" rx="5" />
+            <text x="${cxA}" y="${cyA - 4}" text-anchor="middle" font-size="15" font-weight="800" fill="#78350f">Box A</text>
+            <text x="${cxA}" y="${cyA + 16}" text-anchor="middle" font-size="12" font-family="JetBrains Mono" font-weight="700" fill="#92400e">m_A = ${phys.mA.toFixed(1)} kg</text>
+          `;
+
+          // Vertical forces R_A and W_A
+          const rALen = scaleVert(phys.RA);
+          const wALen = scaleVert(phys.WA);
+          content += svgArrow(cxA - 6, cyA + boxHA/2, cxA - 6, cyA - boxHA/2 - rALen, '#dc2626', 'arrowRed', 3);
+          content += svgLabel(cxA + 8, cyA - boxHA/2 - rALen + 12, `R_A = ${phys.RA.toFixed(1)} N`, '#dc2626', 'start');
+
+          content += svgArrow(cxA + 6, cyA, cxA + 6, cyA + boxHA/2 + wALen, '#dc2626', 'arrowRed', 3);
+          content += svgLabel(cxA + 18, cyA + boxHA/2 + wALen - 6, `W_A = ${phys.WA.toFixed(1)} N`, '#dc2626', 'start');
+
+          // Applied Force F (pointing right)
+          if (phys.Fapp > 0) {
+            const fLen = scaleHoriz(phys.Fapp);
+            content += svgArrow(cxA - boxWA/2, cyA - 15, cxA + boxWA/2 + fLen, cyA - 15, '#dc2626', 'arrowRed', 3.4);
+            content += svgLabel(cxA + boxWA/2 + fLen + 8, cyA - 11, `Applied Force F = ${phys.Fapp.toFixed(1)} N`, '#dc2626', 'start');
+          }
+
+          // Contact force acting on A by B (F_AB, pointing LEFT)
+          if (phys.F_AB > 0.001) {
+            const cLen = scaleHoriz(phys.F_AB);
+            content += `<g class="${pairGlowClass}">`;
+            content += svgArrow(cxA + boxWA/2, cyA + 16, cxA - boxWA/2 - cLen, cyA + 16, '#0891b2', 'arrowCyan', 3.4);
+            content += svgLabel(cxA - boxWA/2 - cLen - 8, cyA + 12, `Force acting on A by B`, '#0e7490', 'end');
+            content += svgLabel(cxA - boxWA/2 - cLen - 8, cyA + 27, `(F_AB = ${phys.F_AB.toFixed(2)} N)`, '#0891b2', 'end');
+            content += `</g>`;
+          }
+
+          // Friction f_A (pointing LEFT)
+          if (phys.fA > 0.001) {
+            const faLen = scaleHoriz(phys.fA);
+            content += svgArrow(cxA, cyA + boxHA/2, cxA - boxWA/2 - faLen, cyA + boxHA/2, '#d97706', 'arrowAmber', 2.8);
+            content += svgLabel(cxA - boxWA/2 - faLen - 8, cyA + boxHA/2 + 4, `f_A = ${phys.fA.toFixed(2)} N`, '#b45309', 'end');
+          }
+
+          // Incline gravity component W_A sin(theta)
+          if (phys.WAx > 0.01) {
+            const waxLen = scaleHoriz(phys.WAx);
+            content += svgArrow(cxA, cyA + 34, cxA - boxWA/2 - waxLen, cyA + 34, '#dc2626', 'arrowRed', 2.4);
+            content += svgLabel(cxA - boxWA/2 - waxLen - 8, cyA + 38, `W_A sinθ = ${phys.WAx.toFixed(2)} N`, '#dc2626', 'end');
+          }
+        } else {
+          // Stacked Mode: Isolated Apple A with Ghost Book B underneath
+          content += `
+            <rect x="${cxA - 80}" y="${cyA + 44}" width="160" height="38" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,5" rx="4" />
+            <text x="${cxA}" y="${cyA + 67}" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8">Ghost Book B Underneath</text>
+            <circle cx="${cxA}" cy="${cyA}" r="44" fill="#84cc16" fill-opacity="0.28" stroke="#3f6212" stroke-width="2.5" />
+            <text x="${cxA}" y="${cyA - 4}" text-anchor="middle" font-size="15" font-weight="800" fill="#365314">Apple A</text>
+            <text x="${cxA}" y="${cyA + 15}" text-anchor="middle" font-size="12" font-family="JetBrains Mono" font-weight="700" fill="#3f6212">${phys.mA.toFixed(1)} kg</text>
+          `;
+
+          const rALen = scaleVert(phys.RA);
+          const wALen = scaleVert(phys.WA);
+          content += svgArrow(cxA - 6, cyA + 40, cxA - 6, cyA - 44 - rALen, '#dc2626', 'arrowRed', 3);
+          content += svgLabel(cxA + 8, cyA - 44 - rALen + 12, `R_A = ${phys.RA.toFixed(1)} N (by Book B)`, '#dc2626', 'start');
+
+          content += svgArrow(cxA + 6, cyA, cxA + 6, cyA + 44 + wALen, '#dc2626', 'arrowRed', 3);
+          content += svgLabel(cxA + 18, cyA + 44 + wALen - 4, `W_A = ${phys.WA.toFixed(1)} N`, '#dc2626', 'start');
+
+          if (phys.F_AB > 0.001) {
+            const cLen = scaleHoriz(phys.F_AB);
+            content += `<g class="${pairGlowClass}">`;
+            content += svgArrow(cxA - 10, cyA + 40, cxA + 44 + cLen, cyA + 40, '#0891b2', 'arrowCyan', 3.4);
+            content += svgLabel(cxA + 44 + cLen + 8, cyA + 36, `Friction acting on A by B`, '#0e7490', 'start');
+            content += svgLabel(cxA + 44 + cLen + 8, cyA + 51, `(f_AB = m_A·a = ${phys.F_AB.toFixed(2)} N)`, '#0891b2', 'start');
+            content += `</g>`;
+          }
+        }
+
+        if (phys.a > 0) {
+          content += svgArrow(cxA - 45, 54, cxA + 45, 54, '#4f46e5', 'arrowIndigo', 2.5);
+          content += `<text x="${cxA}" y="47" text-anchor="middle" font-size="12" font-weight="700" fill="#4f46e5">a = F_net,A / m_A = ${phys.a.toFixed(2)} m/s²</text>`;
+        }
+
+        content += `
+          <rect x="115" y="325" width="530" height="28" rx="6" fill="#fffbeb" stroke="#fde68a" />
+          <text x="380" y="343" text-anchor="middle" font-size="11.5" font-weight="700" fill="#92400e">
+            Equation for Object A Only: F_net,A = m_A · a = ${phys.mA.toFixed(2)} × ${phys.a.toFixed(2)} = ${(phys.mA * phys.a).toFixed(2)} N (to the right)
+          </text>
+        `;
+
+      } else if (state.fbdView === 'onlyB') {
+        // ====================================================================
+        // VIEW 3: OBJECT B ONLY (ISOLATED FBD WITH GHOST A & MISTAKE BUSTER)
+        // ====================================================================
+        const cxB = 385;
+        const cyB = 180;
+        const boxWB = 112;
+        const boxHB = 96;
+
+        content += `
+          <rect x="180" y="10" width="400" height="28" rx="8" fill="#ecfeff" stroke="#a5f3fc" />
+          <text x="380" y="29" text-anchor="middle" font-size="13" font-weight="700" fill="#0e7490">
+            Isolated Free-Body Diagram: Object B Only (m_B = ${phys.mB.toFixed(2)} kg)
+          </text>
+        `;
+
+        if (state.scenario === 'sideBySide') {
+          // Faint Ghost Outline of Box A on the left
+          content += `
+            <rect x="${cxB - boxWB/2 - 94}" y="${cyB - boxHB/2 - 8}" width="90" height="${boxHB + 8}" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,5" rx="4" />
+            <text x="${cxB - boxWB/2 - 49}" y="${cyB + 4}" text-anchor="middle" font-size="11" font-weight="600" fill="#94a3b8">Ghost Box A</text>
+          `;
+
+          // Isolated Box B
+          content += `
+            <rect x="${cxB - boxWB/2}" y="${cyB - boxHB/2}" width="${boxWB}" height="${boxHB}" fill="#38bdf8" fill-opacity="0.24" stroke="#0369a1" stroke-width="2.5" rx="5" />
+            <text x="${cxB}" y="${cyB - 4}" text-anchor="middle" font-size="15" font-weight="800" fill="#0c4a6e">Box B</text>
+            <text x="${cxB}" y="${cyB + 16}" text-anchor="middle" font-size="12" font-family="JetBrains Mono" font-weight="700" fill="#0369a1">m_B = ${phys.mB.toFixed(1)} kg</text>
+          `;
+
+          const rBLen = scaleVert(phys.RB);
+          const wBLen = scaleVert(phys.WB);
+          content += svgArrow(cxB - 6, cyB + boxHB/2, cxB - 6, cyB - boxHB/2 - rBLen, '#dc2626', 'arrowRed', 3);
+          content += svgLabel(cxB + 8, cyA_or_B_Label(cyB - boxHB/2 - rBLen + 12), `R_B = ${phys.RB.toFixed(1)} N`, '#dc2626', 'start');
+
+          content += svgArrow(cxB + 6, cyB, cxB + 6, cyB + boxHB/2 + wBLen, '#dc2626', 'arrowRed', 3);
+          content += svgLabel(cxB + 18, cyB + boxHB/2 + wBLen - 6, `W_B = ${phys.WB.toFixed(1)} N`, '#dc2626', 'start');
+
+          // Contact force acting on B by A (F_BA, pointing RIGHT)
+          if (phys.F_BA > 0.001) {
+            const cLen = scaleHoriz(phys.F_BA);
+            content += `<g class="${pairGlowClass}">`;
+            content += svgArrow(cxB - boxWB/2, cyB + 8, cxB + boxWB/2 + cLen, cyB + 8, '#0891b2', 'arrowCyan', 3.5);
+            content += svgLabel(cxB + boxWB/2 + cLen + 8, cyB + 4, `Force acting on B by A`, '#0e7490', 'start');
+            content += svgLabel(cxB + boxWB/2 + cLen + 8, cyB + 19, `(F_BA = ${phys.F_BA.toFixed(2)} N)`, '#0891b2', 'start');
+            content += `</g>`;
+          }
+
+          // Common Mistake Ghost Vector Overlay: Student mistakenly puts F_app directly on Box B!
+          if (showMistake && phys.Fapp > 0) {
+            const fLen = scaleHoriz(phys.Fapp);
+            content += `
+              <g opacity="0.88">
+                <line x1="${cxB - boxWB/2}" y1="${cyB - 24}" x2="${cxB + boxWB/2 + fLen}" y2="${cyB - 24}" stroke="#e11d48" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#arrowRose)" />
+                <text x="${cxB + boxWB/2 + fLen + 8}" y="${cyB - 26}" font-size="11.5" font-weight="800" fill="#be123c">❌ MISTAKE: F = ${phys.Fapp.toFixed(1)} N</text>
+                <text x="${cxB + boxWB/2 + fLen + 8}" y="${cyB - 12}" font-size="10.5" font-weight="600" fill="#e11d48">(F pushes A, not B directly!)</text>
+              </g>
+            `;
+          }
+
+          if (phys.fB > 0.001) {
+            const fbLen = scaleHoriz(phys.fB);
+            content += svgArrow(cxB, cyB + boxHB/2, cxB - boxWB/2 - fbLen, cyB + boxHB/2, '#d97706', 'arrowAmber', 2.8);
+            content += svgLabel(cxB - boxWB/2 - fbLen - 8, cyB + boxHB/2 + 4, `f_B = ${phys.fB.toFixed(2)} N`, '#b45309', 'end');
+          }
+
+          if (phys.WBx > 0.01) {
+            const wbxLen = scaleHoriz(phys.WBx);
+            content += svgArrow(cxB, cyB + 32, cxB - boxWB/2 - wbxLen, cyB + 32, '#dc2626', 'arrowRed', 2.4);
+            content += svgLabel(cxB - boxWB/2 - wbxLen - 8, cyB + 36, `W_B sinθ = ${phys.WBx.toFixed(2)} N`, '#dc2626', 'end');
+          }
+        } else {
+          // Stacked Mode: Isolated Book B with Ghost Apple A above
+          content += `
+            <circle cx="${cxB}" cy="${cyB - 66}" r="32" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,5" />
+            <text x="${cxB}" y="${cyB - 63}" text-anchor="middle" font-size="10.5" font-weight="600" fill="#94a3b8">Ghost Apple A</text>
+            <rect x="${cxB - 70}" y="${cyB - 32}" width="140" height="64" fill="#cbd5e1" fill-opacity="0.6" stroke="#334155" stroke-width="2.5" rx="5" />
+            <text x="${cxB}" y="${cyB - 3}" text-anchor="middle" font-size="15" font-weight="800" fill="#0f172a">Book B</text>
+            <text x="${cxB}" y="${cyB + 15}" text-anchor="middle" font-size="12" font-family="JetBrains Mono" font-weight="700" fill="#334155">${phys.mB.toFixed(1)} kg</text>
+          `;
+
+          const rBLen = scaleVert(phys.RB);
+          const wBLen = scaleVert(phys.WB);
+          content += svgArrow(cxB - 8, cyB + 32, cxB - 8, cyB - 32 - rBLen, '#dc2626', 'arrowRed', 3);
+          content += svgLabel(cxB + 6, cyB - 32 - rBLen + 12, `R_B = ${phys.RB.toFixed(1)} N (by Table)`, '#dc2626', 'start');
+
+          content += svgArrow(cxB + 8, cyB, cxB + 8, cyB + 32 + wBLen, '#dc2626', 'arrowRed', 3);
+          content += svgLabel(cxB + 18, cyB + 32 + wBLen - 4, `W_B = ${phys.WB.toFixed(1)} N`, '#dc2626', 'start');
+
+          // Downward normal force from Apple A on Book B
+          const nBALen = scaleVert(phys.R_BA_vert);
+          content += svgArrow(cxB - 24, cyB - 32, cxB - 24, cyB + 26 + nBALen * 0.65, '#4f46e5', 'arrowIndigo', 2.4);
+          content += svgLabel(cxB - 32, cyB + 28 + nBALen * 0.65, `R_BA = ${phys.R_BA_vert.toFixed(1)} N (push by A)`, '#4f46e5', 'end');
+
+          // External Applied Force F = 14N on Book B
+          if (phys.Fapp > 0) {
+            const fLen = scaleHoriz(phys.Fapp);
+            content += svgArrow(cxB - 70, cyB, cxB + 70 + fLen, cyB, '#dc2626', 'arrowRed', 3.4);
+            content += svgLabel(cxB + 70 + fLen + 8, cyB + 4, `F = ${phys.Fapp.toFixed(1)} N`, '#dc2626', 'start');
+          }
+
+          // Backward friction from Apple A on top surface of Book B (f_BA)
+          if (phys.F_BA > 0.001) {
+            const cLen = scaleHoriz(phys.F_BA);
+            content += `<g class="${pairGlowClass}">`;
+            content += svgArrow(cxB + 30, cyB - 30, cxB - 70 - cLen, cyB - 30, '#0891b2', 'arrowCyan', 3.2);
+            content += svgLabel(cxB - 70 - cLen - 8, cyB - 26, `f_BA = ${phys.F_BA.toFixed(2)} N (by Apple A)`, '#0891b2', 'end');
+            content += `</g>`;
+          }
+
+          // Backward friction from Table on bottom surface of Book B (f_table)
+          if (phys.fTable > 0.001) {
+            const ftLen = scaleHoriz(phys.fTable);
+            content += svgArrow(cxB + 30, cyB + 30, cxB - 70 - ftLen, cyB + 30, '#d97706', 'arrowAmber', 3.2);
+            content += svgLabel(cxB - 70 - ftLen - 8, cyB + 34, `f_table = ${phys.fTable.toFixed(2)} N (by Table)`, '#b45309', 'end');
+          }
+        }
+
+        if (phys.a > 0) {
+          content += svgArrow(cxB - 45, 54, cxB + 45, 54, '#4f46e5', 'arrowIndigo', 2.5);
+          content += `<text x="${cxB}" y="47" text-anchor="middle" font-size="12" font-weight="700" fill="#4f46e5">a = F_net,B / m_B = ${phys.a.toFixed(2)} m/s²</text>`;
+        }
+
+        content += `
+          <rect x="115" y="325" width="530" height="28" rx="6" fill="#ecfeff" stroke="#a5f3fc" />
+          <text x="380" y="343" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0e7490">
+            Equation for Object B Only: F_net,B = m_B · a = ${phys.mB.toFixed(2)} × ${phys.a.toFixed(2)} = ${(phys.mB * phys.a).toFixed(2)} N (to the right)
+          </text>
+        `;
+
+      } else {
+        // ====================================================================
+        // VIEW 4: BOTH A & B SEPARATED (SIDE-BY-SIDE COMPARISON)
+        // ====================================================================
+        content += `
+          <rect x="190" y="8" width="380" height="26" rx="8" fill="#ecfeff" stroke="#a5f3fc" />
+          <text x="380" y="25" text-anchor="middle" font-size="13" font-weight="700" fill="#0e7490">
+            Treat Boxes as Two Objects — Both Individual FBDs Compared
+          </text>
+        `;
+
+        const cxA = 205;
+        const cyA = 165;
+        const boxWA = 96;
+        const boxHA = 86;
+
+        const cxB = 555;
+        const cyB = 195;
+        const boxWB = 96;
+        const boxHB = 86;
+
+        content += `<line x1="380" y1="42" x2="380" y2="310" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="5,5" />`;
+
+        if (state.scenario === 'sideBySide') {
+          content += `
+            <rect x="${cxA - boxWA/2}" y="${cyA - boxHA/2}" width="${boxWA}" height="${boxHA}" fill="#f59e0b" fill-opacity="0.25" stroke="#b45309" stroke-width="2.2" rx="4" />
+            <text x="${cxA}" y="${cyA - 4}" text-anchor="middle" font-size="14" font-weight="800" fill="#78350f">Box A</text>
+            <text x="${cxA}" y="${cyA + 14}" text-anchor="middle" font-size="11.5" font-family="JetBrains Mono" font-weight="700" fill="#92400e">${phys.mA.toFixed(1)} kg</text>
+          `;
+          content += `
+            <rect x="${cxB - boxWB/2}" y="${cyB - boxHB/2}" width="${boxWB}" height="${boxHB}" fill="#38bdf8" fill-opacity="0.22" stroke="#0369a1" stroke-width="2.2" rx="4" />
+            <text x="${cxB}" y="${cyB - 4}" text-anchor="middle" font-size="14" font-weight="800" fill="#0c4a6e">Box B</text>
+            <text x="${cxB}" y="${cyB + 14}" text-anchor="middle" font-size="11.5" font-family="JetBrains Mono" font-weight="700" fill="#0369a1">${phys.mB.toFixed(1)} kg</text>
+          `;
+        } else {
+          content += `
+            <circle cx="${cxA}" cy="${cyA}" r="40" fill="#84cc16" fill-opacity="0.28" stroke="#3f6212" stroke-width="2.2" />
+            <text x="${cxA}" y="${cyA - 4}" text-anchor="middle" font-size="14" font-weight="800" fill="#365314">Apple A</text>
+            <text x="${cxA}" y="${cyA + 14}" text-anchor="middle" font-size="11.5" font-family="JetBrains Mono" font-weight="700" fill="#3f6212">${phys.mA.toFixed(1)} kg</text>
+            <rect x="${cxB - 58}" y="${cyB - 30}" width="116" height="60" fill="#cbd5e1" fill-opacity="0.55" stroke="#334155" stroke-width="2.2" rx="4" />
+            <text x="${cxB}" y="${cyB - 2}" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">Book B</text>
+            <text x="${cxB}" y="${cyB + 15}" text-anchor="middle" font-size="11.5" font-family="JetBrains Mono" font-weight="700" fill="#334155">${phys.mB.toFixed(1)} kg</text>
+          `;
+        }
+
+        // Forces on A
+        const rALen = scaleVert(phys.RA);
+        const wALen = scaleVert(phys.WA);
+        content += svgArrow(cxA - 6, cyA + 35, cxA - 6, cyA - 40 - rALen, '#dc2626', 'arrowRed', 2.8);
+        content += svgLabel(cxA + 6, cyA - 40 - rALen + 12, `R_A = ${phys.RA.toFixed(1)} N`, '#dc2626', 'start');
+        content += svgArrow(cxA + 6, cyA - 10, cxA + 6, cyA + 40 + wALen, '#dc2626', 'arrowRed', 2.8);
+        content += svgLabel(cxA + 16, cyA + 40 + wALen - 6, `W_A = ${phys.WA.toFixed(1)} N`, '#dc2626', 'start');
+
+        if (state.scenario === 'sideBySide') {
+          if (phys.Fapp > 0) {
+            const fLen = scaleHoriz(phys.Fapp);
+            content += svgArrow(cxA - boxWA/2, cyA - 14, cxA + boxWA/2 + fLen, cyA - 14, '#dc2626', 'arrowRed', 3.2);
+            content += svgLabel(cxA + boxWA/2 + fLen + 6, cyA - 10, `F = ${phys.Fapp.toFixed(1)} N`, '#dc2626', 'start');
+          }
+          if (phys.F_AB > 0.001) {
+            const cLen = scaleHoriz(phys.F_AB);
+            content += `<g class="${pairGlowClass}">`;
+            content += svgArrow(cxA + boxWA/2, cyA + 14, cxA - boxWA/2 - cLen, cyA + 14, '#0891b2', 'arrowCyan', 3.4);
+            content += svgLabel(cxA - boxWA/2 - cLen - 6, cyA + 10, `Force on A by B`, '#0e7490', 'end');
+            content += svgLabel(cxA - boxWA/2 - cLen - 6, cyA + 25, `(F_AB = ${phys.F_AB.toFixed(2)} N)`, '#0891b2', 'end');
+            content += `</g>`;
+          }
+          if (phys.fA > 0.001) {
+            const faLen = scaleHoriz(phys.fA);
+            content += svgArrow(cxA, cyA + boxHA/2, cxA - boxWA/2 - faLen, cyA + boxHA/2, '#d97706', 'arrowAmber', 2.5);
+            content += svgLabel(cxA - boxWA/2 - faLen - 6, cyA + boxHA/2 + 4, `f_A = ${phys.fA.toFixed(2)} N`, '#b45309', 'end');
+          }
+        } else {
+          if (phys.F_AB > 0.001) {
+            const cLen = scaleHoriz(phys.F_AB);
+            content += `<g class="${pairGlowClass}">`;
+            content += svgArrow(cxA - 20, cyA + 36, cxA + 40 + cLen, cyA + 36, '#0891b2', 'arrowCyan', 3.4);
+            content += svgLabel(cxA + 40 + cLen + 6, cyA + 33, `Friction on A by B`, '#0e7490', 'start');
+            content += svgLabel(cxA + 40 + cLen + 6, cyA + 47, `(f_AB = ${phys.F_AB.toFixed(2)} N)`, '#0891b2', 'start');
+            content += `</g>`;
+          }
+        }
+
+        // Forces on B
+        const rBLen = scaleVert(phys.RB);
+        const wBLen = scaleVert(phys.WB);
+        content += svgArrow(cxB - 8, cyB + 32, cxB - 8, cyB - 36 - rBLen, '#dc2626', 'arrowRed', 2.8);
+        content += svgLabel(cxB + 4, cyB - 36 - rBLen + 12, `R_B = ${phys.RB.toFixed(1)} N`, '#dc2626', 'start');
+        content += svgArrow(cxB + 6, cyB - 10, cxB + 6, cyB + 36 + wBLen, '#dc2626', 'arrowRed', 2.8);
+        content += svgLabel(cxB + 16, cyB + 36 + wBLen - 6, `W_B = ${phys.WB.toFixed(1)} N`, '#dc2626', 'start');
+
+        if (state.scenario === 'sideBySide') {
+          if (phys.F_BA > 0.001) {
+            const cLen = scaleHoriz(phys.F_BA);
+            content += `<g class="${pairGlowClass}">`;
+            content += svgArrow(cxB - boxWB/2, cyB, cxB + boxWB/2 + cLen, cyB, '#0891b2', 'arrowCyan', 3.4);
+            content += svgLabel(cxB + boxWB/2 + cLen + 6, cyB - 4, `Force on B by A`, '#0e7490', 'start');
+            content += svgLabel(cxB + boxWB/2 + cLen + 6, cyB + 11, `(F_BA = ${phys.F_BA.toFixed(2)} N)`, '#0891b2', 'start');
+            content += `</g>`;
+          }
+          if (phys.fB > 0.001) {
+            const fbLen = scaleHoriz(phys.fB);
+            content += svgArrow(cxB, cyB + boxHB/2, cxB - boxWB/2 - fbLen, cyB + boxHB/2, '#d97706', 'arrowAmber', 2.5);
+            content += svgLabel(cxB - boxWB/2 - fbLen - 6, cyB + boxHB/2 + 4, `f_B = ${phys.fB.toFixed(2)} N`, '#b45309', 'end');
+          }
+        } else {
+          if (phys.Fapp > 0) {
+            const fLen = scaleHoriz(phys.Fapp);
+            content += svgArrow(cxB - 58, cyB, cxB + 58 + fLen, cyB, '#dc2626', 'arrowRed', 3.2);
+            content += svgLabel(cxB + 58 + fLen + 6, cyB + 4, `F = ${phys.Fapp.toFixed(1)} N`, '#dc2626', 'start');
+          }
+          if (phys.F_BA > 0.001) {
+            const cLen = scaleHoriz(phys.F_BA);
+            content += `<g class="${pairGlowClass}">`;
+            content += svgArrow(cxB + 20, cyB - 28, cxB - 58 - cLen, cyB - 28, '#0891b2', 'arrowCyan', 3.2);
+            content += svgLabel(cxB - 58 - cLen - 6, cyB - 25, `f_BA = ${phys.F_BA.toFixed(2)} N (by A)`, '#0891b2', 'end');
+            content += `</g>`;
+          }
+          if (phys.fTable > 0.001) {
+            const ftLen = scaleHoriz(phys.fTable);
+            content += svgArrow(cxB + 20, cyB + 28, cxB - 58 - ftLen, cyB + 28, '#d97706', 'arrowAmber', 3);
+            content += svgLabel(cxB - 58 - ftLen - 6, cyB + 32, `f_table = ${phys.fTable.toFixed(2)} N`, '#b45309', 'end');
+          }
+        }
+
+        if (highlight3rd) {
+          content += `
+            <rect x="115" y="325" width="530" height="28" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.5" />
+            <text x="380" y="343" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0e7490">
+              Newton's 3rd Law Action-Reaction Pair: |Force on A by B| = |Force on B by A| = ${phys.F_BA.toFixed(2)} N (Act on different objects!)
+            </text>
+          `;
+        }
+      }
+
+      svg.innerHTML = defs + content;
+    }
+
+    function cyA_or_B_Label(yVal) {
+      return Math.max(46, yVal);
+    }
+
+    /**
+     * Updates the Horizontal Tug-of-War Net Force Sum Bar for the currently inspected system/object
+     */
+    function updateTugOfWarBar(phys) {
+      const bar = document.getElementById('tugOfWarBar');
+      let targetName = 'System (A + B)';
+      let forwardDesc = '';
+      let backwardDesc = '';
+      let netForce = 0;
+      let massVal = phys.mTotal;
+
+      if (state.fbdView === 'combined') {
+        targetName = 'System (A + B)';
+        forwardDesc = `F_app (${phys.Fapp.toFixed(2)} N)`;
+        const backVal = phys.fTotal + phys.WTotal_x;
+        backwardDesc = backVal > 0 ? `Resistive (${backVal.toFixed(2)} N)` : '0 N';
+        netForce = phys.mTotal * phys.a;
+        massVal = phys.mTotal;
+      } else if (state.fbdView === 'onlyA') {
+        targetName = state.scenario === 'stacked' ? 'Apple A Only' : 'Box A Only';
+        massVal = phys.mA;
+        netForce = phys.mA * phys.a;
+        if (state.scenario === 'sideBySide') {
+          forwardDesc = `F_app (${phys.Fapp.toFixed(2)} N)`;
+          const backVal = phys.F_AB + phys.fA + phys.WAx;
+          backwardDesc = `F_AB (${phys.F_AB.toFixed(2)} N)${phys.fA + phys.WAx > 0 ? ' + ' + (phys.fA + phys.WAx).toFixed(2) + ' N' : ''}`;
+        } else {
+          forwardDesc = `f_AB (${phys.F_AB.toFixed(2)} N)`;
+          backwardDesc = '0 N';
+        }
+      } else if (state.fbdView === 'onlyB') {
+        targetName = state.scenario === 'stacked' ? 'Book B Only' : 'Box B Only';
+        massVal = phys.mB;
+        netForce = phys.mB * phys.a;
+        if (state.scenario === 'sideBySide') {
+          forwardDesc = `F_BA (${phys.F_BA.toFixed(2)} N)`;
+          const backVal = phys.fB + phys.WBx;
+          backwardDesc = backVal > 0 ? `${backVal.toFixed(2)} N` : '0 N';
+        } else {
+          forwardDesc = `F_app (${phys.Fapp.toFixed(2)} N)`;
+          backwardDesc = `f_BA (${phys.F_BA.toFixed(2)} N) + f_table (${phys.fTable.toFixed(2)} N)`;
+        }
+      } else {
+        targetName = 'Both A & B';
+        bar.innerHTML = `
+          <div class="font-bold text-slate-700">Horizontal Net Force Breakdown (F<sub>net</sub> = m·a):</div>
+          <div class="flex flex-wrap items-center gap-3 mono">
+            <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-semibold">Object A: F_net,A = ${phys.mA.toFixed(1)} × ${phys.a.toFixed(2)} = ${(phys.mA * phys.a).toFixed(2)} N</span>
+            <span class="px-2 py-0.5 rounded bg-cyan-100 text-cyan-900 font-semibold">Object B: F_net,B = ${phys.mB.toFixed(1)} × ${phys.a.toFixed(2)} = ${(phys.mB * phys.a).toFixed(2)} N</span>
+          </div>
+        `;
+        return;
+      }
+
+      bar.innerHTML = `
+        <div class="font-bold text-slate-700">Horizontal Tug-of-War on <span class="text-indigo-700">${targetName}</span>:</div>
+        <div class="flex flex-wrap items-center gap-1.5 mono">
+          <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">Forward → ${forwardDesc}</span>
+          <span class="font-bold text-slate-400">−</span>
+          <span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-semibold">← Backward ${backwardDesc}</span>
+          <span class="font-bold text-slate-400">=</span>
+          <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 font-bold">F_net = ${massVal.toFixed(2)} × ${phys.a.toFixed(2)} = ${netForce.toFixed(2)} N</span>
+        </div>
+      `;
+    }
+
+    function svgArrow(x1, y1, x2, y2, color, markerId, strokeWidth = 3) {
+      return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${strokeWidth}" stroke-linecap="round" marker-end="url(#${markerId})" />`;
+    }
+
+    function svgLabel(x, y, text, color, anchor = 'start') {
+      return `<text x="${x}" y="${y}" text-anchor="${anchor}" font-size="11.5" font-weight="700" fill="${color}">${text}</text>`;
+    }
+
+    /*************************************************************************
+     * RIGHT PANEL: REAL-TIME ANALYTICS & STEP-BY-STEP SOLUTIONS
+     *************************************************************************/
+    function updateMathBreakdown(phys) {
+      // Update top kinematics bar
+      document.getElementById('readoutTime').textContent = state.t.toFixed(2);
+      document.getElementById('readoutAcc').textContent = phys.a.toFixed(2);
+      document.getElementById('readoutVel').textContent = state.v.toFixed(2);
+      document.getElementById('readoutPos').textContent = state.s.toFixed(2);
+
+      // Update Motion status footer
+      const statusEl = document.getElementById('motionStatusText');
+      if (phys.a > 0) {
+        statusEl.innerHTML = `Status: <span class="text-emerald-700 font-semibold">Accelerating to the right at a = ${phys.a.toFixed(2)} m/s²</span>`;
+      } else {
+        statusEl.innerHTML = `Status: <span class="text-amber-700 font-semibold">At rest (a = 0 m/s²) — Applied force does not exceed friction/gravity</span>`;
+      }
+
+      // Update Newton's 3rd law badge
+      document.getElementById('thirdLawMagnitudeBadge').textContent =
+        `|F_AB| = |F_BA| = ${phys.F_BA.toFixed(2)} N`;
+
+      // Update Student Quiz Question text dynamically
+      const quizQ = document.getElementById('quizQuestionText');
+      if (state.scenario === 'sideBySide') {
+        quizQ.innerHTML = `When <span class="mono font-bold text-red-600">F = ${phys.Fapp.toFixed(1)} N</span> pushes Box A (${phys.mA.toFixed(1)} kg), how large is the contact force <span class="mono font-bold text-cyan-700">F<sub>BA</sub></span> pushing Box B (${phys.mB.toFixed(1)} kg)?`;
+      } else {
+        quizQ.innerHTML = `When <span class="mono font-bold text-red-600">F = ${phys.Fapp.toFixed(1)} N</span> pulls Book B (${phys.mB.toFixed(1)} kg), what horizontal force accelerates Apple A (${phys.mA.toFixed(1)} kg) to the right?`;
+      }
+
+      const banner = document.getElementById('problemBanner');
+      const step1 = document.getElementById('step1Content');
+      const step2 = document.getElementById('step2Content');
+
+      if (state.scenario === 'sideBySide') {
+        // Problem Statement Banner
+        if (state.presetName === 'example1') {
+          banner.innerHTML = `
+            <div class="font-bold text-amber-900 mb-0.5">Textbook Example 1: Pushing Two Boxes</div>
+            The masses of boxes <strong>A</strong> and <strong>B</strong> are <strong>1.0 kg</strong> and <strong>3.0 kg</strong> respectively on a smooth horizontal surface (μ = 0). A horizontal force of <strong>4.0 N</strong> pushes <strong>A</strong> towards the right. Find the acceleration <em>a</em> and the contact force acting on <strong>B</strong> by <strong>A</strong>.
+          `;
+        } else {
+          banner.innerHTML = `
+            <div class="font-bold text-amber-900 mb-0.5">Live Scenario: Pushing Two Connected Boxes (A &amp; B)</div>
+            Box A (<strong>${phys.mA.toFixed(1)} kg</strong>) and Box B (<strong>${phys.mB.toFixed(1)} kg</strong>) are in contact on a ${state.surface} surface (<strong>μ = ${phys.mu.toFixed(2)}</strong>). Force <strong>F = ${phys.Fapp.toFixed(1)} N</strong> pushes Box A to the right.
+          `;
+        }
+
+        // Step 1: Combined System
+        const extraResist = (phys.fTotal > 0 || phys.WTotal_x > 0)
+          ? ` − ${ (phys.fTotal + phys.WTotal_x).toFixed(2) }`
+          : '';
+        step1.innerHTML = `
+          <p>Treat Box A and Box B together as a <strong>single system</strong> of total mass <span class="mono font-semibold">m<sub>total</sub> = m<sub>A</sub> + m<sub>B</sub> = ${phys.mA.toFixed(1)} + ${phys.mB.toFixed(1)} = ${phys.mTotal.toFixed(1)} kg</span>.</p>
+          <div class="formula-box p-2.5 rounded-lg mono text-xs space-y-1">
+            <div>F<sub>net, ext</sub> = (m<sub>A</sub> + m<sub>B</sub>) · a</div>
+            <div>${phys.Fapp.toFixed(2)}${extraResist} = (${phys.mA.toFixed(1)} + ${phys.mB.toFixed(1)}) · a</div>
+            <div class="font-bold text-indigo-700 pt-0.5">⇒ a = ${(phys.Fapp - phys.fTotal - phys.WTotal_x > 0 ? (phys.Fapp - phys.fTotal - phys.WTotal_x) : 0).toFixed(2)} / ${phys.mTotal.toFixed(1)} = ${phys.a.toFixed(2)} m s⁻²</div>
+          </div>
+        `;
+
+        // Step 2: Isolate Box B (and verify with Box A)
+        const resistB = (phys.fB + phys.WBx) > 0 ? ` − ${(phys.fB + phys.WBx).toFixed(2)}` : '';
+        step2.innerHTML = `
+          <p><strong>Isolate Box B:</strong> The horizontal driving force acting on B is the contact force <strong class="text-cyan-700">F<sub>BA</sub></strong> (force acting on B by A towards the right).</p>
+          <div class="formula-box p-2.5 rounded-lg mono text-xs space-y-1">
+            <div>By Newton's 2nd Law on Box B: F<sub>net, B</sub> = m<sub>B</sub> · a</div>
+            <div>F<sub>BA</sub>${resistB} = ${phys.mB.toFixed(1)} × ${phys.a.toFixed(2)}</div>
+            <div class="font-bold text-cyan-700 pt-0.5">⇒ F<sub>BA</sub> = ${phys.F_BA.toFixed(2)} N (towards the right)</div>
+          </div>
+          <p class="text-[11px] text-slate-500 pt-1">
+            <strong>Check using Box A:</strong> <span class="mono">F − F<sub>AB</sub>${phys.fA + phys.WAx > 0 ? ' − ' + (phys.fA + phys.WAx).toFixed(2) : ''} = m<sub>A</sub>a ⇒ ${phys.Fapp.toFixed(1)} − ${phys.F_AB.toFixed(2)}${phys.fA + phys.WAx > 0 ? ' − ' + (phys.fA + phys.WAx).toFixed(2) : ''} = ${(phys.mA * phys.a).toFixed(2)} N</span> ✔
+          </p>
+        `;
+      } else {
+        // SCENARIO 2: STACKED OBJECTS (Textbook Example 2: Apple A on Book B)
+        if (state.presetName === 'example2') {
+          banner.innerHTML = `
+            <div class="font-bold text-emerald-900 mb-0.5">Textbook Example 2: Stacked Objects (Apple A on Book B)</div>
+            An apple <strong>A (0.5 kg)</strong> and a book <strong>B (0.8 kg)</strong> are initially at rest on a rough table. A horizontal force of <strong>14 N</strong> is applied to <strong>B</strong> and they move together for <strong>s = 3 m</strong> after <strong>t = 2 s</strong> (so <span class="mono font-bold">a = 2s/t² = 2(3)/2² = 1.50 m s⁻²</span>).
+          `;
+        } else {
+          banner.innerHTML = `
+            <div class="font-bold text-emerald-900 mb-0.5">Live Scenario: Stacked Objects (Apple A on Top of Book B)</div>
+            Apple A (<strong>${phys.mA.toFixed(1)} kg</strong>) rests on top of Book B (<strong>${phys.mB.toFixed(1)} kg</strong>) on a rough table. Horizontal force <strong>F = ${phys.Fapp.toFixed(1)} N</strong> pulls/pushes Book B to the right, and both move together with common acceleration <strong>a = ${phys.a.toFixed(2)} m s⁻²</strong>.
+          `;
+        }
+
+        step1.innerHTML = `
+          <p><strong>(a) Common Acceleration &amp; (c) Table Friction on B:</strong> Treat Apple A + Book B as a combined system (<span class="mono font-semibold">m<sub>total</sub> = ${phys.mTotal.toFixed(2)} kg</span>).</p>
+          <div class="formula-box p-2.5 rounded-lg mono text-xs space-y-1">
+            <div>F<sub>app</sub> − f<sub>table</sub> = (m<sub>A</sub> + m<sub>B</sub>) · a</div>
+            <div>${phys.Fapp.toFixed(2)} − ${phys.fTable.toFixed(2)} = (${phys.mA.toFixed(1)} + ${phys.mB.toFixed(1)}) × ${phys.a.toFixed(2)}</div>
+            <div class="font-bold text-indigo-700 pt-0.5">⇒ a = ${phys.a.toFixed(2)} m s⁻² ,  f<sub>table</sub> = ${phys.fTable.toFixed(2)} N (to the left)</div>
+          </div>
+        `;
+
+        step2.innerHTML = `
+          <p><strong>(b) Find the friction acting on Apple A by Book B (<span class="mono text-cyan-700">f<sub>AB</sub></span>):</strong> Isolate Apple A horizontally. The <em>only</em> horizontal force accelerating Apple A to the right is the static friction <strong class="text-cyan-700">f<sub>AB</sub></strong> from Book B!</p>
+          <div class="formula-box p-2.5 rounded-lg mono text-xs space-y-1">
+            <div>By Newton's 2nd Law on Apple A: F<sub>net, A</sub> = m<sub>A</sub> · a</div>
+            <div>f<sub>AB</sub> = ${phys.mA.toFixed(2)} × ${phys.a.toFixed(2)}</div>
+            <div class="font-bold text-cyan-700 pt-0.5">⇒ f<sub>AB</sub> = ${phys.F_AB.toFixed(2)} N (acting on A by B, to the right)</div>
+          </div>
+          <p class="text-[11px] text-slate-500 pt-1">
+            <strong>Check on Book B:</strong> <span class="mono">F<sub>app</sub> − f<sub>BA</sub> − f<sub>table</sub> = m<sub>B</sub>a ⇒ ${phys.Fapp.toFixed(2)} − ${phys.F_BA.toFixed(2)} − ${phys.fTable.toFixed(2)} = ${(phys.mB * phys.a).toFixed(2)} N</span> ✔
+          </p>
+        `;
+      }
+    }
+
+    /*************************************************************************
+     * MASTER RENDER & INITIALIZATION
+     *************************************************************************/
+    function renderAll() {
+      const phys = calculatePhysics();
+      drawSimulationCanvas(phys);
+      renderFBDSvg(phys);
+      updateMathBreakdown(phys);
+    }
+
+    /**
+     * Interactive Student Misconception Quiz Handler
+     */
+    function answerQuiz(choice) {
+      const phys = calculatePhysics();
+      const box = document.getElementById('quizFeedbackBox');
+      box.classList.remove('hidden');
+
+      if (choice === 'equalF') {
+        box.className = 'p-2.5 rounded-lg text-xs leading-relaxed border bg-rose-50 border-rose-200 text-rose-900';
+        box.innerHTML = `<strong>Not quite! (Common Misconception #1):</strong> If the contact force on B were equal to the full applied force (<span class="mono">${phys.Fapp.toFixed(1)} N</span>), then by Newton's 3rd Law Box B would push back on Box A with <span class="mono">${phys.Fapp.toFixed(1)} N</span>, leaving <strong>zero net force</strong> to accelerate Mass A! Try clicking <em>"Object B Only"</em> and toggling <em>"Show Common Mistake"</em>.`;
+      } else if (choice === 'lessF') {
+        box.className = 'p-2.5 rounded-lg text-xs leading-relaxed border bg-emerald-50 border-emerald-200 text-emerald-900';
+        box.innerHTML = `<strong>Spot on! ✔</strong> Because part of the external force (<span class="mono">m<sub>A</sub>·a = ${(phys.mA * phys.a).toFixed(2)} N</span>) is used to accelerate Object A, only the remaining force (<span class="mono">F<sub>BA</sub> = ${phys.F_BA.toFixed(2)} N</span>) is transmitted to Object B!`;
+      } else if (choice === 'cancelZero') {
+        box.className = 'p-2.5 rounded-lg text-xs leading-relaxed border bg-amber-50 border-amber-200 text-amber-900';
+        box.innerHTML = `<strong>Careful! (Common Misconception #2):</strong> While <span class="mono">F<sub>AB</sub></span> and <span class="mono">F<sub>BA</sub></span> are equal and opposite (<span class="mono">${phys.F_BA.toFixed(2)} N</span>), they act on <strong>different objects</strong>! They only cancel out when you group A and B together as a single combined system.`;
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      renderAll();
+    });
+
+    window.onload = function () {
+      applyPreset('example1');
+    };
+  </script>
+</body>
+</html>
